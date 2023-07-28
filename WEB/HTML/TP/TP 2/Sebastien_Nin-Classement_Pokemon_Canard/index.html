@@ -127,14 +127,30 @@
     max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas la largeur de son conteneur */
   }
 
+  .center-link {
+    display: block; /* Assurez-vous que le lien est un élément de bloc */
+    text-align: center; /* Centre le contenu du lien horizontalement */
+    margin: 20px auto; /* Ajoute une marge autour du lien et utilise des marges automatiques pour centrer verticalement */
+    color: #007BFF; /* Couleur du lien (vous pouvez personnaliser selon vos préférences) */
+    text-decoration: none; /* Supprime le soulignement par défaut du lien */
+    transition: color 0.2s ease-in-out; /* Ajoute une transition de couleur fluide lors du survol du lien */
+  }
+
+  .center-link:hover {
+    color: #4e89ae; /* Couleur du lien au survol (vous pouvez personnaliser selon vos préférences) */
+  }
+
   </style>
+
 </head>
 <body>
   <header class="pikaHeader">
     <img src = "img/Pokemon/GIF/Pika_dance.gif" alt = "Tableau des Pokémon Canard">
   </header>
+
   <table>
     <caption><h1>Tableau des Pokémon Canard</h1></caption>
+    <a href="../Victor - One Piece/Tableau.html" target="_blank" class="center-link"><h3>Si vous êtes fans de mangas et que vous connaissez <b>tpt</b>, allez voir cette page!</h3></a>
     <thead>
       <tr>
         <th>Numéro<br/>Pokedex</th>
@@ -152,7 +168,7 @@
       <tr>
         <td>474</td>
         <td><a href="https://www.pokepedia.fr/Porygon-Z" target="_blank">Porygon-Z</a> (Porygon-Z)</td>
-        <td><img src = "img/Icones_types/Miniature_Type_Normal_EV.png"></td>
+        <td><img src = "img/Icones_types/Miniature_Type_Normal_EV.png" alt="Normal"></td>
         <td>Forme finale</td>
         <td><ul>
           <li><a href="https://www.pokepedia.fr/Élecanon" target="_blank">Élecanon</a></li>
@@ -168,7 +184,7 @@
       <tr class="combat">
         <td>865</td>
         <td><a href="https://www.pokepedia.fr/Palarticho" target="_blank">Palarticho</a> (Sirfetch'd)</td>
-        <td rowspan="2"><img src = "img/Icones_types/Miniature_Type_Combat_EV.png"></td>
+        <td rowspan="2"><img src = "img/Icones_types/Miniature_Type_Combat_EV.png" alt="Combat"></td>
         <td>Forme finale</td>
         <td><ul>
           <li><a href="https://www.pokepedia.fr/Joute_Astrale" target="_blank">Joute Astrale</a></li>
@@ -199,7 +215,7 @@
       <tr class="eau">
         <td>919</td>
         <td><a href="https://www.pokepedia.fr/Palmaval" target="_blank">Palmaval</a> (Quaquaval)</td>
-        <td rowspan="2"><img src = "img/Icones_types/Miniature_Type_Eau_EV.png"></td>
+        <td rowspan="2"><img src = "img/Icones_types/Miniature_Type_Eau_EV.png" alt="Eau"></td>
         <td>Forme finale</td>
         <td><ul>
           <li><a href="https://www.pokepedia.fr/Ultimawashi" target="_blank">Ultimawashi</a></li>
@@ -230,7 +246,7 @@
       <tr class="feu">
         <td>240</td>
         <td><a href="https://www.pokepedia.fr/Magby" target="_blank">Magby</a> (Magby)</td>
-        <td rowspan="3"><img src = "img/Icones_types/Miniature_Type_Feu_EV.png"></td>
+        <td rowspan="3"><img src = "img/Icones_types/Miniature_Type_Feu_EV.png" alt="Feu"></td>
         <td>Niveau 30</td>
         <td><ul>
           <li><a href="https://www.pokepedia.fr/Onde_Folie" target="_blank">Onde Folie</a></li>
@@ -276,7 +292,7 @@
       <tr class="eau">
         <td>54</td>
         <td><a href="https://www.pokepedia.fr/Psykokwak" target="_blank">Psykokwak</a> (Psyduck)</td>
-        <td rowspan="2"><img src = "img/Icones_types/Miniature_Type_Eau_EV.png"></td>
+        <td rowspan="2"><img src = "img/Icones_types/Miniature_Type_Eau_EV.png" alt="Eau"></td>
         <td>Niveau 33</td>
         <td><ul>
           <li><a href="https://www.pokepedia.fr/Zone_Étrange" target="_blank">Zone Étrange</a></li>
@@ -307,7 +323,7 @@
       <tr class="normal">
         <td>83</td>
         <td><a href="https://www.pokepedia.fr/Canarticho" target="_blank">Canarticho</a> (Farfetch'd)</td>
-        <td><img src = "img/Icones_types/Miniature_Type_Normal_EV.png"><br/><img src = "img/Icones_types/Miniature_Type_Vol_EV.png"></td>
+        <td><img src = "img/Icones_types/Miniature_Type_Normal_EV.png" alt="Normal"><br/><img src = "img/Icones_types/Miniature_Type_Vol_EV.png" alt="Vol"></td>
         <td>Pas d'évolution</td>
         <td><ul>
           <li><a href="https://www.pokepedia.fr/Aéropique" target="_blank">Aéropique</a></li>
@@ -323,7 +339,7 @@
       <tr class="eau">
         <td>580</td>
         <td><a href="https://www.pokepedia.fr/Couaneton" target="_blank">Couaneton</a> (Ducklett)</td>
-        <td><img src = "img/Icones_types/Miniature_Type_Eau_EV.png"><br/><img src = "img/Icones_types/Miniature_Type_Vol_EV.png"></td>
+        <td><img src = "img/Icones_types/Miniature_Type_Eau_EV.png" alt="Eau"><br/><img src = "img/Icones_types/Miniature_Type_Vol_EV.png" alt="Vol"></td>
         <td>Niveau 35</td>
         <td><ul>
           <li><a href="https://www.pokepedia.fr/Aéropique" target="_blank">Aéropique</a></li>
@@ -339,7 +355,7 @@
       <tr class="eau">
         <td>272</td>
         <td><a href="https://www.pokepedia.fr/Ludicolo" target="_blank">Ludicolo</a> (Ludicolo)</td>
-        <td><img src = "img/Icones_types/Miniature_Type_Eau_EV.png"><br/><img src = "img/Icones_types/Miniature_Type_Plante_EV.png"></td>
+        <td><img src = "img/Icones_types/Miniature_Type_Eau_EV.png" alt="Eau"><br/><img src = "img/Icones_types/Miniature_Type_Plante_EV.png" alt="Plante"></td>
         <td>Forme finale</td>
         <td><ul>
           <li><a href="https://www.pokepedia.fr/Hydrocanon" target="_blank">Hydrocanon</a></li>

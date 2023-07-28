@@ -1,0 +1,25 @@
+
+table{
+  /*color: Orange;*/
+  background-color: Grey;
+}
+
+body{
+  font-family: "Advent Pro", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+h1{
+  color: blue;
+}
+th{
+  color: Purple;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+td{
+  color: Black;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
