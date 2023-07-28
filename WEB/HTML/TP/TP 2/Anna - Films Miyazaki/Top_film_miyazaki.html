@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Les meilleurs films Miyazaki</title>
+    <link href="chemin/vers/votre_police.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #11193e; /* Bleu marine */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            color: #fff; /* Texte en blanc */
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            border: 2px solid #333;
+            background-color: #fff; /* Fond du tableau en blanc */
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px;
+            max-height: 150px;
+        }
+        iframe {
+            max-width: 100%;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 20px auto;
+            width: 80%;
+        }
+        /* Style pour l'image en haut à gauche */
+        .header-image {
+            position: absolute;
+            top: 20px;
+            left: 300px;
+            width: 250px;
+            height: auto;
+        }
+        /* Style pour l'image en haut à droite*/
+        .right-image {
+         position: fixed;
+         top: 50px;
+         right: 50px;
+         width: 200px;
+         height: auto;
+        }
+
+        .zoomable-image {
+            transition: transform 0.3s ease;
+        }
+        .zoomable-image:hover {
+            transform: scale(1.5);
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+    <img src="img_totoro.png" alt="Image d'en-tête gauche" class="header-image zoomable-image" width="300" height="300">
+    <img src="img_noiraude.png" alt="Image d'en-tête droite" id="right-image" class="right-image zoomable-image" width="300" height="300">
+    <h1>Les meilleurs films Miyazaki</h1>
+    <table>
+        <tr>
+            <th>Film</th>
+            <th>Affiche</th>
+            <th>Année de sortie</th>
+            <th>Bande Annonce</th>
+            <th>Lien Allociné</th>
+        </tr>
+
+<tr align="center">
+    <td>Le château ambulant</td>
+    <td><img alt="Affiche film chateau ambulant" src="img_chateau_ambulant.jpg" height="200" width="150"</td>
+    <td>2004</td>
+    <td><iframe width="560" height="315" src="https://www.youtube.com/embed/Bqt1_J4GUIc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+    <td><a href="https://www.allocine.fr/rechercher/?q=le+chateau+ambulant" target="_blank" >Le château ambulant</a>
+</tr>
+
+  <tr align="center">
+      <td>Princesse Mononoké</td>
+      <td><img alt="Affiche film princess Mononoké" src="img_princesse_mononoke.jpg" height="200" width="150"</td>
+      <td>1997</td>
+      <td><iframe width="560" height="315" src="https://www.youtube.com/embed/8tpd5SAUAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+      <td><a href="https://www.allocine.fr/rechercher/?q=princesse+mononok%C3%A9" target="_blank" >Princesse Mononoké</a>
+</tr>
+
+<tr align="center">
+    <td>Le Voyage de Chihiro</td>
+    <td><img alt="Affiche film voyage Chihiro" src="img_voyage_chihiro.JPG" height="200" width="150"</td>
+    <td>2001</td>
+    <td><iframe width="560" height="315" src="https://www.youtube.com/embed/EhIZrZQoHuA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+    <td><a href="https://www.allocine.fr/film/fichefilm_gen_cfilm=37485.html" target="_blank" >Le voyage de Chihiro</a>
+</tr>
+
+<tr align="center">
+    <td>Porco Rosso</td>
+    <td><img alt="Affiche film Porco Rosso" src="img_porco_rosso.jpg" height="200" width="150"</td>
+    <td>1992</td>
+    <td><iframe width="560" height="315" src="https://www.youtube.com/embed/5Wiv3d6IS7Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+    <td><a href="https://www.allocine.fr/rechercher/?q=porco+rosso" target="_blank" >Porco Rosso</a>
+</tr>
+
+<tr align="center">
+    <td>Mon voisin Totoro</td>
+    <td><img alt="Affiche film voisin totoro" src="img_voisin_totoro.jpg" height="200" width="150"</td>
+    <td>1988</td>
+    <td><iframe width="560" height="315" src="https://www.youtube.com/embed/bQPeA_ekBpc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+    <td><a href="https://www.allocine.fr/film/fichefilm_gen_cfilm=14790.html" target="_blank" >Voisin Totoro</a>
+</tr>
+
+<tr align="center">
+    <td>Naussicäa de la vallée du vent</td>
+    <td><img alt="Affiche film Naussicäa de la vallée du vent" src="img_naussicaa.jpg" height="200" width="150"</td>
+    <td>1984</td>
+    <td><iframe width="560" height="315" src="https://www.youtube.com/embed/ZcccykYncag" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+    <td><a href="https://www.allocine.fr/film/fichefilm_gen_cfilm=40132.html" target="_blank" >Naussicäa de la vallée du vent</a>
+</tr>
+
+
+</table>
+   <hr>
+
+   <script>
+        // Récupérer l'élément de l'image de droite
+        const rightImage = document.getElementById('right-image');
+
+        // Fonction pour mettre à jour la position verticale de l'image de droite en fonction du défilement de la page
+        function updateRightImagePosition() {
+            const scrollY = window.scrollY; // Récupérer la position verticale du défilement
+            rightImage.style.top = `${100 + scrollY}px`; // Mettre à jour la position verticale de l'image
+        }
+
+        // Appeler la fonction de mise à jour lorsque la page est chargée et à chaque défilement
+        window.addEventListener('load', updateRightImagePosition);
+        window.addEventListener('scroll', updateRightImagePosition);
+    </script>
+</body>
+
+<footer style="color: white;text-align: center;">
+        <p>© 2023 AnnaJouannic</p>
+    </footer>
+</html>
