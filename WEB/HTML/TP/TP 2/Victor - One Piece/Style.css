@@ -64,3 +64,16 @@ td:nth-child(3) p {
   font-style: italic;
   margin: 5px 0;
 }
+
+.center-link {
+  display: block; /* Assurez-vous que le lien est un élément de bloc */
+  text-align: center; /* Centre le contenu du lien horizontalement */
+  margin: 20px auto; /* Ajoute une marge autour du lien et utilise des marges automatiques pour centrer verticalement */
+  color: #007BFF; /* Couleur du lien (vous pouvez personnaliser selon vos préférences) */
+  text-decoration: none; /* Supprime le soulignement par défaut du lien */
+  transition: color 0.2s ease-in-out; /* Ajoute une transition de couleur fluide lors du survol du lien */
+}
+
+.center-link:hover {
+  color: #4e89ae; /* Couleur du lien au survol (vous pouvez personnaliser selon vos préférences) */
+}
