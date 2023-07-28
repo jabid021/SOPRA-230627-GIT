@@ -71,12 +71,21 @@
          height: auto;
         }
 
+
         .zoomable-image {
             transition: transform 0.3s ease;
         }
         .zoomable-image:hover {
             transform: scale(1.5);
         }
+        /* Styles pour les images zoomables */
+      .zoomable {
+          transition: transform 0.3s; /* Transition fluide */
+      }
+
+      .zoomable:hover {
+          transform: scale(3.5); /* Agrandir l'image de 20% au survol */
+      }
 
 
     </style>
@@ -86,6 +95,7 @@
 
     <img src="img_totoro.png" alt="Image d'en-tête gauche" class="header-image zoomable-image" width="300" height="300">
     <img src="img_noiraude.png" alt="Image d'en-tête droite" id="right-image" class="right-image zoomable-image" width="300" height="300">
+
     <h1>Les meilleurs films Miyazaki</h1>
     <table>
         <tr>
@@ -98,7 +108,7 @@
 
 <tr align="center">
     <td>Le château ambulant</td>
-    <td><img alt="Affiche film chateau ambulant" src="img_chateau_ambulant.jpg" height="200" width="150"</td>
+    <td><img class="zoomable" alt="Affiche film chateau ambulant" src="img_chateau_ambulant.jpg" height="200" width="150"</td>
     <td>2004</td>
     <td><iframe width="560" height="315" src="https://www.youtube.com/embed/Bqt1_J4GUIc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
     <td><a href="https://www.allocine.fr/rechercher/?q=le+chateau+ambulant" target="_blank" >Le château ambulant</a>
@@ -106,7 +116,7 @@
 
   <tr align="center">
       <td>Princesse Mononoké</td>
-      <td><img alt="Affiche film princess Mononoké" src="img_princesse_mononoke.jpg" height="200" width="150"</td>
+      <td><img class="zoomable" alt="Affiche film princess Mononoké" src="img_princesse_mononoke.jpg" height="200" width="150"</td>
       <td>1997</td>
       <td><iframe width="560" height="315" src="https://www.youtube.com/embed/8tpd5SAUAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
       <td><a href="https://www.allocine.fr/rechercher/?q=princesse+mononok%C3%A9" target="_blank" >Princesse Mononoké</a>
@@ -114,7 +124,7 @@
 
 <tr align="center">
     <td>Le Voyage de Chihiro</td>
-    <td><img alt="Affiche film voyage Chihiro" src="img_voyage_chihiro.JPG" height="200" width="150"</td>
+    <td><img class="zoomable" alt="Affiche film voyage Chihiro" src="img_voyage_chihiro.JPG" height="200" width="150"</td>
     <td>2001</td>
     <td><iframe width="560" height="315" src="https://www.youtube.com/embed/EhIZrZQoHuA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
     <td><a href="https://www.allocine.fr/film/fichefilm_gen_cfilm=37485.html" target="_blank" >Le voyage de Chihiro</a>
@@ -122,7 +132,7 @@
 
 <tr align="center">
     <td>Porco Rosso</td>
-    <td><img alt="Affiche film Porco Rosso" src="img_porco_rosso.jpg" height="200" width="150"</td>
+    <td><img class="zoomable" alt="Affiche film Porco Rosso" src="img_porco_rosso.jpg" height="200" width="150"</td>
     <td>1992</td>
     <td><iframe width="560" height="315" src="https://www.youtube.com/embed/5Wiv3d6IS7Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
     <td><a href="https://www.allocine.fr/rechercher/?q=porco+rosso" target="_blank" >Porco Rosso</a>
@@ -130,7 +140,7 @@
 
 <tr align="center">
     <td>Mon voisin Totoro</td>
-    <td><img alt="Affiche film voisin totoro" src="img_voisin_totoro.jpg" height="200" width="150"</td>
+    <td><img class="zoomable" alt="Affiche film voisin totoro" src="img_voisin_totoro.jpg" height="200" width="150"</td>
     <td>1988</td>
     <td><iframe width="560" height="315" src="https://www.youtube.com/embed/bQPeA_ekBpc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
     <td><a href="https://www.allocine.fr/film/fichefilm_gen_cfilm=14790.html" target="_blank" >Voisin Totoro</a>
@@ -138,7 +148,7 @@
 
 <tr align="center">
     <td>Naussicäa de la vallée du vent</td>
-    <td><img alt="Affiche film Naussicäa de la vallée du vent" src="img_naussicaa.jpg" height="200" width="150"</td>
+    <td><img class="zoomable" alt="Affiche film Naussicäa de la vallée du vent" src="img_naussicaa.jpg" height="200" width="150"</td>
     <td>1984</td>
     <td><iframe width="560" height="315" src="https://www.youtube.com/embed/ZcccykYncag" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
     <td><a href="https://www.allocine.fr/film/fichefilm_gen_cfilm=40132.html" target="_blank" >Naussicäa de la vallée du vent</a>
@@ -155,7 +165,7 @@
         // Fonction pour mettre à jour la position verticale de l'image de droite en fonction du défilement de la page
         function updateRightImagePosition() {
             const scrollY = window.scrollY; // Récupérer la position verticale du défilement
-            rightImage.style.top = `${100 + scrollY}px`; // Mettre à jour la position verticale de l'image
+            rightImage.style.top = `${125 + scrollY / 2}px`; // Mettre à jour la position verticale de l'image
         }
 
         // Appeler la fonction de mise à jour lorsque la page est chargée et à chaque défilement
