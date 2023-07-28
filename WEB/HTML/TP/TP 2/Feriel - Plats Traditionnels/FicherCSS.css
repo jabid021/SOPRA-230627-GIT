@@ -1,3 +1,10 @@
+body
+{
+  background-image: url("img/fondNoir.jpg");
+ background-size:100% 100%;
+ background-position:center center;
+ //background-repeat:no-repeat;
+ }
 table
 {
   background-image: url("img/fond.jpg");
@@ -6,7 +13,7 @@ table
  //background-repeat:no-repeat;
  }
 
- td,th{
+ h1,td,th{
    color:white;
  }
 
