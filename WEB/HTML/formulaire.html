@@ -1,0 +1,90 @@
+<!--
+
+Zone de texte => input, text, password, date time,week, email, url, number , tel (affiche uniquement les chiffres et + sur un tel)
+Liste deroulante / menu deroulant  => Select
+Grande zone de texte => textarea
+button => submit, reset , button
+Choix à cocher :   rond => radio (choix unique 0-1), case => checkbox (choix multiple 0-*)
+-->
+<form>
+
+  <fieldset>
+    <legend>Bloc 1</legend>
+  <table>
+    <tr><td>Login : </td><td><input type="text" placeholder="Saisir votre login"></td></tr>
+    <tr><td>Password :</td><td> <input type="password" value="MonMotDePasse" placeholder="Saisir password" ></td></tr>
+    <tr><td>Age :</td><td> <input type="number"></td></tr>
+    <tr><td>Naissance :</td><td> <input type="date"></td></tr>
+    <tr><td>Heure RDV :</td><td> <input type="time" value="08:50"></td></tr>
+    </table>
+</fieldset>
+
+<fieldset>
+    <legend>Bloc 2</legend>
+  <table>
+
+
+
+
+    <tr><td>Week :</td><td> <input type="week"></td></tr>
+    <tr><td>Email  :</td><td> <input type="email" placeholder="Saisir votre mail"></td></tr>
+    <tr><td>Tel  :</td><td> <input type="tel" placeholder="Saisir votre tel"></td></tr>
+    <tr><td>Fond d'ecran  :</td><td> <input name="color" value="#e71313" type="color"></td></tr>
+    <tr><td>Note du film  :</td><td> <input name="note" type="range" td></tr>
+
+
+
+      <tr><td>Choix de l'os</td><td>
+
+        <select name="os">
+          <optgroup label="OS Proprietaire">
+            <option>MacOs</option>
+            <option selected>Windows</option>
+          </optgroup>
+          <optgroup label="OS Libre">
+            <option >Linux</option>
+          </optgroup>
+        </select>
+      </tr>
+
+
+      <tr><td>Choix des boissons</td><td>
+
+        <select name="boissons" multiple>
+          <optgroup label="Soda">
+            <option>Fanta</option>
+            <option>Coca</option>
+          </optgroup>
+          <optgroup label="Eau">
+            <option >Evian</option>
+            <option >Vitel</option>
+            <option >Perrier</option>
+          </optgroup>
+        </select>
+      </tr>
+
+
+
+      <tr>
+        <td>Choix des boissons 2  : </td>
+        <td><input checked type="checkbox"> Fanta   <input type="checkbox">Coca   <input type="checkbox"> Eau  </td>
+      </tr>
+
+
+      <tr>
+        <td>Civilite : </td>
+        <td><input checked name="civilite" type="radio"> Homme   <input name="civilite" type="radio">Femme   <input name="civilite" type="radio"> Nb  </td>
+      </tr>
+
+      <tr>
+        <td>Commentaire : </td>
+        <td><textarea  rows="6" cols="45" placeholder="Saisir votre com"></textarea></td>
+      </tr>
+    </table>
+
+</fieldset>
+
+    <input  value="Modifier la fiche" type="submit">
+    <input  value="Cancel" type="reset">
+
+  </form>
