@@ -115,10 +115,24 @@
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
+
+  .pikaHeader {
+    text-align: center; /* Aligne le contenu au centre horizontalement */
+    padding: 20px; /* Ajoute un espacement autour de l'image (facultatif) */
+  }
+
+  .pikaHeader img {
+    display: block; /* Assurez-vous que l'image est un élément de bloc */
+    margin: 0 auto; /* Centre l'image en utilisant les marges automatiques */
+    max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas la largeur de son conteneur */
+  }
+
   </style>
 </head>
 <body>
-
+  <header class="pikaHeader">
+    <img src = "img/Pokemon/GIF/Pika_dance.gif" alt = "Tableau des Pokémon Canard">
+  </header>
   <table>
     <caption><h1>Tableau des Pokémon Canard</h1></caption>
     <thead>
