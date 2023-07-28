@@ -1,0 +1,66 @@
+/* Style général du tableau */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+/*
+body {
+  background-image: url("One_Piece_Titre.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+*/
+/* Style de la légende */
+caption {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Style de l'en-tête de tableau */
+thead th {
+  background-color: #f2f2f2;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Style des cellules du corps du tableau */
+tbody td {
+  font-size: 16px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Style des cellules de l'en-tête de tableau (Membre, Nom, Description) */
+thead th {
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 2px solid #000;
+}
+
+/* Style des images dans les cellules */
+td img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Style pour mettre en gras le nom des membres */
+td:nth-child(2) {
+  font-weight: bold;
+}
+
+/* Style pour ajuster la largeur de la colonne Description */
+td:nth-child(3) {
+  width: 500px;
+}
+
+/* Style pour mettre en italique les informations supplémentaires */
+td:nth-child(3) p {
+  font-style: italic;
+  margin: 5px 0;
+}
