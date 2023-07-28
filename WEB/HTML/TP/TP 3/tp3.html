@@ -1,0 +1,50 @@
+<form>
+
+  <fieldset>
+    <legend>Informations personnelles</legend>
+
+    <table>
+      <tr><td><label for="email">Email *</label></td><td><input required name="email" id="email" type="email" placeholder="lorem@mail.fr"></td></tr>
+      <tr><td>Mot de passe * </td><td><input required name="password" type="password" placeholder="********"></td></tr>
+      <tr><td>Sexe</td><td>
+        <select name="civilite">
+          <option>Homme</option>
+          <option>Femme</option>
+          <option>NB</option>
+        </select>
+      </td></tr>
+      <tr><td>Date de naissance</td><td><input name="naissance" type="date" value="2000-01-01"></td></tr>
+    </table>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Préférences</legend>
+    <table>
+      <tr><td>Couleur favorite</td><td>
+        <input required id="rouge" value="rouge" name="couleur" type="radio"> <label for="rouge">Rouge</label>
+        <input required id="vert" value="vert" name="couleur" type="radio">  <label for="vert">Vert</label>
+        <input required id="bleu" value="bleu" name="couleur" type="radio">  <label for="bleu">Bleu</label>
+      </td></tr>
+      <tr><td>Centres d'intérêts</td><td>
+        <input name ="interet"  value="sport" id="sport" type="checkbox">  <label for="sport">Sport</label>
+        <input name ="interet"  value="danse"  id="danse" type="checkbox">  <label for="danse">Danse</label>
+        <input name ="interet"  value="musique"  id="musique" type="checkbox">  <label for="musique">Musique</label>
+        <input name ="interet"  value="informatique"  id="informatique" type="checkbox">  <label for="informatique">Informatique</label>
+      </td></tr>
+    </table>
+  </fieldset>
+
+
+
+  <fieldset>
+    <legend>Commentaires</legend>
+    <table>
+      <tr><td>Message</td><td>
+        <textarea name="commentaire" rows="4" cols="25"></textarea>
+      </td></tr>
+    </table>
+  </fieldset>
+
+  <input type="submit" value="Envoyer">
+</form>

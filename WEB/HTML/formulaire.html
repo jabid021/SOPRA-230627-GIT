@@ -6,16 +6,22 @@ Grande zone de texte => textarea
 button => submit, reset , button
 Choix à cocher :   rond => radio (choix unique 0-1), case => checkbox (choix multiple 0-*)
 -->
+<h1 title="bulle">Formulaire d'inscription</h1>
 <form>
 
   <fieldset>
     <legend>Bloc 1</legend>
   <table>
-    <tr><td>Login : </td><td><input type="text" placeholder="Saisir votre login"></td></tr>
-    <tr><td>Password :</td><td> <input type="password" value="MonMotDePasse" placeholder="Saisir password" ></td></tr>
-    <tr><td>Age :</td><td> <input type="number"></td></tr>
+    <input  name="action" type="hidden" value="update">
+    <tr><td>ID : </td><td><input  name="id" type="hidden" value="5"></td></tr>
+    <tr><td>ID : </td><td><input readonly  type="text" value="5"></td></tr>
+    <tr><td>ID : </td><td><input disabled  type="text" value="5"></td></tr>
+    <tr><td title="Saisir votre login">Login : </td><td><input  required size="80" minlength="5" maxlength="10" type="text" value="jordan" placeholder="Saisir votre login"></td></tr>
+    <tr><td>Password :</td><td> <input title="ERROR" type="password" value="MonMotDePasse"  minlength="5" placeholder="Saisir password" ></td></tr>
+    <tr><td>Age :</td><td> <input type="number" value="0"  min="0" max="75" ></td></tr>
+    <tr><td>Salaire :</td><td> <input type="number" step="0.01"  min="0"></td></tr>
     <tr><td>Naissance :</td><td> <input type="date"></td></tr>
-    <tr><td>Heure RDV :</td><td> <input type="time" value="08:50"></td></tr>
+    <tr><td>Heure RDV :</td><td> <input type="time" step="1800" value="08:00" min="08:00" max="17:00"></td></tr>
     </table>
 </fieldset>
 
@@ -36,13 +42,15 @@ Choix à cocher :   rond => radio (choix unique 0-1), case => checkbox (choix mu
 
       <tr><td>Choix de l'os</td><td>
 
-        <select name="os">
+        <select disabled required name="os">
+
+          <option value="">Choisir un OS</option>
           <optgroup label="OS Proprietaire">
-            <option>MacOs</option>
-            <option selected>Windows</option>
+            <option value="1">MacOs</option>
+            <option value="3">Windows</option>
           </optgroup>
           <optgroup label="OS Libre">
-            <option >Linux</option>
+            <option value="2" >Linux</option>
           </optgroup>
         </select>
       </tr>
