@@ -1,0 +1,135 @@
+<!--
+descendants => x y (toutes les balises y qui se trouvent dans une balise x)
+enfant direct => x > y (toutes les balises y directement dans la balise x (au 1er niveau))
+suivantes => x + y (la balise y suivant la balise x)
+-->
+<style>
+
+#content
+{
+  background-color:cyan;
+
+}
+#content div
+{
+  font-size:25px;
+  color:red;
+
+}
+
+#content > div
+{
+  border:solid red 2px;
+}
+
+#content > div > div
+{
+  text-align:center;
+}
+
+#content+div
+{
+  background-color:yellow;
+}
+
+#content+div+div
+{
+  background-color:orange;
+}
+
+
+#exemple
+{
+  background-color:orange;
+}
+
+#exemple p:nth-of-type(3)
+{
+  font-size:25px;
+}
+
+#exemple p:nth-child(3)
+{
+  color:red;
+}
+
+
+#exemple p:nth-of-type(odd)
+{
+  background-color:green;
+}
+
+#exemple p:nth-of-type(even)
+{
+  background-color:salmon;
+}
+
+#exemple p:nth-child(odd)
+{
+font-family : Arial;
+}
+
+#exemple p:nth-child(even)
+{
+  font-family : cursive;
+}
+
+#exemple p:nth-of-type(3n)
+{
+  background-color:purple;
+}
+
+#exemple p:first-letter
+{
+  font-size:50px;
+}
+#exemple p:first-line
+{
+  font-family:fantasy;
+}
+
+#exemple p:nth-of-type(5):before
+{
+  color:pink;
+  content:"Leeloo";
+  font-size:35px;
+}
+</style>
+
+<div> AVANT</div>
+
+<div id="content">
+  <div>Enfant direct 1 </div>
+  <div>Enfant direct 2 </div>
+  <div>
+    <div>+Enfant 3-A</div>
+    <div>+Enfant 3-B</div>
+  </div>
+  <div>Enfant direct 4 </div>
+
+</div>
+
+
+<div> Apres 1</div>
+<div> Apres 2</div>
+
+
+
+
+
+<hr>
+
+
+
+
+<div id="exemple">
+  <h2>Sous titre</h2>
+  <p>1 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>2 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>4 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>5 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>6 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>7 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>8 - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
