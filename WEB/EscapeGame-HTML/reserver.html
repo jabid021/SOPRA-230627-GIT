@@ -19,24 +19,24 @@
             <p class="card-text">Porte 4 de votre aéroport, votre avion est à l’heure. Billet en main, vous êtes prêt à embarquer mais un peu nerveux… Rassurez-vous, il ne s’agit que d’un vol d’une heure. L’embarquement est annoncé, vous allez enfin pouvoir vous installer.<br>Attachez vos ceintures, le décollage est imminent !<br>Et n'ayez crainte, l'avion reste le moyen de transport le plus sûr au monde...</p>
             <p>Joueur(s) : 4-7 Joueur(s)</p>
             <p>Duree - Prix : 90 minutes - 27.00€ / joueur</p>
-            <button class="btn btn-primary" onClick="formParticipants(4,7,27)">Reserver</button>
+            <button class="btn btn-primary" onClick="formParticipants(2,4,7,27)">Reserver</button>
           </div>
         </div>
       </div>
 
 
-            <div class="col-4">
-              <div class="card" style="width: 25rem;margin-top:15px;">
-                <img src="assets/img/metro.jpg" class="card-img-top" alt="avion">
-                <div class="card-body">
-                  <h5 class="card-title">Le Métro</h5>
-                  <p class="card-text">Le métro est en approche.<br>Les phares émergent tout juste de l’obscurité quand tout à coup, le métro s’immobilise en pleine voie !<br>Cela semble bien plus inquiétant qu’un simple arrêt pour régulation du trafic et le métro ne semble pas prêt à repartir…</p>
-                  <p>Joueur(s) : 3-5 Joueur(s)</p>
-                  <p>Duree - Prix : 60 minutes - 20.50€ / joueur</p>
-                  <button class="btn btn-primary" onClick="formParticipants(3,5,20.5)">Reserver</button>
-                </div>
-              </div>
-            </div>
+      <div class="col-4">
+        <div class="card" style="width: 25rem;margin-top:15px;">
+          <img src="assets/img/metro.jpg" class="card-img-top" alt="avion">
+          <div class="card-body">
+            <h5 class="card-title">Le Métro</h5>
+            <p class="card-text">Le métro est en approche.<br>Les phares émergent tout juste de l’obscurité quand tout à coup, le métro s’immobilise en pleine voie !<br>Cela semble bien plus inquiétant qu’un simple arrêt pour régulation du trafic et le métro ne semble pas prêt à repartir…</p>
+            <p>Joueur(s) : 3-5 Joueur(s)</p>
+            <p>Duree - Prix : 60 minutes - 20.50€ / joueur</p>
+            <button class="btn btn-primary" onClick="formParticipants(1,3,5,20.5)">Reserver</button>
+          </div>
+        </div>
+      </div>
 
 
     </div>
@@ -44,6 +44,7 @@
 
   <div id="formReservation" class="formAjout">
     <select id="nombreParticipant"></select>
+    <input type="checkbox" id="checkSelf"> Je participe
     <form action="reservation" method="post" id="formulaireResaParticipant">
 
     </form>
@@ -56,47 +57,85 @@
 
 <script>
 
-var prixSalle;
-nombreParticipant.onchange=function()
-{
-  var nbParticipants=nombreParticipant.value;
-  showFormParticipants(nbParticipants);
-}
+  var prixSalle;
+  var salleSelect;
 
-
-
-function showFormParticipants(nbParticipants)
-{
-
-  var tableau = "<table class='table table-striped'>";
-  for(let i=1;i<=nbParticipants;i++)
+  var mesParticipants = [{nom:"Abid",prenom:"Jordan"},{nom:"Reja",prenom:"Diane"},{nom:"Gonzales",prenom:"Victor"}]
+  var options="<option value=''>Choisir un participant existant</option>";
+  for(let index in mesParticipants)
   {
-  tableau+=`<tr><td>Participant ${i}</td><td><input required placeholder="Nom du participant ${i}" type="text" name="nom-${i}"></td><td><input required placeholder="Prenom du participant ${i}" type="text" name="prenom-${i}"></td></tr>`;
+    let p = mesParticipants[index];
+
+    options+=`<option value='${index}'>${p.prenom} ${p.nom}</option>`;
   }
-  tableau+=`</table><input type='submit' value='Reserver (${prixSalle*nbParticipants}€)'>`;
-  formulaireResaParticipant.innerHTML=tableau;
-
-}
-
-function formParticipants(min,max,prix)
-{
-  prixSalle=prix;
-  formReservation.style.display="block";
-  nombreParticipant.innerHTML="";
-  for(let i=min;i<=max;i++)
+  nombreParticipant.onchange=function()
   {
-    if(i==1)
+    var nbParticipants=nombreParticipant.value;
+    showFormParticipants(nbParticipants);
+  }
+
+  checkSelf.onchange=isCheckSelf;
+
+
+  function isCheckSelf()
+  {
+    if(checkSelf.checked==true)
     {
-      nombreParticipant.innerHTML+=`<option value=${i}>${i} participant</option>`;
+      nom1.value=mesParticipants[0].nom;
+      prenom1.value=mesParticipants[0].prenom;
+      selectParticipant1.value="0";
     }
     else
     {
-      nombreParticipant.innerHTML+=`<option value=${i}>${i} participants</option>`;
+      nom1.value="";
+      prenom1.value="";
+      selectParticipant1.value="";
     }
   }
-  showFormParticipants(min);
-}
+  function showFormParticipants(nbParticipants)
+  {
 
+    var tableau = `<input type='hidden' name='salle' value='${salleSelect}'> <table class='table table-striped'><tr><th></th><th>Nom</th><th>Prenom</th><th>Choisir un de vos participants</th></tr>`;
+      for(let i=1;i<=nbParticipants;i++)
+      {
+        tableau+=`<tr>
+          <td>Participant ${i}</td>
+          <td><input required placeholder="Nom du participant ${i}" type="text" name="nom-${i}" id="nom${i}"></td>
+          <td><input required placeholder="Prenom du participant ${i}" type="text" name="prenom-${i}" id="prenom${i}"></td>
+          <td><select id="selectParticipant${i}" onChange='assignParticipant(${i})'>${options}</select></td>
+        </tr>`;
+      }
+      tableau+=`</table><input class="btn btn-success" type='submit' value='Reserver (${prixSalle*nbParticipants}€)'>`;
+      formulaireResaParticipant.innerHTML=tableau;
+      isCheckSelf();
+    }
 
+    function formParticipants(salle,min,max,prix)
+    {
+      prixSalle=prix;
+      salleSelect = salle;
+      formReservation.style.display="block";
+      nombreParticipant.innerHTML="";
+      for(let i=min;i<=max;i++)
+      {
+        nombreParticipant.innerHTML+=`<option value=${i}>${i} participants</option>`;
+      }
+      showFormParticipants(min);
+    }
 
-</script>
+    function assignParticipant(idLigne)
+    {
+      indexParticipant = document.getElementById(`selectParticipant${idLigne}`).value;
+      console.log(indexParticipant);
+      if(indexParticipant==""){
+        document.getElementById(`nom${idLigne}`).value="";
+        document.getElementById(`prenom${idLigne}`).value="";
+      }
+      else{
+        document.getElementById(`nom${idLigne}`).value=mesParticipants[indexParticipant].nom;
+        document.getElementById(`prenom${idLigne}`).value=mesParticipants[indexParticipant].prenom;
+      }
+
+    }
+
+  </script>
