@@ -1,69 +1,182 @@
-Logo
-ACCUEIL
+<style>
+	body
+	{
+		margin:0;
+	}
+
+	header
+	{
+		display:flex;
+		border:solid 1px black;
+		height:160px;
+	}
+
+	#logo
+	{
+		font-size: 60px;
+		width:15%;
+		font-weight:bold;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+
+	}
+	#accueil
+	{
+		width:85%;
+		background-color:grey;
+		font-size: 40px;
+		text-transform : uppercase;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}
+
+	main
+	{
+		display:flex;
+		height:100%;
+	}
+
+	main nav
+	{
+		width:18%;
+		display:flex;
+		flex-direction:column;
+		margin-top:20px;
+	}
+
+	main nav a
+	{
+		margin-left:30%;
+	}
+	main section
+	{
+		width:67%;
+	}
+
+	main aside
+	{
+		width:15%;
+	}
+
+	main aside ul
+	{
+		list-style-type:none;
+	}
+
+	footer
+	{
+		display:flex;
+		height:70px;
+		background-color:yellow;
+		align-items:center;
+	}
+
+	footer nav
+	{
+		width:50%;
+	}
+	footer nav a
+	{
+		margin-left:15px;
+	}
+	footer div
+	{
+		width:50%;
+	}
+
+</style>
 
 
-Accueil
-Item 1
-Item 2
-Item 3
-Contact
-		Sujet de la page
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
+<header>
+	<div id="logo">Logo</div>
+	<div id="accueil">Accueil</div>
+</header>
 
+<main>
+	<nav>
+		<a href="">Accueil</a>
+		<a href="">Item 1</a>
+		<a href="">Item 2</a>
+		<a href="">Item 3</a>
+		<a href="">Contact</a>
+	</nav>
+	<section>
+		<h1>Sujet de la page</h1>
 
-		Article 1
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-
-		Article 2
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco rcitation ullamco
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco</p>
 
 
-		Article 3
+			<h3>Article 1</h3>
 
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco</p>
 
-		Article 4
+				<h3>Article 2</h3>
 
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-
-		Article 5
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-		
-		Article 6
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-
-		
-Archives
-	Août 2019
-	Juillet 2019
-	Juin 2019
-	Mai 2019
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco rcitation ullamco</p>
 
 
+					<h3>Article 3</h3>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco</p>
+
+						<h3>Article 4</h3>
+
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco</p>
+
+							<h3>Article 5</h3>
+
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco</p>
+
+								<h3>Article 6</h3>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco</p>
 
 
-Accueil
-	Plan
-	Contact
-	CGU
 
-Gabarit - Copyrigth &#8471; 2019-2022
+
+
+								</section>
+								<aside>
+									<div>Archives</div>
+									<ul>
+										<li><a href="">Août 2019</a></li>
+										<li><a href="">Juillet 2019</a></li>
+										<li><a href="">Juin 2019</a></li>
+										<li><a href="">Mai 2019</a></li>
+									</ul>
+
+
+
+
+								</aside>
+							</main>
+
+							<footer>
+								<nav>
+
+									<a href="">Accueil</a>
+									<a href="">Plan</a>
+									<a href="">Contact</a>
+									<a href="">CGU</a>
+
+								</nav>
+								<div>Gabarit - Copyrigth &#8471; 2019-2022</div>
+							</footer>
