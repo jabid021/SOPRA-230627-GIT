@@ -1,0 +1,23 @@
+<script charset="utf-8">
+
+var tabPays = [{nom:"France",capitale:"Paris"},{nom:"Espagne",capitale:"Madrid"},{nom:"Allemagne",capitale:"Berlin"},{nom:"Italie",capitale:"Rome"},{nom:"Suisse",capitale:"Berne"}];
+
+var taille = tabPays.length;
+var question=1;
+var score=0;
+for(let p of tabPays)
+{
+  let reponse = prompt(`(${question}/${taille}) Quelle est la capitale du pays : ${p.nom}`);
+  if(reponse==p.capitale)
+  {
+    alert(`Bonne réponse !`);
+    score++;
+  }
+  else
+  {
+    alert(`Mauvaise réponse !`);
+  }
+  question++;
+}
+console.log(`Votre score est : ${score} / ${taille} `);
+</script>
