@@ -1,0 +1,191 @@
+<script charset="utf-8">
+
+
+  /*
+  var nb = 10; // => var en js = static en java
+  let  x; // => variable temporaire (à utiliser dans une fonction, dans un for)
+
+  console.log(nb==10); // == verifie juste la donnée
+  console.log(nb===10); // === verifie la donnée + son type
+
+  console.log(" result "+(nb+100)); // sans les (), nb + 100 => 10100 (concat au lieu du calcul)
+
+
+  nb++;
+  nb--;
+  nb+=15;
+  console.log(nb);
+  if(nb%2==0)
+  {
+  console.log("NB est pair");
+}
+else
+{
+console.log("NB est impair");
+}
+if(nb==10)
+{
+
+}
+else if(nb==15){}
+else{}
+
+
+switch(nb)
+{
+case 10 : break;
+case 15 : break;
+default : break;
+}
+
+console.log((nb>=18)? "Majeur" : "Mineur");
+
+var reponse;
+do
+{
+console.log("hello");
+reponse = confirm("Continuer ?");
+
+}while(reponse);
+
+reponse=true;
+while(reponse)
+{
+console.log("helloBis");
+reponse = confirm("Continuer BIS ?");
+}
+
+for(let i=0;i<=10;i++)
+{
+//console.log("Tour "+i);
+console.log(`Tour ${i}`);
+}
+var test  = 10;
+var reponse = isMajeur(25);
+
+console.log(reponse);
+
+function isMajeur(x)
+{
+alert((x>=18)?"Majeur":"Mineur");
+return "Fin";
+}
+*/
+
+
+var unObjet = new Object();
+unObjet.attribut="test";
+console.log(unObjet);
+
+var personne =
+{
+  nom : "Abid",
+  prenom : "Jordan",
+  adresse :
+  {
+    numero : 6,
+    ville : "Paris"
+  }
+};
+
+
+var tableauObjet = [personne];
+
+var tableauObjet = [{nom : "Abid",prenom : "Jordan",  adresse :{numero : 6,ville : "Paris"}},{nom : "Abid",prenom : "Jeremy",  adresse :{numero : 6,ville : "Paris"}, age:30}];
+
+for(p of tableauObjet)
+{
+  console.log("Fiche de la personne : ");
+  //console.log(p.nom+" "+p.prenom+" "+p.adresse.numero+" "+p.adresse.ville + " "+p.age);
+  console.log(`${p.nom} ${p.prenom} ${p.adresse.numero} ${p.adresse.ville} ${p.age}`);
+}
+
+
+
+console.log(personne.nom);
+console.log(personne.adresse.numero);
+personne.prenom="toto";
+console.log(personne.age);
+
+console.log(personne["prenom"]);
+
+var choix = prompt("Quelle info ?");
+
+console.log("voila ton info : "+personne[choix]);
+
+
+
+personne.age=30;
+
+console.log(personne);
+
+
+//var tableau = Array(16);
+//var tableau = new Array(16);
+//var tableau = ["Jordan",true,20,20.5,[],"Toto"];
+//console.log("taille du tableau : "+tableau.length);
+//tableau.length=16;
+//console.log("content de la case index 3  "+tableau[3]);
+var notes = [15,14,7,2,8,1,20];
+var zoom = ["Jordan","John","Diane","Feriel","Lucas","Rawad","Sébastien"];
+console.log(notes);
+
+/*for(let i = 0; i<notes.length;i++)
+{
+note=notes[i];
+console.log(note);
+}*/
+
+/*
+for(index in notes)
+{
+console.log("note à la position "+(parseInt(index)+1)+" : "+notes[index]);
+}
+
+for(n of notes)
+{
+console.log(n);
+}
+
+*/
+
+/*zoom[9.34] = "Jane";
+zoom[8]= "test";
+zoom[9]= "test";
+zoom[10]= "test";*/
+/*
+zoom.push("Jane"); // push() ajoute l'element à la fin du tableau
+zoom.pop(); // pop() retire le dernier element du tableau
+zoom.shift();  // shift() retire le 1er element du tableau
+zoom.unshift("Toto"); // unshift ajoute l'element au debut du tableau
+
+alert(zoom.join("-"));
+
+zoom.sort(); // sort => trier dans l'ordre alphabetique
+zoom.reverse(); // reverse => inverse le sens du tableau
+console.log(zoom);*/
+
+zoom.sort(triNbLettre);
+console.log(zoom);
+
+notes.sort(triNumerique);
+console.log("tri croissant : "+notes);
+
+notes.reverse();
+console.log("tri decroissant : "+notes);
+
+
+function triNumerique(a,b)
+{
+  return a-b;
+}
+
+
+function triNbLettre(prenom2,prenom1)
+{
+  return prenom2.length - prenom1.length;
+}
+
+
+
+</script>
