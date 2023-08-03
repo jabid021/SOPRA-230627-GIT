@@ -1,0 +1,43 @@
+<h1>BOM (Browser Object Model)</h1>
+
+
+
+<input type="button" id="btnStart" value="GO">
+
+<noscript>
+MERCI d'activer JS
+</noscript>
+
+
+
+
+<script>
+var fenetre;
+btnStart.onclick=demoBom;
+
+
+function demoBom()
+{
+//NAZE
+console.log("Largeur de l'ecran "+ screen.width);
+console.log("Hauteur de l'ecran "+ screen.height);
+console.log(navigator.appName);
+
+//PAS mal
+
+//location.reload();
+//location.href="https://www.google.fr";
+fenetre = window.open("https://www.google.fr");
+//fenetre.close();
+setTimeout(closeFenetre,3000);
+history.back(3);
+history.go(1);
+console.log(history.length);
+}
+
+
+function closeFenetre()
+{
+  fenetre.close();
+}
+</script>
