@@ -18,6 +18,37 @@
 </body>
 
 
-<script >
-  
+<script>
+
+  var typeElement,nomElement,prop,value,balises;
+
+  do{
+  typeElement = prompt("Saisir le type d'element à modifier (id/class/tag)");
+  nomElement=prompt(`Saisir le nom de l'element ${typeElement}`);
+  prop = prompt(`Saisir le nom de la prop pour  ${nomElement}`);
+  value = prompt(`Saisir la value pour la prop ${prop}`);
+
+
+  if(typeElement=="id")
+  {
+    document.getElementById(nomElement).style.setProperty(prop,value);
+  }
+  else if(typeElement=="class")
+  {
+    balises = document.getElementsByClassName(nomElement);
+    for(b of balises)
+    {
+      b.style.setProperty(prop,value);
+    }
+  }
+  else
+  {
+    balises = document.getElementsByTagName(nomElement);
+    for(b of balises)
+    {
+      b.style.setProperty(prop,value);
+    }
+  }
+}while(confirm("continuer ?"));
+
 </script>
