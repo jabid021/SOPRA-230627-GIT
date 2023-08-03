@@ -1,0 +1,120 @@
+<meta charset="utf-8">
+
+<h1 id="chrono">00:00</h1>
+<input type="button" id="btnStart" value="Start">
+<input type="button" id="btnStop" disabled value="Stop">
+<input type="button" id="btnReset" value="Reset">
+<audio id="alarmSound" src="Pokemon_Healing.ogg"></audio>
+
+<script>
+
+  var min=0;
+  var sec=0;
+  // On crée une variable globale time que l'on pourra modifier dans les fonctions.
+  var timer;
+  // On appelle la fonction go quand on clique sur le bouton start
+  btnStart.onclick=go;
+  // On appelle la fonction stop quand on clique sur le bouton stop
+  btnStop.onclick=stop;
+
+  var btnReset = document.getElementById("btnReset");
+  btnReset.onclick = reset;
+
+  // Fonction qui lance le timer et rend cliquable le bouton stop
+  function go()
+  {
+    // Lance la fonction updateChrono toute les secondes (1000 millisecondes)
+    timer = setInterval(updateChrono,1000);
+    //btnStart.setAttribute("disabled","disabled");
+    btnStart.disabled = true;
+    // On enlève l'attribut disabled au bouton stop ce qui le rend cliquable
+    //btnStop.removeAttribute("disabled");
+    btnStop.disabled = false;
+  }
+  // Fonction qui lance le timer et rend cliquable le bouton stop
+  function stop()
+  {
+    // On stop le timer
+    clearInterval(timer);
+    // On rend le bouton stop non cliquable
+    btnStop.disabled = true;
+    //btnStop.setAttribute("disabled","disabled");
+    btnStart.disabled = false;
+    //btnStart.removeAttribute("disabled");
+  }
+  // Fonction qui fait avancer le chrono
+  function updateChrono()
+  {
+    // Incrémente les secondes
+    sec++;
+    // Si on arrive à une minute, on incrémente minute et on remet seconde à 0
+    if(sec==60){
+      min++;
+      sec=0;
+    }
+    // Affichage
+    // Ternaire pour ajouter un 0 devant une unité inférieure à 10 et rien si l'unité dépasse 10
+    let minAffiche = (min<10)? "0"+min : ""+min;
+    let secAffiche = (sec<10)? "0"+sec : ""+sec;
+    chrono.innerHTML=minAffiche+":"+secAffiche;
+    // Si le minuteur atteint 0:00, jouer un son d'alarme
+    if (sec % 5 == 0) {
+      playAlarmSound(); // Cette fonction joue le son d'alarme
+    }
+  }
+
+  function playAlarmSound() {
+    var alarmSound = document.getElementById("alarmSound");
+    alarmSound.play();
+  }
+
+  function reset() {
+    clearInterval(timer);
+    min = 0;
+    sec = 0;
+    btnStart.disabled = false;
+    btnStop.disabled = true;
+    let minAffiche = (min<10)? "0"+min : ""+min;
+    let secAffiche = (sec<10)? "0"+sec : ""+sec;
+    chrono.innerHTML=minAffiche+":"+secAffiche;
+  }
+
+</script>
+<style>
+  /* CSS pour le minuteur */
+  #chrono {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  #btnStart,
+  #btnStop,
+  #btnReset,
+  #btnSetTimer {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  #btnStart:disabled,
+  #btnStop:disabled,
+  #btnReset:disabled,
+  #btnSetTimer:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+
+  #btnStart:hover,
+  #btnStop:hover,
+  #btnReset:hover,
+  #btnSetTimer:hover {
+    background-color: #45a049;
+  }
+</style>
