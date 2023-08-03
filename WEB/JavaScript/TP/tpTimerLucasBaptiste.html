@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Chronomètre</title>
+
+</head>
+<body>
+  <h1 id="chrono">00:00</h1>
+  <input type="button" id="btnStart" value="Start" onclick="go()">
+  <input type="button" id="btnStop" disabled value="Stop" onclick="stop()">
+
+  <script>
+    var min = 0;
+    var sec = 0;
+    var timer;
+
+    function go() {
+      timer = setInterval(updateChrono, 1000);
+      document.getElementById("btnStart").disabled = true;
+      document.getElementById("btnStop").disabled = false;
+    }
+
+    function stop() {
+      clearInterval(timer);
+      document.getElementById("btnStart").disabled = false;
+      document.getElementById("btnStop").disabled = true;
+    }
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function updateChrono() {
+      sec++;
+      if (sec === 60) {
+        sec = 0;
+        min++;
+      }
+
+      let minAffiche = (min < 10) ? "0" + min : "" + min;
+      let secAffiche = (sec < 10) ? "0" + sec : "" + sec;
+      let chronoElem = document.getElementById("chrono");
+      chronoElem.innerHTML = minAffiche + ":" + "<span class='seconds'>" + secAffiche + "</span>";
+
+      let secondsElem = document.querySelector(".seconds");
+      secondsElem.style.color = getRandomColor();
+    }
+  </script>
+</body>
+</html>
