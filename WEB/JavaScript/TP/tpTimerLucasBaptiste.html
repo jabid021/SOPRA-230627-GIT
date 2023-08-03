@@ -1,6 +1,4 @@
 
-<!DOCTYPE html>
-<html>
 <head>
   <meta charset="utf-8">
   <title>Chronomètre</title>
@@ -47,11 +45,11 @@
       let minAffiche = (min < 10) ? "0" + min : "" + min;
       let secAffiche = (sec < 10) ? "0" + sec : "" + sec;
       let chronoElem = document.getElementById("chrono");
-      chronoElem.innerHTML = minAffiche + ":" + "<span class='seconds'>" + secAffiche + "</span>";
-
+      chronoElem.innerHTML = "<span class='minutes'>"+ minAffiche + "</span>" + ":" + "<span class='seconds'>" + secAffiche + "</span>";
+      let minutesElem = document.querySelector(".minutes");
+      minutesElem.style.color = getRandomColor();
       let secondsElem = document.querySelector(".seconds");
       secondsElem.style.color = getRandomColor();
     }
   </script>
 </body>
-</html>
