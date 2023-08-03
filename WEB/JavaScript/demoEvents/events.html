@@ -1,0 +1,112 @@
+<style>
+
+  #paragPrinci
+  {
+    border:solid red 2px;
+  }
+  #spoil
+  {
+    //display:none;
+    border : black 2px solid;
+    height:40px;
+
+  }
+  #spoil span
+  {
+    display:none;
+  }
+
+  #loginStatut
+  {
+    display:inline-block;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    background-color:red;
+
+  }
+
+  #voiture
+  {
+    position:absolute;
+    bottom:0;
+    right:0;
+    transition: transform 0.8s;
+  }
+</style>
+<meta charset="utf-8">
+
+<p id="paragPrinci">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<p id="spoil"> <span>Ceci est un spoil</span></p>
+
+<input type="color" id="couleurTexte">
+<input type="button" value="resetCouleur" value="Reset">
+<br><br><br>
+
+<table id="tableau" border>
+  <tr><th>Prenom</th></tr>
+
+  <tbody>
+    <tr><td>Jordan</td></tr>
+    <tr><td>John</td></tr>
+    <tr><td>toto</td></tr>
+  </tbody>
+  <tr><th>Prenom</th></tr>
+</table>
+
+<br>
+
+<input type="text" id="inputPrenom" placeholder="Saisir prenom">
+<input type="button" id="btnAjouter" value="Ajouter au tableau">
+<div id="loginStatut"></div>
+
+
+<br><br>
+
+<div id="voiture"><img id="imgCar" width="380px" src="red.gif"></div>
+
+<br><br>
+
+
+
+
+<script>
+/*  events souris =>  click, mousedown, mouseup , dblclick, mouseover, mouseout,mousemove */
+/* events clavier =>  keypress, keydown,keyup*/
+/* events formulaire => change */
+
+
+
+paragPrinci.onclick = demoEvent;
+paragPrinci.ondblclick = demoEvent;
+paragPrinci.onmousedown = demoEvent;
+paragPrinci.onmouseup = demoEvent;
+paragPrinci.onmouseover = demoEvent;
+paragPrinci.onmouseout = demoEvent;
+//paragPrinci.onmousemove = function(){console.log("move")};
+
+inputPrenom.onkeyup = demoEvent;
+inputPrenom.onkeydown = function(){console.log("keydown");};
+inputPrenom.onkeypress = function(){console.log("keypress");};
+inputPrenom.onchange = function(){console.log("change");};
+inputPrenom.onfocus = function(){console.log("focus in");};
+
+
+
+/* Listener */
+function demoEvent(event)
+{
+  console.log(event.type);
+  switch(event.type)
+  {
+    case "click" : console.log("click sur le p");break;
+    case "dblclick" : console.log("dbl");break;
+    case "mousedown" : console.log("down");break;
+    case "mouseup" : console.log("up");break;
+    case "mouseover" : console.log("over");break;
+    case "mouseout" : console.log("out");break;
+    case "keyup" : console.log(event.keyCode);break;
+  }
+}
+</script>
