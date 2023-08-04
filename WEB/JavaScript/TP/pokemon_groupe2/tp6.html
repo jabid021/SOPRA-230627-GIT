@@ -1,0 +1,52 @@
+<style>
+
+  body
+  {
+    background-image : url("assets/img/water.png");
+    background-size:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  #grass
+  {
+    display:none;
+    width:700px;
+    height:700px;
+    background-image : url("assets/img/Grass.png")
+  }
+
+  #pikachu
+  {
+    position:relative;
+    top:0;
+    left:0;
+    display:inline-block;
+  }
+
+  #imgThunder{
+    width:30px;
+    height:30px;
+    top:300;
+    left:400;
+    position: relative;
+    display:inline-block;
+  }
+
+</style>
+
+
+<script defer src="pikachu.js" charset="utf-8"></script>
+
+<div id="formStart">
+  <audio id="startSound" src="assets/audio/Select.WAV" type="audio/wav"></audio>
+  <input id="inputName" type="text" placeholder="pikachu"><input id="btnStart" disabled type="button" value="Start !">
+</div>
+
+<div id="grass">
+  <div id="pikachu"><img id="imgPikachu" src="assets/img/pikachuDown.png" evolved=false></div>
+  <div id="thunder"><img id="imgThunder" src="assets/img/thunderstone.png"></div>
+</div>
+<!--<img id="image2" class="deplacee" src="assets/img/draco_front.png" alt="Deuxième Image">
+<img id="image3" class="deplacee" src="assets/img/babimanta_front1.png" alt="Deuxième Image">
+<img id="image4" class="deplacee" src="assets/img/arakdo_front1.png" alt="Deuxième Image">-->
