@@ -13,15 +13,15 @@ var step = 30;
 var posXPierre;
 var posYPierre;
 
-/*const image2 = document.getElementById("image2");
+const image2 = document.getElementById("image2");
 const image3 = document.getElementById("image3");
 const image4 = document.getElementById("image4");
 let posX2 = -image2.clientWidth+100; // Position initiale en dehors du cadre
 let posY2 = -image2.clientHeight+150; // Position initiale en dehors du cadre
 let posX3 = window.innerWidth - image2.clientWidth-150; // Position initiale à droite de l'écran
-let posY3 = Math.random() * (window.innerHeight - image2.clientHeight); // Position verticale aléatoire dans la fenêtre
-let posX4 = window.innerWidth - image2.clientWidth-30; // Position initiale à droite de l'écran
-let posY4 = Math.random() * (window.innerHeight - image2.clientHeight); // Position verticale aléatoire dans la fenêtre
+let posY3 = Math.random() * (window.innerHeight - image2.clientHeight)-300; // Position verticale aléatoire dans la fenêtre
+let posX4 = window.innerWidth - image2.clientWidth-200; // Position initiale à droite de l'écran
+let posY4 = Math.random() * (window.innerHeight - image2.clientHeight)-300; // Position verticale aléatoire dans la fenêtre
 
 //imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png");
 
@@ -32,7 +32,10 @@ image3.style.left = posX3 + "px";
 image3.style.top = posY3 + "px";
 
 image4.style.left = posX4 + "px";
-image4.style.top = posY4 + "px";*/
+image4.style.top = posY4 + "px";
+
+let isAlternateImage3 = false;
+let isAlternateImage4 = false;
 
 btnStart.onclick = lancerAventure;
 document.body.onkeydown = deplacement;
@@ -76,6 +79,10 @@ function lancerAventure()
   pikachu.style.left=posX+"px";
   imgPikachu.setAttribute("src","assets/img/"+pokemon+"Down.png");
   aleaThunder(670, 0, 30);
+  image2.style.display="block";
+  image3.style.display="block";
+  image4.style.display="block";
+  deplacerImageRandom();
 }
 
 function deplacement(event)
@@ -125,15 +132,64 @@ function aleaThunder(max, min, pas) {
   imgThunder.style.top = deltaY2 + "px";
   posXPierre=deltaX2;
   posYPierre=deltaY2
-
-
 }
 
-  function evolve(){
-    thunder.style.display="none";
-    pokemon="raichu";
-    imgPikachu.setAttribute("src", "assets/img/raichuDown.png");
-    imgPikachu.style.width = 60 + "px";
-    imgPikachu.style.height = 60 + "px";
-    evolveSound.play();
+function evolve(){
+  thunder.style.display="none";
+  pokemon="raichu";
+  imgPikachu.setAttribute("src", "assets/img/raichuDown.png");
+  imgPikachu.style.width = 60 + "px";
+  imgPikachu.style.height = 60 + "px";
+  evolveSound.play();
+}
+
+// Fonction pour gérer l'alternance des images de l'image 3
+function alternerImage3() {
+  if (isAlternateImage3) {
+    image3.src = "assets/img/babimanta_front2.png";
+  } else {
+    image3.src = "assets/img/babimanta_front1.png";
   }
+  isAlternateImage3 = !isAlternateImage3;
+}
+
+// Fonction pour gérer l'alternance des images de l'image 3
+function alternerImage4() {
+  if (isAlternateImage4) {
+    image4.src = "assets/img/arakdo_front2.png";
+  } else {
+    image4.src = "assets/img/arakdo_front1.png";
+  }
+  isAlternateImage4 = !isAlternateImage4;
+}
+
+// Fonction pour déplacer la deuxième image de manière aléatoire
+function deplacerImageRandom() {
+  const deltaX2 = Math.random() < 0.5 ? -step : step;
+  const deltaY2 = Math.random() < 0.5 ? -step : step;
+
+  const newPosX2 = posX2 + deltaX2;
+  const newPosY2 = posY2 + deltaY2;
+
+  // Vérification pour s'assurer que l'image 2 ne rentre pas dans le cadre
+  if (
+    newPosX2 < 0 ||
+    newPosY2 < 0 ||
+    newPosX2 + image2.clientWidth > (window.innerWidth * 20 / 100) ||
+    newPosY2 + image2.clientHeight > window.innerHeight ||
+    (newPosX2 > posX && newPosX2 < posX + imgPikachu.clientWidth && newPosY2 > posY && newPosY2 < posY + imgPikachu.clientHeight)
+  ) {
+    // Ne met pas à jour les coordonnées si le déplacement conduit à une position non souhaitée
+  } else {
+    posX2 = newPosX2;
+    posY2 = newPosY2;
+  }
+
+  image2.style.left = posX2 + "px";
+  image2.style.top = posY2 + "px";
+  alternerImage3();
+  alternerImage4();
+
+  // Déplacer les images 2 et 3 toutes les 500 ms
+  setTimeout(deplacerImageRandom, 250);
+}
