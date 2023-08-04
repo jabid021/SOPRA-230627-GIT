@@ -1,0 +1,34 @@
+body
+{
+  background-color:#F4EFE7;
+}
+
+#content
+{
+  margin:75px;
+}
+
+.formAjout
+{
+  display:none;
+}
+
+.card-text
+{
+  white-space: nowrap;
+  overflow: hidden;
+   max-width: 45ch;
+   text-overflow: ellipsis;
+   height:80px;
+}
+
+.card-img-top{
+  transition: transform 1s;
+
+}
+
+.card-img-top:hover
+{
+  transform: rotate(360deg) scale(0.8);
+   transform: rotateY(180deg);
+}

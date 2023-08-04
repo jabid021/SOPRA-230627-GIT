@@ -1,37 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
 
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Modifier Patient</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title>Modifier Patient ${patient.id}</title>
+  </head>
+  <body>
 
-<body>
 
 
-	<h1>Fiche du patient ${patient.id}</h1>
-	<table border>
-		<tr>
-			<th>Nom</th>
-			<th>Prenom</th>
-		</tr>
-		<tr>
-		
-		<td>${patient.nom}</td>
-		<td>${patient.prenom}</td>
-		
-		</tr>
 
-	</table>
 
-	<form action='fichePatient' method='post'>
-		<input type='hidden' name='id' value='${patient.id}'> 
-		<input type='text' name='prenom' placeholder='Saisir prenom' value='${patient.prenom}'> 
-		<input type='text' name='nom' placeholder='Saisir nom' value='${patient.nom}'> 
-		<input type='submit' value='Modifier Patient'>
-	</form>
-	
+<div id="content">
+  <h3>Modifier le patient ${patient.id}</h3>
+  <form action="patient" method="post">
+   	<input type="hidden" name="tache" value="update">
+  <input type="hidden" name="id" value="${patient.id}">
+ 	<input type="text" name="nom" value="${patient.nom}" placeholder="Saisir nom"><br>
+ 	<input type="text" name="prenom" value="${patient.prenom}" placeholder="Saisir prenom"><br>
+ 	
+    <input class ="btn btn-warning" type="submit" value="Modifier">
+    <a href="patient"><input type="button" class ="btn btn-info" value="Retour"></a>
+  </form>
+</div>
+
 </body>
 </html>
