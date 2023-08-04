@@ -10,9 +10,10 @@ var pokemon="pikachu";
 var direction="Down";
 var name;
 var step = 30;
-var stepThunder = 200;
-/*
-const image2 = document.getElementById("image2");
+var posXPierre = 390;
+var posYPierre = 330;
+
+/*const image2 = document.getElementById("image2");
 const image3 = document.getElementById("image3");
 const image4 = document.getElementById("image4");
 let posX2 = -image2.clientWidth+100; // Position initiale en dehors du cadre
@@ -36,6 +37,7 @@ image4.style.top = posY4 + "px";*/
 btnStart.onclick = lancerAventure;
 document.body.onkeydown = deplacement;
 var startSound = document.getElementById("startSound");
+var evolveSound = document.getElementById("evolveSound");
 var thunder = document.getElementById("imgThunder");
 
 inputName.onkeyup= function(event)
@@ -108,19 +110,18 @@ function deplacement(event)
   pikachu.style.top=posY+"px";
   pikachu.style.left=posX+"px";
   imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png");
-  evolve();
+
+
+  if(posX == posXPierre && posY == posYPierre){
+    evolve();
+  }
 }
 
   function evolve(){
-
-    //var x=document.getElementById('i1').offsetLeft;
-    //var y=document.getElementById('i1').offsetTop;
-
-    let posXPierre = thunder.offsetLeft - grass.clientWidth - thunder.clientWidth;
-    let posYPierre = thunder.offsetTop - grass.clientHeight - thunder.clientHeight;
-
-    console.log("Pierre X: " + posXPierre);
-    console.log("Pierre Y: " + posYPierre);
-    console.log("Pika X:" + posX);
-    console.log("Pika Y:" + posY);
+    thunder.style.display="none";
+    pokemon="raichu";
+    imgPikachu.setAttribute("src", "assets/img/raichuDown.png");
+    imgPikachu.style.width = 60 + "px";
+    imgPikachu.style.height = 60 + "px";
+    evolveSound.play();
   }
