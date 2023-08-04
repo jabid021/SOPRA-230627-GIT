@@ -10,8 +10,8 @@ var pokemon="pikachu";
 var direction="Down";
 var name;
 var step = 30;
-var posXPierre = 390;
-var posYPierre = 330;
+var posXPierre;
+var posYPierre;
 
 /*const image2 = document.getElementById("image2");
 const image3 = document.getElementById("image3");
@@ -75,7 +75,7 @@ function lancerAventure()
   pikachu.style.top=posY+"px";
   pikachu.style.left=posX+"px";
   imgPikachu.setAttribute("src","assets/img/"+pokemon+"Down.png");
-  //placerImageRandom();
+  aleaThunder(670, 0, 30);
 }
 
 function deplacement(event)
@@ -115,6 +115,18 @@ function deplacement(event)
   if(posX == posXPierre && posY == posYPierre){
     evolve();
   }
+}
+
+function aleaThunder(max, min, pas) {
+  const deltaX2 = Math.floor(Math.random() * ((max - min)/pas + 1))*pas + min;
+  const deltaY2 = Math.floor(Math.random() * ((max - min)/pas + 1))*pas + min;
+
+  imgThunder.style.left = deltaX2 + "px";
+  imgThunder.style.top = deltaY2 + "px";
+  posXPierre=deltaX2;
+  posYPierre=deltaY2
+
+
 }
 
   function evolve(){
