@@ -16,7 +16,7 @@ import escapeGame.model.Participant;
 import escapeGame.model.Reservation;
 import escapeGame.model.Salle;
 
-public class DAOReservation implements IDAO<Reservation,Integer> {
+public class DAOReservation implements IDAOReservation {
 
 	@Override
 	public Reservation findById(Integer id) {

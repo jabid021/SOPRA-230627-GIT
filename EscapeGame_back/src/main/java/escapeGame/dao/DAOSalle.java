@@ -11,7 +11,7 @@ import escapeGame.model.Caracteristique;
 import escapeGame.model.Difficulte;
 import escapeGame.model.Salle;
 
-public class DAOSalle implements IDAO<Salle,Integer>{
+public class DAOSalle implements IDAOSalle{
 
 	@Override
 	public Salle findById(Integer id) {
@@ -25,11 +25,23 @@ public class DAOSalle implements IDAO<Salle,Integer>{
 
 			ResultSet rs = ps.executeQuery();
 
+			
 			while (rs.next()) {
-
+				List<Caracteristique> caracteristiques = new ArrayList();
+				
+				PreparedStatement ps2 = conn.prepareStatement("SELECT * from caracteristique where salle=?");
+				ps2.setInt(1, id);
+				
+				ResultSet rs2 =ps2.executeQuery();
+				while(rs2.next()) 
+				{
+					caracteristiques.add(Caracteristique.valueOf(rs2.getString("label")));
+				}
+			
 				salle = new Salle(rs.getInt("id"), rs.getInt("min"), rs.getInt("max"), rs.getString("titre"),
 						rs.getString("description"), rs.getInt("duree"), rs.getDouble("prix"),
 						rs.getBoolean("accessibilite"), Difficulte.valueOf(rs.getString("difficulte")));
+				salle.setCaracteristiques(caracteristiques);
 			}
 			rs.close();
 			ps.close();

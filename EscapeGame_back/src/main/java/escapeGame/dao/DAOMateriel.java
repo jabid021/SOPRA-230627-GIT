@@ -14,7 +14,7 @@ import escapeGame.model.Materiel;
 import escapeGame.model.Mecanisme;
 import escapeGame.model.Salle;
 
-public class DAOMateriel implements IDAO<Materiel, Integer> {
+public class DAOMateriel implements IDAOMateriel {
 
 	@Override
 	public Materiel findById(Integer id) {
