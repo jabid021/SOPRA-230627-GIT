@@ -32,3 +32,31 @@ body
   transform: rotate(360deg) scale(0.8);
    transform: rotateY(180deg);
 }
+
+header
+	{
+		display:flex;
+		border:solid 1px black;
+		height:160px;
+	}
+
+	#logo
+	{
+		font-size: 60px;
+		width:15%;
+		font-weight:bold;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+
+	}
+	#accueil
+	{
+		width:85%;
+		background-color:grey;
+		font-size: 40px;
+		text-transform : uppercase;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}

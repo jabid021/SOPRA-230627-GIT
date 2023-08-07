@@ -24,7 +24,6 @@ public class PatientController extends HttpServlet {
 	//update => post
 	//insert => post
 	
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		
@@ -37,7 +36,7 @@ public class PatientController extends HttpServlet {
 			//findAll
 			List<Patient> patients = Singleton.getInstance().getDaoPatient().findAll();
 			request.setAttribute("patients", patients);
-			this.getServletContext().getRequestDispatcher("/patients.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/patients.jsp").forward(request, response);
 		}
 		else 
 		{
@@ -47,7 +46,8 @@ public class PatientController extends HttpServlet {
 				Integer id = Integer.parseInt(request.getParameter("id"));	
 				Patient  p = Singleton.getInstance().getDaoPatient().findById(id);
 				request.setAttribute("patient", p);
-				this.getServletContext().getRequestDispatcher("/updatePatient.jsp").forward(request, response);
+				System.out.println(p);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/updatePatient.jsp").forward(request, response);
 			}
 			else 
 			{
