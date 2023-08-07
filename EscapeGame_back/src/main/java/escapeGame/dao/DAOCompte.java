@@ -231,7 +231,7 @@ public class DAOCompte implements IDAOCompte {
 					"DELETE FROM compte where id=?");
 
 
-			ps.setInt(12, id);
+			ps.setInt(1, id);
 
 
 			ps.executeUpdate();
