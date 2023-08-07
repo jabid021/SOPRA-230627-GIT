@@ -11,7 +11,7 @@ import java.util.List;
 import escapeGame.model.Client;
 import escapeGame.model.Participant;
 
-public class DAOParticipant implements IDAO<Participant,Integer> {
+public class DAOParticipant implements IDAOParticipant {
 
 	@Override
 	public Participant findById(Integer id) {

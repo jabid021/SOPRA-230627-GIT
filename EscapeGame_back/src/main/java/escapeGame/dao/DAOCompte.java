@@ -13,7 +13,7 @@ import escapeGame.model.Compte;
 import escapeGame.model.GameMaster;
 import escapeGame.model.Gerant;
 
-public class DAOCompte implements IDAO<Compte,Integer> {
+public class DAOCompte implements IDAOCompte {
 
 	@Override
 	public Compte findById(Integer id) {
