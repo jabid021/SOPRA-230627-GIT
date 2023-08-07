@@ -14,7 +14,7 @@ import escapeGame.model.Materiel;
 import escapeGame.model.Mecanisme;
 import escapeGame.model.Salle;
 
-public class DAOMateriel implements IDAO<Materiel, Integer> {
+public class DAOMateriel implements IDAOMateriel {
 
 	@Override
 	public Materiel findById(Integer id) {
@@ -170,14 +170,90 @@ public class DAOMateriel implements IDAO<Materiel, Integer> {
 
 	@Override
 	public void update(Materiel materiel) {
-		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
 
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE materiel set libelle=?,etat=?,code=?,electrique=?,attente=?,salle=?,type_materiel=? where id=?");
+
+			if (materiel instanceof Cadenas) {
+				ps.setString(1, materiel.getlibelle());
+				ps.setString(2, materiel.getEtat().toString());
+				ps.setString(3, ((Cadenas) materiel).getCode());
+				ps.setObject(4, null);
+				ps.setObject(5, null);
+				if (materiel.getSalle() == null) {
+					ps.setObject(6, null);
+				} else {
+					ps.setInt(6, materiel.getSalle().getId());
+				}
+
+				ps.setString(7, "Cadenas");
+				ps.setInt(8, materiel.getId());
+
+			} else if (materiel instanceof Coffre) {
+				ps.setString(1, materiel.getlibelle());
+				ps.setString(2, materiel.getEtat().toString());
+				ps.setString(3, ((Coffre) materiel).getCode());
+				ps.setObject(4, null);
+				ps.setInt(5, ((Coffre) materiel).getAttente());
+				if (materiel.getSalle() == null) {
+					ps.setObject(6, null);
+				} else {
+					ps.setInt(6, materiel.getSalle().getId());
+				}
+
+				ps.setString(7, "Coffre");
+				ps.setInt(8, materiel.getId());
+
+			} else if (materiel instanceof Mecanisme) {
+				ps.setString(1, materiel.getlibelle());
+				ps.setString(2, materiel.getEtat().toString());
+				ps.setString(3, null);
+				ps.setBoolean(4, ((Mecanisme) materiel).isElectrique());
+				ps.setObject(5, null);
+				if (materiel.getSalle() == null) {
+					ps.setObject(6, null);
+				} else {
+					ps.setInt(6, materiel.getSalle().getId());
+				}
+
+				ps.setString(7, "Mecanisme");
+				ps.setInt(8, materiel.getId());
+			}
+
+			ps.executeUpdate();
+
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
 
+			PreparedStatement ps = conn.prepareStatement(
+					"DELETE from materiel where id=?");
+
+
+			ps.setInt(8, id);
+
+
+			ps.executeUpdate();
+
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
