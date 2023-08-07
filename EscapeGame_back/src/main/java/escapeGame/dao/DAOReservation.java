@@ -171,8 +171,23 @@ public class DAOReservation implements IDAOReservation {
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
+
+			PreparedStatement ps = conn.prepareStatement(
+					"DELETE from reservation where id=?");
+
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
+
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public List<Reservation> findByGameMasterAndDateReservationGreaterThan(GameMaster gameMaster,
