@@ -175,7 +175,13 @@ public class DAOReservation implements IDAOReservation {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
 
-			PreparedStatement ps = conn.prepareStatement(
+			PreparedStatement ps = conn.prepareStatement("DELETE from inscription where reservation=?");
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			
+			ps.close();
+			
+			ps = conn.prepareStatement(
 					"DELETE from reservation where id=?");
 
 			ps.setInt(1, id);
