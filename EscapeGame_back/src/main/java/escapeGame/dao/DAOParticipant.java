@@ -104,8 +104,23 @@ public class DAOParticipant implements IDAOParticipant {
 
 	@Override
 	public void update(Participant participant) {
-		// TODO Auto-generated method stub
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
+
+			PreparedStatement ps = conn.prepareStatement("UPDATE participant set nom=?,prenom=?,client=? where id=?");
+			ps.setString(1, participant.getNom());
+			ps.setString(2, participant.getPrenom());
+			ps.setInt(3, participant.getClient().getId());
+
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override

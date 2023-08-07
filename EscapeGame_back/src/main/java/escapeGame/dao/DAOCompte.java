@@ -157,18 +157,95 @@ public class DAOCompte implements IDAOCompte {
 
 	@Override
 	public void update(Compte compte) {
-		// TODO Auto-generated method stub
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
+
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE compte set login=?, password=?, nom=?, prenom=?,tel=?,mail=?,numero=?,voie=?,ville=?,cp=?,type_compte=? where id=?");
+
+			if (compte instanceof Gerant) {
+
+				ps.setString(1, compte.getLogin());
+				ps.setString(2, compte.getPassword());
+				ps.setString(3, compte.getNom());
+				ps.setString(4, compte.getPrenom());
+				ps.setString(5, null);
+				ps.setString(6, null);
+				ps.setString(7, null);
+				ps.setString(8, null);
+				ps.setString(9, null);
+				ps.setString(10, null);
+				ps.setString(11, "Gerant");
+				ps.setInt(12, compte.getId());
+
+			} else if (compte instanceof GameMaster) {
+
+				ps.setString(1, compte.getLogin());
+				ps.setString(2, compte.getPassword());
+				ps.setString(3, compte.getNom());
+				ps.setString(4, compte.getPrenom());
+				ps.setString(5, null);
+				ps.setString(6, null);
+				ps.setString(7, null);
+				ps.setString(8, null);
+				ps.setString(9, null);
+				ps.setString(10, null);
+				ps.setString(11, "GameMaster");
+				ps.setInt(12, compte.getId());
+
+			} else if (compte instanceof Client) {
+				Client client = (Client) compte;
+				ps.setString(1, compte.getLogin());
+				ps.setString(2, compte.getPassword());
+				ps.setString(3, compte.getNom());
+				ps.setString(4, compte.getPrenom());
+				ps.setString(5, client.getTel());
+				ps.setString(6, client.getMail());
+				ps.setString(7, client.getAdresse().getNumero());
+				ps.setString(8, client.getAdresse().getVoie());
+				ps.setString(9, client.getAdresse().getVille());
+				ps.setString(10, client.getAdresse().getCp());
+				ps.setString(11, "Client");
+				ps.setInt(12, compte.getId());
+
+			}
+
+			ps.executeUpdate();
+
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
+
+			PreparedStatement ps = conn.prepareStatement(
+					"DELETE FROM compte where id=?");
+
+
+			ps.setInt(12, id);
+
+
+			ps.executeUpdate();
+
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
-	
-	
+
+
+
 	public Compte findByLoginAndPassword(String login, String password) {
 		Compte compte = null;
 		try {
@@ -231,6 +308,6 @@ public class DAOCompte implements IDAOCompte {
 		}
 		return gameMasters;
 	}
-	
+
 
 }
