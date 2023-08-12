@@ -169,7 +169,7 @@ public class DAOMateriel implements IDAOMateriel {
 	}
 
 	@Override
-	public void update(Materiel materiel) {
+	public Materiel update(Materiel materiel) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
@@ -231,6 +231,7 @@ public class DAOMateriel implements IDAOMateriel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
