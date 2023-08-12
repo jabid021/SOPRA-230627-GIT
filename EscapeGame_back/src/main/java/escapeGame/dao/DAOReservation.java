@@ -134,7 +134,7 @@ public class DAOReservation implements IDAOReservation {
 	}
 
 	@Override
-	public void update(Reservation reservation) {
+	public Reservation update(Reservation reservation) {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -166,7 +166,7 @@ public class DAOReservation implements IDAOReservation {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		return null;
 	}
 
 	@Override

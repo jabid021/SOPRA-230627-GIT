@@ -12,6 +12,6 @@ public interface IDAO<T,K> {
 	public T findById(K id);
 	public List<T> findAll();
 	public T insert(T obj);
-	public void update(T obj);
+	public T update(T obj);
 	public void delete(K id);
 }

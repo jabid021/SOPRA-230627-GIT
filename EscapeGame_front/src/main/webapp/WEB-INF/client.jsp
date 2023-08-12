@@ -13,7 +13,7 @@
 
   <ul>
     <li><a href="participantsClient.html">Afficher mes participants</a></li>
-    <li><a href="reserver.html">Faire une reservation</a></li>
+    <li><a href="reserver">Faire une reservation</a></li>
 
   </ul>
   <a href="home?disconnect"><input type="button" class ="btn btn-info" value="Se deconnecter"></a>
