@@ -10,6 +10,11 @@ import escapeGame.dao.IDAOMateriel;
 import escapeGame.dao.IDAOParticipant;
 import escapeGame.dao.IDAOReservation;
 import escapeGame.dao.IDAOSalle;
+import escapeGame.service.CompteService;
+import escapeGame.service.MaterielService;
+import escapeGame.service.ParticipantService;
+import escapeGame.service.ReservationService;
+import escapeGame.service.SalleService;
 
 
 public class Singleton {
@@ -19,6 +24,13 @@ public class Singleton {
 	private IDAOParticipant daoParticipant = new DAOParticipant();
 	private IDAOReservation daoReservation = new DAOReservation();
 	private IDAOSalle daoSalle = new DAOSalle();
+	private MaterielService materielService = new MaterielService(daoMateriel);
+	private CompteService compteService = new CompteService(daoCompte);
+	private ParticipantService participantService = new ParticipantService(daoParticipant);
+	private ReservationService reservationService = new ReservationService(daoReservation);
+	
+	private SalleService salleService = new SalleService(daoSalle);
+	
 	
 	
 	private static Singleton instance=null; 
@@ -34,44 +46,25 @@ public class Singleton {
 		return instance;
 	}
 
-	public IDAOMateriel getDaoMateriel() {
-		return daoMateriel;
+	
+	public MaterielService getMaterielService() {
+		return materielService;
 	}
 
-	public void setDaoMateriel(IDAOMateriel daoMateriel) {
-		this.daoMateriel = daoMateriel;
+	public CompteService getCompteService() {
+		return compteService;
 	}
 
-	public IDAOCompte getDaoCompte() {
-		return daoCompte;
+	public ParticipantService getParticipantService() {
+		return participantService;
 	}
 
-	public void setDaoCompte(IDAOCompte daoCompte) {
-		this.daoCompte = daoCompte;
+	public ReservationService getReservationService() {
+		return reservationService;
 	}
 
-	public IDAOParticipant getDaoParticipant() {
-		return daoParticipant;
-	}
-
-	public void setDaoParticipant(IDAOParticipant daoParticipant) {
-		this.daoParticipant = daoParticipant;
-	}
-
-	public IDAOReservation getDaoReservation() {
-		return daoReservation;
-	}
-
-	public void setDaoReservation(IDAOReservation daoReservation) {
-		this.daoReservation = daoReservation;
-	}
-
-	public IDAOSalle getDaoSalle() {
-		return daoSalle;
-	}
-
-	public void setDaoSalle(IDAOSalle daoSalle) {
-		this.daoSalle = daoSalle;
+	public SalleService getSalleService() {
+		return salleService;
 	}
 
 	

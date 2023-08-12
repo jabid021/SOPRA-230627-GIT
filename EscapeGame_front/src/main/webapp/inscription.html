@@ -12,31 +12,29 @@
 
 
 </style>
-
+<meta charset="UTF-8">
 <main>
-  <thead>
+ 
     <h1>Inscription</h1>
-  </thead>
-  <tbody>
 
-    <form action="home.html" method="POST">
+
+    <form action="home" method="POST">
+     <input  name="inscription" type="hidden" value="inscription">
       <table>
-        <input  name="action" type="hidden" value="inscription">
-        <tr><td title="Saisir votre login">Login : </td><td><input  required size="20" minlength="5" maxlength="10" type="text" placeholder="Saisir votre login"></td></tr>
-        <tr><td>Password :</td><td> <input required title="Format du message" type="password"  minlength="5" placeholder="Saisir password" ></td></tr>
-        <tr><td>Nom :</td><td> <input required title="Format du message" minlength="1" placeholder="Saisir votre nom" ></td></tr>
-        <tr><td>Prenom :</td><td> <input required title="Format du message" minlength="1" placeholder="Saisir votre prenom" ></td></tr>
-        <tr><td>Tel  :</td><td> <input required type="tel" placeholder="Saisir votre tel"></td></tr>
-        <tr><td>Email  :</td><td> <input required type="email" placeholder="Saisir votre mail"></td></tr>
-        <tr><td>Numero :</td><td> <input required title="Format du message" minlength="1" placeholder="Saisir le numero de la rue" ></td></tr>
-        <tr><td>Voie :</td><td> <input required title="Format du message" minlength="1" placeholder="Saisir la voie" ></td></tr>
-        <tr><td>Ville :</td><td> <input required title="Format du message" minlength="1" placeholder="Saisir la ville" ></td></tr>
-        <tr><td>CP :</td><td> <input required title="Format du message" minlength="1" placeholder="Saisir le code postal" ></td></tr>
+        <tr><td title="Saisir votre login">Login : </td><td><input  required name="login" size="20" minlength="5" maxlength="10" type="text" placeholder="Saisir votre login"></td></tr>
+        <tr><td>Password :</td><td> <input required name="password" title="Format du message" type="password"  minlength="5" placeholder="Saisir password" ></td></tr>
+        <tr><td>Nom :</td><td> <input required name="nom" title="Format du message" minlength="1" placeholder="Saisir votre nom" ></td></tr>
+        <tr><td>Prenom :</td><td> <input required  name="prenom" title="Format du message" minlength="1" placeholder="Saisir votre prenom" ></td></tr>
+        <tr><td>Tel  :</td><td> <input required name="tel" type="tel" placeholder="Saisir votre tel"></td></tr>
+        <tr><td>Email  :</td><td> <input required name="mail" type="email" placeholder="Saisir votre mail"></td></tr>
+        <tr><td>Numero :</td><td> <input required name="numero" title="Format du message" minlength="1" placeholder="Saisir le numero de la rue" ></td></tr>
+        <tr><td>Voie :</td><td> <input required name="voie" title="Format du message" minlength="1" placeholder="Saisir la voie" ></td></tr>
+        <tr><td>Ville :</td><td> <input required name="ville" title="Format du message" minlength="1" placeholder="Saisir la ville" ></td></tr>
+        <tr><td>CP :</td><td> <input required name="cp" title="Format du message" minlength="1" placeholder="Saisir le code postal" ></td></tr>
       </table>
       <input  class="btn btn-outline-primary" value="S'inscrire" type="submit">
 
     </form>
-    </tbody>
-    <a href="index.html">Retour à l'index </a>
+    <a href="home">Retour à l'index </a>
 
 </main>

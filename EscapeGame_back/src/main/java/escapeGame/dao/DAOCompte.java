@@ -156,7 +156,7 @@ public class DAOCompte implements IDAOCompte {
 	}
 
 	@Override
-	public void update(Compte compte) {
+	public Compte update(Compte compte) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
@@ -219,6 +219,7 @@ public class DAOCompte implements IDAOCompte {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
@@ -231,7 +232,7 @@ public class DAOCompte implements IDAOCompte {
 					"DELETE FROM compte where id=?");
 
 
-			ps.setInt(12, id);
+			ps.setInt(1, id);
 
 
 			ps.executeUpdate();

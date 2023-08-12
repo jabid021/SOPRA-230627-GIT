@@ -145,7 +145,7 @@ public class DAOSalle implements IDAOSalle{
 	}
 
 	@Override
-	public void update(Salle salle) {
+	public Salle update(Salle salle) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
@@ -184,6 +184,7 @@ public class DAOSalle implements IDAOSalle{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override

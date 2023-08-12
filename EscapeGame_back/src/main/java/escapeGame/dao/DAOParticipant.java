@@ -103,7 +103,7 @@ public class DAOParticipant implements IDAOParticipant {
 	}
 
 	@Override
-	public void update(Participant participant) {
+	public Participant update(Participant participant) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
@@ -120,7 +120,7 @@ public class DAOParticipant implements IDAOParticipant {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		return null;
 	}
 
 	@Override
