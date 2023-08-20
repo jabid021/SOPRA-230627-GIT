@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-     
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/style.css">
-    
-    
-    
-<!DOCTYPE html>
+
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Liste des Stagiaires</title>
 </head>
 <body>
@@ -58,11 +50,12 @@
   <div id="addFormStagiaire" class="formAjout">
     <h3>Ajouter Stagiaire</h3>
     <form action="stagiaire" method="post">
-      Nom :<input name="nom" type="text" placeholder="Saisir votre nom"><br>
-      Prenom :<input name="prenom" type="text" placeholder="Saisir votre prenom"><br>
-      Email :<input name="email" type="email" placeholder="Saisir votre email"><br>
+      Nom :<input required name="nom" type="text" placeholder="Saisir votre nom"><br>
+      Prenom :<input required name="prenom" type="text" placeholder="Saisir votre prenom"><br>
+      Email :<input required name="email" type="email" placeholder="Saisir votre email"><br>
       Filiere
-      <select name="filiere">
+      <select required name="filiere">
+      	<option value="">Choisir une filiere</option>
       	<c:forEach items="${filieres}" var="filiere">
       		<option value="${filiere.id}" >${filiere.id} - ${filiere.libelle}</option>
       	</c:forEach>
