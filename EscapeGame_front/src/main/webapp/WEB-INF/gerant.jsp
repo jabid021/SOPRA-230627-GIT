@@ -12,7 +12,7 @@
 
 
   <ul>
-    <li><a href="materiels.html">Gestion du Materiel</a></li>
+    <li><a href="materiel">Gestion du Materiel</a></li>
     <li><a href="salles.html">Gestion des Salles</a></li>
     <li><a href="compte">Gestion des Comptes</a></li>
     <li><a href="participants.html">Gestion des Participants</a></li>

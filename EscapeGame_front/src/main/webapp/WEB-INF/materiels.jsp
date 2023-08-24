@@ -64,7 +64,7 @@
           
           <c:choose>
           	<c:when test="${materiel.salle!=null}">
-          		<td>${materiel.salle.id}-</td> 
+          		<td>${materiel.salle.id}-${materiel.salle.titre}</td> 
           	</c:when>
           <c:otherwise>
           		<td>En réserve</td>
@@ -72,7 +72,7 @@
           </c:choose>
           <td>
             <a href="materiel?id=${materiel.id}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-            <a href="materiel?id${materiel.id}"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
+            <a href="materiel?id=${materiel.id}&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
           </td>
         </tr>
         </c:forEach>
@@ -88,9 +88,9 @@
           <tr>
             <td>Type de Matériel</td>
             <td>
-              <input onChange="changeType('cadenas')" checked required id="cadenas" value="cadenas" name="type" type="radio"><label for="cadenas" checked>Cadenas</label>
-              <input onChange="changeType('mecanisme')" required id="mecanisme" value="mecanisme" name="type" type="radio"><label for="mecanisme">Mécanisme</label>
-              <input onChange="changeType('coffre')" required id="coffre" value="coffre" name="type" type="radio"><label for="coffre">Coffre</label>
+              <input onChange="changeType('cadenas')" checked required id="cadenas" value="Cadenas" name="type_materiel" type="radio"><label for="cadenas" checked>Cadenas</label>
+              <input onChange="changeType('mecanisme')" required id="mecanisme" value="Mecanisme" name="type_materiel" type="radio"><label for="mecanisme">Mécanisme</label>
+              <input onChange="changeType('coffre')" required id="coffre" value="Coffre" name="type_materiel" type="radio"><label for="coffre">Coffre</label>
             </td>
           </tr>
           <tr>
@@ -99,10 +99,10 @@
           <tr>
             <td>Etat</td>
             <td>
-              <input required id="neuf" value="neuf" name="etat" type="radio"><label for="neuf" checked >Neuf</label>
-              <input required id="standard" value="standard" name="etat" type="radio"><label for="standard">Standard</label>
-              <input required id="abime" value="abime" name="etat" type="radio"><label for="abime">Abimé</label>
-              <input required id="ko" value="ko" name="etat" type="radio"><label for="ko">KO</label>
+              <input required id="neuf" value="Neuf" name="etat" type="radio"><label for="neuf" checked >Neuf</label>
+              <input required id="standard" value="Standard" name="etat" type="radio"><label for="standard">Standard</label>
+              <input required id="abime" value="Abime" name="etat" type="radio"><label for="abime">Abimé</label>
+              <input required id="ko" value="KO" name="etat" type="radio"><label for="ko">KO</label>
             </td>
           </tr>
           <tr id="ligneCode">

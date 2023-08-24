@@ -4,7 +4,7 @@ public class Mecanisme extends Materiel {
 
     
     public Mecanisme(Integer id,String libelle, Salle salle, Etat etat, boolean electrique) {
-        super(libelle,salle,etat);
+        super(id,libelle,salle,etat);
         this.electrique = electrique;
     }
     

@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import context.Singleton;
-import dao.IDAOFiliere;
 import model.Filiere;
+import service.FiliereService;
 
 @WebServlet("/filiere")
 public class FiliereController extends HttpServlet {
 
-	private IDAOFiliere daoFiliere = Singleton.getInstance().getDaoFiliere();
+	private FiliereService filiereService= Singleton.getInstance().getFiliereService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
 		if(request.getParameter("id")==null) {
-			List<Filiere> filieres = daoFiliere.findAll();
+			List<Filiere> filieres = filiereService.getAll();
 			request.setAttribute("filieres", filieres);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/filieres.jsp").forward(request, response);
 		}
@@ -32,14 +32,14 @@ public class FiliereController extends HttpServlet {
 			if(request.getParameter("delete")==null) 
 			{
 				Integer id = Integer.parseInt(request.getParameter("id"));
-				Filiere filiere = daoFiliere.findById(id);
+				Filiere filiere = filiereService.getById(id);
 				request.setAttribute("filiere", filiere);
 				this.getServletContext().getRequestDispatcher("/WEB-INF/updateFiliere.jsp").forward(request, response);
 			}
 			else 
 			{
 				Integer id = Integer.parseInt(request.getParameter("id"));
-				daoFiliere.delete(id);
+				filiereService.delete(id);
 				response.sendRedirect("filiere");
 			}
 		}
@@ -57,7 +57,7 @@ public class FiliereController extends HttpServlet {
 			Filiere filiere = new Filiere(libelle, LocalDate.parse(debut), LocalDate.parse(fin));
 			
 			
-			daoFiliere.insert(filiere);
+			filiereService.create(filiere);
 			response.sendRedirect("filiere");
 		}
 		else 
@@ -69,7 +69,7 @@ public class FiliereController extends HttpServlet {
 			
 			Filiere filiere = new Filiere(id,libelle, LocalDate.parse(debut), LocalDate.parse(fin));
 			
-			daoFiliere.update(filiere);
+			filiereService.update(filiere);
 			response.sendRedirect("filiere");
 		}
 	}
