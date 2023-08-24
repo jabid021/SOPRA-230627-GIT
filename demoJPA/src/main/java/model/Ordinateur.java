@@ -1,13 +1,16 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity //Precise qu'il faut creer une table (OBLIGATOIRE)
+@Table(name = "computer")
 public class Ordinateur{
 
 	@Id ///Precise que l'attribut Integer numero => primary key  (OBLIGATOIRE)
@@ -15,8 +18,10 @@ public class Ordinateur{
 	private Integer numero;
 	
 	@Enumerated(EnumType.STRING) // EnumType.Ordinal => index dans l'enum, EnumType.String => libelle dans l'enum
+	@Column(columnDefinition = "ENUM('Asus','Apple','Dell')")
 	private Marque marque;
 	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Linux','MacOs','Windows')")
 	private Os os;
 	
 	public Ordinateur() {} //(OBLIGATOIRE)
