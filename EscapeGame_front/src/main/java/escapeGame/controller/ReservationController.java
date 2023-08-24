@@ -41,5 +41,14 @@ public class ReservationController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		Integer idGameMaster = Integer.parseInt(request.getParameter("idGameMaster"));
+		Integer idReservation = Integer.parseInt(request.getParameter("idReservation"));
+		if (idGameMaster != null && idReservation != null) {
+			GameMaster gm = (GameMaster) compteService.getById(idGameMaster);
+			Reservation reservation = reservationService.getById(idReservation);
+			reservation.setGameMaster(gm);
+			reservationService.update(reservation);
+		}
 	}
 }
