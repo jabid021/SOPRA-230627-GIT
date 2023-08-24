@@ -13,17 +13,19 @@ import escapeGame.context.Singleton;
 import escapeGame.dao.IDAOSalle;
 import escapeGame.model.Difficulte;
 import escapeGame.model.Salle;
+import escapeGame.service.SalleService;
 
 
 
 @WebServlet("/salle")
 public class SalleController extends HttpServlet {
 	
-	private IDAOSalle daoSalle = Singleton.getInstance().getDaoSalle();
+	private SalleService salleService = Singleton.getInstance().getSalleService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")==null) {
-			List<Salle> salles = daoSalle.findAll();
+			List<Salle> salles = salleService.getAll();
+			request.setAttribute("difficultes",Difficulte.values());
 			request.setAttribute("salles", salles);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/salles.jsp").forward(request, response);
 			
@@ -33,14 +35,16 @@ public class SalleController extends HttpServlet {
 			{
 				Integer id = Integer.parseInt(request.getParameter("id"));
 
-				Salle salle = daoSalle.findById(id);
+				Salle salle = salleService.getById(id);
+				//Envoyer dan sla request la liste des values de l'enum Difficulte
+				request.setAttribute("difficultes",Difficulte.values());
 				request.setAttribute("salle", salle);
 				this.getServletContext().getRequestDispatcher("/WEB-INF/updateSalle.jsp").forward(request, response);
 				
 			}
 			else {
 				Integer id = Integer.parseInt(request.getParameter("id"));
-				daoSalle.delete(id);
+				salleService.delete(id);
 				response.sendRedirect("salle");
 			}
 			}
@@ -58,11 +62,13 @@ public class SalleController extends HttpServlet {
 			int duree = Integer.parseInt(request.getParameter("duree"));
 			double prix=Double.parseDouble(request.getParameter("prix"));
 			boolean accessibilite=Boolean.parseBoolean(request.getParameter("accessibilite"));
-			Difficulte difficulte=Difficulte.valueOf(request.getParameter("difficulte"));
 			
+
+			Difficulte difficulte=Difficulte.valueOf(request.getParameter("difficulte"));
+
 			Salle salle = new Salle(min,max,titre,description,duree,prix,accessibilite,difficulte);
 			
-			daoSalle.insert(salle);
+			salleService.create(salle);
 			response.sendRedirect("salle");
 		}
 		else {
@@ -78,7 +84,7 @@ public class SalleController extends HttpServlet {
 			
 			Salle salle = new Salle(id,min,max,titre,description,duree,prix,accessibilite,difficulte);
 			
-			daoSalle.update(salle);
+			salleService.update(salle);
 			response.sendRedirect("salle");
 		}
 	}

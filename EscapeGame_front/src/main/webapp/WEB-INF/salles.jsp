@@ -62,7 +62,12 @@
       Duree :<input name="duree" type="number" value="60"  min="0" max="120" placeholder="Durée de la salle"><br>
       Prix :<input name="prix" type="number" value="25"  min="0" placeholder="Prix de la salle"><br>
       Accessibilité :<input type="checkbox" name="accessibilite">oui  <br>
-      Difficulté :<input type="radio" name="difficulte" value="Debutant" checked > Debutant   <input type="radio" name="difficulte" value="Intermediaire">Intermediaire   <input type="radio" name="difficulte" value="Expert"> Expert <br>
+      Difficulté :
+            <c:forEach items="${difficultes}" var="difficulte">
+           			 <input type="radio" name="difficulte" value="${difficulte}"> ${difficulte}  
+      </c:forEach><br>
+      
+      
 
       <input class ="btn btn-success" type="submit" value="Ajouter">
     </form>
