@@ -1,16 +1,12 @@
-
-    
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Liste des Filières</title>
+<title>Liste des Filieres</title>
 </head>
 <body>
 
 
 <div id="content">
-  <h1>Liste des Filière</h1>
+  <h1>Liste des Filieres</h1>
   <input id="btnAddFiliere" type="button" class ="btn btn-success" value="Ajouter">
   <a href="index.html"><input type="button" class ="btn btn-info" value="Retour"></a>
 
@@ -18,10 +14,10 @@
     <thead>
       <tr>
         <th>Id</th>
-           <th>Libelle</th>
-           <th>Debut</th>
-           <th>Fin</th>
-           <th>Actions</th>
+        <th>Libelle</th>
+        <th>Debut</th>
+        <th>Fin</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -47,11 +43,11 @@
 
 
   <div id="addFormFiliere" class="formAjout">
-    <h3>Ajouter Filière</h3>
+    <h3>Ajouter Filiere</h3>
     <form action="filiere" method="post">
-      Libelle :<input name="libelle" type="text" placeholder="Saisir le libelle de la filière"><br>
-      Debut :<input name="debut" type="date" placeholder="Saisir la date de début"><br>
-      Fin :<input name="fin" type="date" placeholder="Saisir la date de fin"><br>
+      Libelle :<input required name="libelle" type="text" placeholder="Saisir le libelle"><br>
+      Dï¿½but :<input required name="debut" type="date"><br>
+      Fin :<input required name="fin" type="date"><br>
       <input class ="btn btn-success" type="submit" value="Ajouter">
     </form>
   </div>

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,25 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import context.Singleton;
-import dao.IDAOOrdinateur;
 import dao.IDAOStagiaire;
-import model.Filiere;
-import model.Ordinateur;
+import dao.IDAOOrdinateur;
 import model.Stagiaire;
+import model.Ordinateur;
 
 @WebServlet("/ordinateur")
 public class OrdinateurController extends HttpServlet {
 
-	private IDAOOrdinateur daoOrdinateur= Singleton.getInstance().getDaoOrdinateur();
-	private IDAOStagiaire daoStagiaire= Singleton.getInstance().getDaoStagiaire();
+	private IDAOOrdinateur daoOrdinateur = Singleton.getInstance().getDaoOrdinateur();
+	private IDAOStagiaire daoStagiaire = Singleton.getInstance().getDaoStagiaire();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
 		if(request.getParameter("id")==null) {
 			List<Ordinateur> ordinateurs = daoOrdinateur.findAll();
-			request.setAttribute("ordinateurs",ordinateurs);
 			List<Stagiaire> stagiaires = daoStagiaire.findAll();
+			request.setAttribute("ordinateurs", ordinateurs);
 			request.setAttribute("stagiaires", stagiaires);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/ordinateurs.jsp").forward(request, response);
 		}
@@ -38,13 +36,9 @@ public class OrdinateurController extends HttpServlet {
 			if(request.getParameter("delete")==null) 
 			{
 				Integer id = Integer.parseInt(request.getParameter("id"));
-				/*
-				Ordinateur ordinateurJava= daoOrdinateur.findById(id);
-				request.setAttribute("ordinateurJSP", ordinateurJava);*/
-				
-				Ordinateur ordinateur= daoOrdinateur.findById(id);
-				request.setAttribute("ordinateur", ordinateur);
+				Ordinateur ordinateur = daoOrdinateur.findById(id);
 				List<Stagiaire> stagiaires = daoStagiaire.findAll();
+				request.setAttribute("ordinateur", ordinateur);
 				request.setAttribute("stagiaires", stagiaires);
 				this.getServletContext().getRequestDispatcher("/WEB-INF/updateOrdinateur.jsp").forward(request, response);
 			}
@@ -63,9 +57,12 @@ public class OrdinateurController extends HttpServlet {
 		if(request.getParameter("id")==null) 
 		{
 			String marque = request.getParameter("marque");
-			int ram = Integer.parseInt(request.getParameter("ram"));
-			Stagiaire stagiaire = daoStagiaire.findById(Integer.parseInt(request.getParameter("stagiaire")));
-			Ordinateur ordinateur= new Ordinateur(marque,ram,stagiaire);
+			Integer ram = Integer.parseInt(request.getParameter("ram"));
+			Integer idStagiaire = Integer.parseInt(request.getParameter("stagiaire"));
+			Stagiaire stagiaire = daoStagiaire.findById(idStagiaire);
+			
+			Ordinateur ordinateur = new Ordinateur(marque, ram, stagiaire);
+			
 			
 			daoOrdinateur.insert(ordinateur);
 			response.sendRedirect("ordinateur");
@@ -74,9 +71,11 @@ public class OrdinateurController extends HttpServlet {
 		{
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			String marque = request.getParameter("marque");
-			int ram = Integer.parseInt(request.getParameter("ram"));
-			Stagiaire stagiaire = daoStagiaire.findById(Integer.parseInt(request.getParameter("stagiaire")));
-			Ordinateur ordinateur= new Ordinateur(id,marque,ram,stagiaire);
+			Integer ram = Integer.parseInt(request.getParameter("ram"));
+			Integer idStagiaire = Integer.parseInt(request.getParameter("stagiaire"));
+			Stagiaire stagiaire = daoStagiaire.findById(idStagiaire);
+			
+			Ordinateur ordinateur = new Ordinateur(id,marque,ram, stagiaire);
 			
 			daoOrdinateur.update(ordinateur);
 			response.sendRedirect("ordinateur");

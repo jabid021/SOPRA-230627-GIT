@@ -1,16 +1,12 @@
-
-    
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Liste des Matières</title>
+<title>Liste des Matieres</title>
 </head>
 <body>
 
 
 <div id="content">
-  <h1>Liste des Matières</h1>
+  <h1>Liste des Matieres</h1>
   <input id="btnAddMatiere" type="button" class ="btn btn-success" value="Ajouter">
   <a href="index.html"><input type="button" class ="btn btn-info" value="Retour"></a>
 
@@ -47,8 +43,8 @@
   <div id="addFormMatiere" class="formAjout">
     <h3>Ajouter Matiere</h3>
     <form action="matiere" method="post">
-      Libelle :<input name="libelle" type="text" placeholder="Saisir le libelle"><br>
-      Quest :<input name="quest" type="text" placeholder="Saisir le code Quest"><br>
+      Libelle :<input required name="libelle" type="text" placeholder="Saisir le libelle"><br>
+      Quest :<input required min="0" name="quest" type="number" placeholder="Saisir le code quest"><br>
       <input class ="btn btn-success" type="submit" value="Ajouter">
     </form>
   </div>
@@ -65,7 +61,7 @@
 
 <script>
 
-btnAddMatiere.onclick=function()
+  btnAddMatiere.onclick=function()
   {
     addFormMatiere.style.display="block";
   }

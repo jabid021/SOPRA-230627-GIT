@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import context.Singleton;
 import dao.IDAOFiliere;
 import dao.IDAOMatiere;
-import dao.IDAOStagiaire;
 import model.Filiere;
 import model.Matiere;
-import model.Stagiaire;
 
 @WebServlet("/matiere")
 public class MatiereController extends HttpServlet {
@@ -55,7 +53,9 @@ public class MatiereController extends HttpServlet {
 		{
 			String libelle = request.getParameter("libelle");
 			Integer quest = Integer.parseInt(request.getParameter("quest"));
+			
 			Matiere matiere = new Matiere(libelle,quest);
+			
 			
 			daoMatiere.insert(matiere);
 			response.sendRedirect("matiere");
@@ -65,6 +65,7 @@ public class MatiereController extends HttpServlet {
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			String libelle = request.getParameter("libelle");
 			Integer quest = Integer.parseInt(request.getParameter("quest"));
+			
 			Matiere matiere = new Matiere(id,libelle,quest);
 			
 			daoMatiere.update(matiere);
