@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
 <html>
 <head>
 <title>Liste des Filieres</title>
@@ -49,7 +46,7 @@
     <h3>Ajouter Filiere</h3>
     <form action="filiere" method="post">
       Libelle :<input required name="libelle" type="text" placeholder="Saisir le libelle"><br>
-      DÃ©but :<input required name="debut" type="date"><br>
+      Début :<input required name="debut" type="date"><br>
       Fin :<input required name="fin" type="date"><br>
       <input class ="btn btn-success" type="submit" value="Ajouter">
     </form>

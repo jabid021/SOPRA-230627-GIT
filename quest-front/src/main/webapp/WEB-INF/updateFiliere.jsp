@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
 <html>
 <head>
 
@@ -15,7 +12,7 @@
   <form action="filiere" method="post">
   <input type="hidden" name="id" value="${filiere.id}">
   Libelle :<input required value="${filiere.libelle}" name="libelle" type="text" placeholder="Saisir le libelle"><br>
-  DÃ©but :<input required value="${filiere.debut}" name="debut" type="date"><br>
+  Début :<input required value="${filiere.debut}" name="debut" type="date"><br>
   Fin :<input required value="${filiere.fin}" name="fin" type="date" ><br>
 
     <input class ="btn btn-warning" type="submit" value="Modifier">
