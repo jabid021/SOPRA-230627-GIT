@@ -88,5 +88,4 @@ public class SalleController extends HttpServlet {
 			response.sendRedirect("salle");
 		}
 	}
-
 }

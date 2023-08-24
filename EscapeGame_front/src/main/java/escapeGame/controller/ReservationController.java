@@ -45,7 +45,11 @@ public class ReservationController extends HttpServlet {
 		Integer idGameMaster = Integer.parseInt(request.getParameter("idGameMaster"));
 		Integer idReservation = Integer.parseInt(request.getParameter("idReservation"));
 		if (idGameMaster != null && idReservation != null) {
-			GameMaster gm = (GameMaster) compteService.getById(idGameMaster);
+			GameMaster gm = null;
+			if(idGameMaster!=0) 
+			{
+				gm = (GameMaster) compteService.getById(idGameMaster);
+			}
 			Reservation reservation = reservationService.getById(idReservation);
 			reservation.setGameMaster(gm);
 			reservationService.update(reservation);

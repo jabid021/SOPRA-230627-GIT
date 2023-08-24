@@ -52,7 +52,8 @@
 							<td>${reservation.client.id}-${reservation.client.nom}
 								${reservation.client.prenom}</td>
 							<td>${reservation.salle.id}-${reservation.salle.titre}</td>
-							<td><select name="gameMaster">
+							<td><select id="gameMaster-${reservation.id}" onchange="changeGm(${reservation.id})">
+								<option value="0">Pas de GameMaster</option>
 									<c:forEach items="${gameMasters}" var="gameMaster">
 										<c:choose>
 											<c:when test="${gameMaster.id == reservation.gameMaster.id}">
@@ -77,3 +78,29 @@
 	</table>
 </div>
 </html>
+
+
+<script>
+
+function changeGm(idResa)
+{
+
+var idGameMasterJS = document.getElementById("gameMaster-"+idResa).value;
+
+
+	$.ajax("reservation", 
+		{
+			type: "POST",
+			data: {
+				idGameMaster:idGameMasterJS,
+				idReservation: idResa
+		},
+		success: function () {
+			alert("Changement de gamemaster pour la resa "+idResa);
+		}
+	});
+
+
+}
+
+</script>
