@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import escape.exception.CompteException;
 import escapeGame.dao.IDAOCompte;
+import escapeGame.exception.CompteException;
 import escapeGame.model.Client;
 import escapeGame.model.Compte;
 import escapeGame.model.GameMaster;

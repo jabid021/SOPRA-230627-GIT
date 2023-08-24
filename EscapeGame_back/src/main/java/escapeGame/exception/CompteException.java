@@ -1,4 +1,4 @@
-package escape.exception;
+package escapeGame.exception;
 
 public class CompteException extends RuntimeException{
 
