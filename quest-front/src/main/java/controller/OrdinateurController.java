@@ -15,13 +15,11 @@ import dao.IDAOOrdinateur;
 import model.Stagiaire;
 import model.Ordinateur;
 
-
 @WebServlet("/ordinateur")
 public class OrdinateurController extends HttpServlet {
 
 	private IDAOOrdinateur daoOrdinateur = Singleton.getInstance().getDaoOrdinateur();
 	private IDAOStagiaire daoStagiaire = Singleton.getInstance().getDaoStagiaire();
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -59,7 +57,7 @@ public class OrdinateurController extends HttpServlet {
 		if(request.getParameter("id")==null) 
 		{
 			String marque = request.getParameter("marque");
-			int ram = Integer.parseInt(request.getParameter("ram"));
+			Integer ram = Integer.parseInt(request.getParameter("ram"));
 			Integer idStagiaire = Integer.parseInt(request.getParameter("stagiaire"));
 			Stagiaire stagiaire = daoStagiaire.findById(idStagiaire);
 			
@@ -73,15 +71,14 @@ public class OrdinateurController extends HttpServlet {
 		{
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			String marque = request.getParameter("marque");
-			int ram = Integer.parseInt(request.getParameter("ram"));
+			Integer ram = Integer.parseInt(request.getParameter("ram"));
 			Integer idStagiaire = Integer.parseInt(request.getParameter("stagiaire"));
 			Stagiaire stagiaire = daoStagiaire.findById(idStagiaire);
 			
-			Ordinateur ordinateur = new Ordinateur(id,marque, ram, stagiaire);
-			
+			Ordinateur ordinateur = new Ordinateur(id,marque,ram, stagiaire);
 			
 			daoOrdinateur.update(ordinateur);
-			response.sendRedirect("ordinateur");;
+			response.sendRedirect("ordinateur");
 		}
 	}
 

@@ -1,10 +1,5 @@
-<%@include file = "/WEB-INF/include.jsp" %>
-
-    
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Liste des Stagiaires</title>
 </head>
 <body>
@@ -52,11 +47,12 @@
   <div id="addFormStagiaire" class="formAjout">
     <h3>Ajouter Stagiaire</h3>
     <form action="stagiaire" method="post">
-      Nom :<input name="nom" type="text" placeholder="Saisir votre nom"><br>
-      Prenom :<input name="prenom" type="text" placeholder="Saisir votre prenom"><br>
-      Email :<input name="email" type="email" placeholder="Saisir votre email"><br>
+      Nom :<input required name="nom" type="text" placeholder="Saisir votre nom"><br>
+      Prenom :<input required name="prenom" type="text" placeholder="Saisir votre prenom"><br>
+      Email :<input required name="email" type="email" placeholder="Saisir votre email"><br>
       Filiere
-      <select name="filiere">
+      <select required name="filiere">
+      	<option value="">Choisir une filiere</option>
       	<c:forEach items="${filieres}" var="filiere">
       		<option value="${filiere.id}" >${filiere.id} - ${filiere.libelle}</option>
       	</c:forEach>

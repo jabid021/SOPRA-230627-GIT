@@ -1,9 +1,6 @@
-    
-    
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
 <title>Update Stagiaire</title>
 </head>
 <body>
@@ -14,9 +11,9 @@
   <h3>Modifier Stagiaire ${stagiaire.id}</h3>
   <form action="stagiaire" method="post">
   <input type="hidden" name="id" value="${stagiaire.id}">
-  Nom :<input value="${stagiaire.nom}" name="nom" type="text" placeholder="Saisir votre nom"><br>
-  Prenom :<input value="${stagiaire.prenom}" name="prenom" type="text" placeholder="Saisir votre prenm"><br>
-  Email :<input value="${stagiaire.email}" name="email" type="email" placeholder="Saisir votre email"><br>
+  Nom :<input required value="${stagiaire.nom}" name="nom" type="text" placeholder="Saisir votre nom"><br>
+  Prenom :<input required value="${stagiaire.prenom}" name="prenom" type="text" placeholder="Saisir votre prenom"><br>
+  Email :<input required value="${stagiaire.email}" name="email" type="email" placeholder="Saisir votre email"><br>
   Filiere
     <select name="filiere">
         <c:forEach items="${filieres}" var="filiere">

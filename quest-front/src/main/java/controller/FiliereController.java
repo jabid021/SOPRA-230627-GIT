@@ -14,73 +14,64 @@ import context.Singleton;
 import dao.IDAOFiliere;
 import model.Filiere;
 
+@WebServlet("/filiere")
+public class FiliereController extends HttpServlet {
 
-	@WebServlet("/filiere")
-	public class FiliereController extends HttpServlet {
-		
-			private IDAOFiliere daoFiliere = Singleton.getInstance().getDaoFiliere();
-		
+	private IDAOFiliere daoFiliere = Singleton.getInstance().getDaoFiliere();
 
-			protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-				if(request.getParameter("id")==null) {
-					List<Filiere> Filieres = daoFiliere.findAll();
-					request.setAttribute("filieres", Filieres);
-					this.getServletContext().getRequestDispatcher("/WEB-INF/filieres.jsp").forward(request, response);
-				}
-				else 
-				{
-					if(request.getParameter("delete")==null) 
-					{
-						Integer id = Integer.parseInt(request.getParameter("id"));
-						Filiere Filiere = daoFiliere.findById(id);
-						request.setAttribute("filiere", Filiere);
-						this.getServletContext().getRequestDispatcher("/WEB-INF/updateFiliere.jsp").forward(request, response);
-					}
-					else 
-					{
-						Integer id = Integer.parseInt(request.getParameter("id"));
-						daoFiliere.delete(id);
-						response.sendRedirect("filiere");
-					}
-				}
-
+		if(request.getParameter("id")==null) {
+			List<Filiere> filieres = daoFiliere.findAll();
+			request.setAttribute("filieres", filieres);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/filieres.jsp").forward(request, response);
+		}
+		else 
+		{
+			if(request.getParameter("delete")==null) 
+			{
+				Integer id = Integer.parseInt(request.getParameter("id"));
+				Filiere filiere = daoFiliere.findById(id);
+				request.setAttribute("filiere", filiere);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/updateFiliere.jsp").forward(request, response);
 			}
-
-
-			protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				if(request.getParameter("id")==null) 
-				{
-					
-					String libelle = request.getParameter("libelle");
-					LocalDate debut = LocalDate.parse(request.getParameter("debut"));
-					LocalDate fin = LocalDate.parse(request.getParameter("fin"));
-					
-					Filiere filiere = new Filiere(libelle, debut, fin);
-					
-					daoFiliere.insert(filiere);
-					response.sendRedirect("filiere");
-				}
-				else 
-				{
-					Integer id = Integer.parseInt(request.getParameter("id"));
-					String libelle = request.getParameter("libelle");
-					LocalDate debut = LocalDate.parse(request.getParameter("debut"));
-					LocalDate fin = LocalDate.parse(request.getParameter("fin"));
-					
-					Filiere filiere = new Filiere(id, libelle, debut, fin);
-					
-					
-					
-					daoFiliere.update(filiere);
-					response.sendRedirect("filiere");
-				}
+			else 
+			{
+				Integer id = Integer.parseInt(request.getParameter("id"));
+				daoFiliere.delete(id);
+				response.sendRedirect("filiere");
 			}
-
 		}
 
+	}
 
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("id")==null) 
+		{
+			String libelle = request.getParameter("libelle");
+			String debut = request.getParameter("debut");
+			String fin = request.getParameter("fin");
+			
+			Filiere filiere = new Filiere(libelle, LocalDate.parse(debut), LocalDate.parse(fin));
+			
+			
+			daoFiliere.insert(filiere);
+			response.sendRedirect("filiere");
+		}
+		else 
+		{
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			String libelle = request.getParameter("libelle");
+			String debut = request.getParameter("debut");
+			String fin = request.getParameter("fin");
+			
+			Filiere filiere = new Filiere(id,libelle, LocalDate.parse(debut), LocalDate.parse(fin));
+			
+			daoFiliere.update(filiere);
+			response.sendRedirect("filiere");
+		}
+	}
 
-
+}

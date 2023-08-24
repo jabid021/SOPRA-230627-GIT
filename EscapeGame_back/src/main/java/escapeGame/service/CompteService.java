@@ -2,7 +2,7 @@ package escapeGame.service;
 
 import java.util.List;
 
-import escapeGame.context.Singleton;
+import escape.exception.CompteException;
 import escapeGame.dao.IDAOCompte;
 import escapeGame.model.Client;
 import escapeGame.model.Compte;
@@ -20,44 +20,44 @@ public class CompteService {
 	{
 		if (compte==null) 
 		{
-			throw new RuntimeException("le compte ne peut pas etre null lors d'un insert / update ");
+			throw new CompteException("le compte ne peut pas etre null lors d'un insert / update ");
 		}
 		if (compte.getLogin() == null || compte.getLogin().isEmpty()) {
-			throw new RuntimeException("login obligatoire");
+			throw new CompteException("login obligatoire");
 		}
 		if (compte.getPassword() == null || compte.getPassword().isEmpty()) {
-			throw new RuntimeException("password obligatoire");
+			throw new CompteException("password obligatoire");
 		}
 		if (compte.getNom() == null || compte.getNom().isEmpty()) {
-			throw new RuntimeException("nom obligatoire");
+			throw new CompteException("nom obligatoire");
 		}
 		if (compte.getPrenom() == null || compte.getPrenom().isEmpty()) {
-			throw new RuntimeException("prenom obligatoire");
+			throw new CompteException("prenom obligatoire");
 		}
 
 		if(compte instanceof Client) 
 		{
 			Client client = (Client) compte;
 			if (client.getMail() == null || client.getMail().isEmpty()) {
-				throw new RuntimeException("mail obligatoire");
+				throw new CompteException("mail obligatoire");
 			}
 			if (client.getTel() == null || client.getTel().isEmpty()) {
-				throw new RuntimeException("tel obligatoire");
+				throw new CompteException("tel obligatoire");
 			}
 			if (client.getAdresse() == null ) {
-				throw new RuntimeException("Adresse obligatoire");
+				throw new CompteException("Adresse obligatoire");
 			}
 			if (client.getAdresse().getNumero() == null || client.getAdresse().getNumero().isEmpty()) {
-				throw new RuntimeException("numero obligatoire");
+				throw new CompteException("numero obligatoire");
 			}
 			if (client.getAdresse().getVoie() == null || client.getAdresse().getVoie().isEmpty()) {
-				throw new RuntimeException("voie obligatoire");
+				throw new CompteException("voie obligatoire");
 			}
 			if (client.getAdresse().getVille() == null || client.getAdresse().getVille().isEmpty()) {
-				throw new RuntimeException("ville obligatoire");
+				throw new CompteException("ville obligatoire");
 			}
 			if (client.getAdresse().getCp() == null || client.getAdresse().getCp().isEmpty()) {
-				throw new RuntimeException("cp obligatoire");
+				throw new CompteException("cp obligatoire");
 			}	
 		}
 	}
@@ -75,12 +75,12 @@ public class CompteService {
 
 	public Compte getById(Integer id) {
 		if (id == null) {
-			throw new RuntimeException("id obligatoire");
+			throw new CompteException("id obligatoire");
 		}
 		Compte compte = daoCompte.findById(id);
 		if(compte==null) 
 		{
-			throw new RuntimeException("id inconnu");
+			throw new CompteException("id inconnu");
 		}
 		return compte;
 	}
@@ -88,10 +88,10 @@ public class CompteService {
 
 	public Compte getByLoginAndPassword(String login, String password) {
 		if (login==null || login.isEmpty()) {
-			throw new RuntimeException("login obligatoire");
+			throw new CompteException("login obligatoire");
 		}
 		if (password==null || password.isEmpty()) {
-			throw new RuntimeException("password obligatoire");
+			throw new CompteException("password obligatoire");
 		}
 		Compte compte = daoCompte.findByLoginAndPassword(login, password);
 		return compte;
@@ -106,7 +106,7 @@ public class CompteService {
 
 	public void delete(Integer id) {
 		if (id == null) {
-			throw new RuntimeException("id obligatoire");
+			throw new CompteException("id obligatoire");
 		}
 		daoCompte.delete(id);
 	}	
