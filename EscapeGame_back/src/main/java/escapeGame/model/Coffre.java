@@ -5,7 +5,7 @@ public class Coffre extends Securite {
 	private int attente;
 
 	public Coffre(Integer id,String libelle, Salle salle, Etat etat, String code, int attente) {
-		super(libelle,salle,etat,code);
+		super(id,libelle,salle,etat,code);
 		this.attente = attente;
 	}
 	

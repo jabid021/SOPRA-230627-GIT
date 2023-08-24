@@ -156,9 +156,8 @@ public class DAOMateriel implements IDAOMateriel {
 
 				ps.setString(7, "Mecanisme");
 			}
-
 			ps.executeUpdate();
-
+			
 			ps.close();
 			conn.close();
 
@@ -245,7 +244,7 @@ public class DAOMateriel implements IDAOMateriel {
 					"DELETE from materiel where id=?");
 
 
-			ps.setInt(8, id);
+			ps.setInt(1, id);
 
 
 			ps.executeUpdate();

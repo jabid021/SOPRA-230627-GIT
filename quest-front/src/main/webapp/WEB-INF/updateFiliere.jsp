@@ -12,7 +12,7 @@
   <form action="filiere" method="post">
   <input type="hidden" name="id" value="${filiere.id}">
   Libelle :<input required value="${filiere.libelle}" name="libelle" type="text" placeholder="Saisir le libelle"><br>
-  Début :<input required value="${filiere.debut}" name="debut" type="date"><br>
+  Dï¿½but :<input required value="${filiere.debut}" name="debut" type="date"><br>
   Fin :<input required value="${filiere.fin}" name="fin" type="date" ><br>
 
     <input class ="btn btn-warning" type="submit" value="Modifier">

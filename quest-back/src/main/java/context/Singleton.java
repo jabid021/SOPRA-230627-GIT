@@ -25,6 +25,11 @@ public class Singleton {
 	private OrdinateurService ordinateurService = new OrdinateurService(daoOrdinateur);
 	private StagiaireService stagiaireService = new StagiaireService(daoStagiaire);
 	
+	private MatiereService matiereService = new MatiereService(daoMatiere);
+	private FiliereService filiereService = new FiliereService(daoFiliere);
+	private StagiaireService stagiaireService = new StagiaireService(daoStagiaire);
+	private OrdinateurService ordinateurService = new OrdinateurService(daoOrdinateur);
+	
 	
 	private static Singleton instance=null; 
 	

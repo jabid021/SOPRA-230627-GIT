@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import context.Singleton;
-import dao.IDAOFiliere;
-import dao.IDAOMatiere;
-import model.Filiere;
 import model.Matiere;
 import service.MatiereService;
 

@@ -16,6 +16,9 @@ import model.Stagiaire;
 import service.OrdinateurService;
 import service.StagiaireService;
 import model.Ordinateur;
+import model.Stagiaire;
+import service.OrdinateurService;
+import service.StagiaireService;
 
 @WebServlet("/ordinateur")
 public class OrdinateurController extends HttpServlet {
