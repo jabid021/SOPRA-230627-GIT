@@ -22,8 +22,19 @@
   Duree :<input name="duree" type="number" value="60"  min="0" max="120" placeholder="Durée de la salle"><br>
   Prix :<input name="prix" type="number" value="25"  min="0" placeholder="Prix de la salle"><br>
   Accessibilité :<input checked type="checkbox" name="accessibilite">oui    <br>
-  Difficulté :<input type="radio" name="difficulte" checked > Debutant   <input  type="radio" name="difficulte">Intermediare   <input type="radio" name="difficulte"> Expert <br>
-
+  Difficulté :<c:forEach items="${difficultes}" var="difficulte">
+      
+       <c:choose>
+     		 <c:when test="${salle.difficulte==difficulte}">
+      			<input type="radio" name="difficulte" value="${difficulte}" checked > ${difficulte}  
+      		</c:when>
+      
+      		<c:otherwise>
+     			 <input type="radio" name="difficulte" value="${difficulte}"> ${difficulte}  
+      		</c:otherwise>
+      </c:choose>
+      
+      </c:forEach>
     <input class ="btn btn-warning" type="submit" value="Modifier">
     <a href="salles.html"><input type="button" class ="btn btn-info" value="Retour"></a>
   </form>

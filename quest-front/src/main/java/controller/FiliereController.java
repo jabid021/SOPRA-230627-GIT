@@ -19,6 +19,7 @@ public class FiliereController extends HttpServlet {
 
 	private FiliereService filiereService = Singleton.getInstance().getFiliereService();
 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
