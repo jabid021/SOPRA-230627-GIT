@@ -65,7 +65,7 @@ public class DAOMatiere implements IDAOMatiere {
 	}
 
 	@Override
-	public void insert(Matiere m) {
+	public Matiere insert(Matiere m) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
@@ -81,10 +81,11 @@ public class DAOMatiere implements IDAOMatiere {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
-	public void update(Matiere m) {
+	public Matiere update(Matiere m) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
@@ -101,6 +102,7 @@ public class DAOMatiere implements IDAOMatiere {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
@@ -119,6 +121,7 @@ public class DAOMatiere implements IDAOMatiere {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

@@ -72,7 +72,7 @@ public class DAOStagiaire implements IDAOStagiaire {
 	}
 
 	@Override
-	public void insert(Stagiaire s) {
+	public Stagiaire insert(Stagiaire s) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
@@ -90,10 +90,11 @@ public class DAOStagiaire implements IDAOStagiaire {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
-	public void update(Stagiaire s) {
+	public Stagiaire update(Stagiaire s) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
@@ -112,6 +113,7 @@ public class DAOStagiaire implements IDAOStagiaire {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
