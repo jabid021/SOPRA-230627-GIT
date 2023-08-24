@@ -12,7 +12,7 @@
 
 
   <ul>
-    <li><a href="participantsClient.html">Afficher mes participants</a></li>
+    <li><a href="participantsClient">Afficher mes participants</a></li>
     <li><a href="reserver">Faire une reservation</a></li>
 
   </ul>

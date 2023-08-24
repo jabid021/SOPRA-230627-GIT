@@ -11,30 +11,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import escapeGame.context.Singleton;
-import escapeGame.dao.IDAOCompte;
-import escapeGame.dao.IDAOReservation;
 import escapeGame.model.GameMaster;
 import escapeGame.model.Reservation;
+import escapeGame.service.CompteService;
+import escapeGame.service.ReservationService;
 
 @WebServlet("/reservation")
 public class ReservationController extends HttpServlet {
 
-	private IDAOReservation daoReservation = Singleton.getInstance().getDaoReservation();
-	private IDAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
+	private ReservationService reservationService = Singleton.getInstance().getReservationService();
+	private CompteService compteService = Singleton.getInstance().getCompteService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		if (request.getParameter("id") == null) {
-			List<Reservation> reservations = daoReservation.findAll();
-			List<GameMaster> gameMasters = daoCompte.findAllGameMaster();
+			List<Reservation> reservations = reservationService.getAll();
+			List<GameMaster> gameMasters = compteService.getAllGameMaster();
 			request.setAttribute("reservations", reservations);
 			request.setAttribute("gameMasters", gameMasters);
 			request.setAttribute("today", LocalDate.now());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/reservations.jsp").forward(request, response);
 		} else {
 			Integer id = Integer.parseInt(request.getParameter("id"));
-			daoReservation.delete(id);
+			reservationService.delete(id);
 			response.sendRedirect("reservation");
 		}
 	}

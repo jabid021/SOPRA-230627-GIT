@@ -8,7 +8,7 @@
 <div id="content">
 
 	<h1>Liste des Réservations</h1>
-	<a href="gerant.html"><input type="button" class="btn btn-info"
+	<a href="home"><input type="button" class="btn btn-info"
 		value="Retour"></a>
 
 	<table class="table table-striped">
