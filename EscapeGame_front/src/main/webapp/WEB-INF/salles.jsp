@@ -9,7 +9,7 @@
 <div id="content">
   <h1>Liste des Salles</h1>
   <input id="btnAddSalle" type="button" class ="btn btn-success" value="Ajouter">
-  <a href="gerant.html"><input type="button" class ="btn btn-info" value="Retour"></a>
+  <a href="home"><input type="button" class ="btn btn-info" value="Retour"></a>
 
   <table class="table table-striped">
     <thead>

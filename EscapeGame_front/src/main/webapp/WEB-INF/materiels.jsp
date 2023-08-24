@@ -11,7 +11,7 @@
   <div id="content">
     <h1>Liste des Materiels</h1>
     <input id="btnAddMateriel" type="button" class ="btn btn-success" value="Ajouter">
-    <a href="gerant.html"><input type="button" class ="btn btn-info" value="Retour"></a>
+    <a href="home"><input type="button" class ="btn btn-info" value="Retour"></a>
 
     <table class="table table-striped">
       <thead>
@@ -99,7 +99,7 @@
           <tr>
             <td>Etat</td>
             <td>
-              <input required id="neuf" value="Neuf" name="etat" type="radio"><label for="neuf" checked >Neuf</label>
+              <input required id="neuf" value="Neuf" name="etat" type="radio"><label for="neuf" >Neuf</label>
               <input required id="standard" value="Standard" name="etat" type="radio"><label for="standard">Standard</label>
               <input required id="abime" value="Abime" name="etat" type="radio"><label for="abime">Abimé</label>
               <input required id="ko" value="KO" name="etat" type="radio"><label for="ko">KO</label>
@@ -117,9 +117,10 @@
             <tr>
               <td>Salle</td>
               <td><select  required name="salle">
-                <option value="" >Choisir la salle</option>
-                <option value="1" >Salle 1</option>
-                <option value="2" >Salle 2</option>
+                <option value="" >En réserve</option>
+                <c:forEach items="${salles}" var="salle">
+                	<option value="${salle.id}" >${salle.titre}</option>
+                </c:forEach>   
               </select></td>
             </tr>
 

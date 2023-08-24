@@ -44,6 +44,7 @@ public class MaterielController extends HttpServlet {
 				List<Salle> salles = salleService.getAll();
 				request.setAttribute("materiel", materiel);
 				request.setAttribute("salles", salles);
+				request.setAttribute("etats", Etat.values());
 				this.getServletContext().getRequestDispatcher("/WEB-INF/updateMateriel.jsp").forward(request, response);
 			}
 			else 
