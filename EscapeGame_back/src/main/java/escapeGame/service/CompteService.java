@@ -1,11 +1,17 @@
 package escapeGame.service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import escape.exception.CompteException;
 import escapeGame.dao.IDAOCompte;
 import escapeGame.model.Client;
 import escapeGame.model.Compte;
+import escapeGame.model.GameMaster;
 
 public class CompteService {
 
@@ -97,7 +103,9 @@ public class CompteService {
 		return compte;
 	}
 	
-	
+	public List<GameMaster> getAllGameMaster() {
+		return daoCompte.findAllGameMaster();
+	}
 	
 	public List<Compte> getAll() {
 		return daoCompte.findAll();

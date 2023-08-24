@@ -14,19 +14,21 @@ import dao.IDAOFiliere;
 import dao.IDAOStagiaire;
 import model.Filiere;
 import model.Stagiaire;
+import service.FiliereService;
+import service.StagiaireService;
 
 @WebServlet("/stagiaire")
 public class StagiaireController extends HttpServlet {
 
-	private IDAOStagiaire daoStagiaire = Singleton.getInstance().getDaoStagiaire();
-	private IDAOFiliere daoFiliere = Singleton.getInstance().getDaoFiliere();
+	private StagiaireService stagiaireService = Singleton.getInstance().getStagiaireService();
+	private FiliereService filiereService = Singleton.getInstance().getFiliereService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
 		if(request.getParameter("id")==null) {
-			List<Stagiaire> stagiaires = daoStagiaire.findAll();
-			List<Filiere> filieres = daoFiliere.findAll();
+			List<Stagiaire> stagiaires = stagiaireService.getAll();
+			List<Filiere> filieres = filiereService.getAll();
 			request.setAttribute("stagiaires", stagiaires);
 			request.setAttribute("filieres", filieres);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/stagiaires.jsp").forward(request, response);
@@ -36,8 +38,8 @@ public class StagiaireController extends HttpServlet {
 			if(request.getParameter("delete")==null) 
 			{
 				Integer id = Integer.parseInt(request.getParameter("id"));
-				Stagiaire stagiaire = daoStagiaire.findById(id);
-				List<Filiere> filieres = daoFiliere.findAll();
+				Stagiaire stagiaire = stagiaireService.getById(id);
+				List<Filiere> filieres = filiereService.getAll();
 				request.setAttribute("stagiaire", stagiaire);
 				request.setAttribute("filieres", filieres);
 				this.getServletContext().getRequestDispatcher("/WEB-INF/updateStagiaire.jsp").forward(request, response);
@@ -45,7 +47,7 @@ public class StagiaireController extends HttpServlet {
 			else 
 			{
 				Integer id = Integer.parseInt(request.getParameter("id"));
-				daoStagiaire.delete(id);
+				stagiaireService.delete(id);
 				response.sendRedirect("stagiaire");
 			}
 		}
@@ -60,12 +62,12 @@ public class StagiaireController extends HttpServlet {
 			String prenom = request.getParameter("prenom");
 			String email = request.getParameter("email");
 			Integer idFiliere = Integer.parseInt(request.getParameter("filiere"));
-			Filiere filiere = daoFiliere.findById(idFiliere);
+			Filiere filiere = filiereService.getById(idFiliere);
 			
 			Stagiaire stagiaire = new Stagiaire(nom, prenom, email, filiere);
 			
 			
-			daoStagiaire.insert(stagiaire);
+			stagiaireService.create(stagiaire);
 			response.sendRedirect("stagiaire");
 		}
 		else 
@@ -75,11 +77,11 @@ public class StagiaireController extends HttpServlet {
 			String prenom = request.getParameter("prenom");
 			String email = request.getParameter("email");
 			Integer idFiliere = Integer.parseInt(request.getParameter("filiere"));
-			Filiere filiere = daoFiliere.findById(idFiliere);
+			Filiere filiere = filiereService.getById(idFiliere);
 			
 			Stagiaire stagiaire = new Stagiaire(id,nom, prenom, email, filiere);
 			
-			daoStagiaire.update(stagiaire);
+			stagiaireService.update(stagiaire);
 			response.sendRedirect("stagiaire");
 		}
 	}

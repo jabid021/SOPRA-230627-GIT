@@ -232,6 +232,7 @@ public class DAOMateriel implements IDAOMateriel {
 			e.printStackTrace();
 		}
 		return null;
+	
 	}
 
 	@Override

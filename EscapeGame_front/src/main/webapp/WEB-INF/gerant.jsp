@@ -12,11 +12,11 @@
 
 
   <ul>
-    <li><a href="materiels.html">Gestion du Materiel</a></li>
-    <li><a href="salles.html">Gestion des Salles</a></li>
+    <li><a href="materiel">Gestion du Materiel</a></li>
+    <li><a href="salle">Gestion des Salles</a></li>
     <li><a href="compte">Gestion des Comptes</a></li>
-    <li><a href="participants.html">Gestion des Participants</a></li>
-    <li><a href="reservations.html">Gestion des Reservations</a></li>
+    <li><a href="participant">Gestion des Participants</a></li>
+    <li><a href="reservation">Gestion des Reservations</a></li>
 
   </ul>
     <a href="home?disconnect"><input type="button" class ="btn btn-info" value="Se deconnecter"></a>
