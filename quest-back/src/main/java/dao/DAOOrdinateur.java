@@ -73,7 +73,7 @@ public class DAOOrdinateur implements IDAOOrdinateur {
 	}
 
 	@Override
-	public void insert(Ordinateur o) {
+	public Ordinateur insert(Ordinateur o) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
@@ -90,10 +90,11 @@ public class DAOOrdinateur implements IDAOOrdinateur {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
-	public void update(Ordinateur o) {
+	public Ordinateur update(Ordinateur o) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
@@ -111,6 +112,7 @@ public class DAOOrdinateur implements IDAOOrdinateur {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override

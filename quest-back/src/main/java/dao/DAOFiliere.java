@@ -66,7 +66,7 @@ public class DAOFiliere implements IDAOFiliere {
 	}
 
 	@Override
-	public void insert(Filiere f) {
+	public Filiere insert(Filiere f) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
@@ -83,10 +83,11 @@ public class DAOFiliere implements IDAOFiliere {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
-	public void update(Filiere f) {
+	public Filiere update(Filiere f) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
@@ -104,6 +105,7 @@ public class DAOFiliere implements IDAOFiliere {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override

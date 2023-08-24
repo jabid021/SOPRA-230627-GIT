@@ -13,20 +13,22 @@ import context.Singleton;
 import dao.IDAOStagiaire;
 import dao.IDAOOrdinateur;
 import model.Stagiaire;
+import service.OrdinateurService;
+import service.StagiaireService;
 import model.Ordinateur;
 
 @WebServlet("/ordinateur")
 public class OrdinateurController extends HttpServlet {
 
-	private IDAOOrdinateur daoOrdinateur = Singleton.getInstance().getDaoOrdinateur();
-	private IDAOStagiaire daoStagiaire = Singleton.getInstance().getDaoStagiaire();
+	private OrdinateurService ordinateurService = Singleton.getInstance().getOrdinateurService();
+	private StagiaireService stagiaireService = Singleton.getInstance().getStagiaireService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
 		if(request.getParameter("id")==null) {
-			List<Ordinateur> ordinateurs = daoOrdinateur.findAll();
-			List<Stagiaire> stagiaires = daoStagiaire.findAll();
+			List<Ordinateur> ordinateurs = ordinateurService.getAll();
+			List<Stagiaire> stagiaires = stagiaireService.getAll();
 			request.setAttribute("ordinateurs", ordinateurs);
 			request.setAttribute("stagiaires", stagiaires);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/ordinateurs.jsp").forward(request, response);
@@ -36,8 +38,8 @@ public class OrdinateurController extends HttpServlet {
 			if(request.getParameter("delete")==null) 
 			{
 				Integer id = Integer.parseInt(request.getParameter("id"));
-				Ordinateur ordinateur = daoOrdinateur.findById(id);
-				List<Stagiaire> stagiaires = daoStagiaire.findAll();
+				Ordinateur ordinateur = ordinateurService.getById(id);
+				List<Stagiaire> stagiaires = stagiaireService.getAll();
 				request.setAttribute("ordinateur", ordinateur);
 				request.setAttribute("stagiaires", stagiaires);
 				this.getServletContext().getRequestDispatcher("/WEB-INF/updateOrdinateur.jsp").forward(request, response);
@@ -45,7 +47,7 @@ public class OrdinateurController extends HttpServlet {
 			else 
 			{
 				Integer id = Integer.parseInt(request.getParameter("id"));
-				daoOrdinateur.delete(id);
+				ordinateurService.delete(id);
 				response.sendRedirect("ordinateur");
 			}
 		}
@@ -59,12 +61,12 @@ public class OrdinateurController extends HttpServlet {
 			String marque = request.getParameter("marque");
 			Integer ram = Integer.parseInt(request.getParameter("ram"));
 			Integer idStagiaire = Integer.parseInt(request.getParameter("stagiaire"));
-			Stagiaire stagiaire = daoStagiaire.findById(idStagiaire);
+			Stagiaire stagiaire = stagiaireService.getById(idStagiaire);
 			
 			Ordinateur ordinateur = new Ordinateur(marque, ram, stagiaire);
 			
 			
-			daoOrdinateur.insert(ordinateur);
+			ordinateurService.create(ordinateur);
 			response.sendRedirect("ordinateur");
 		}
 		else 
@@ -73,11 +75,11 @@ public class OrdinateurController extends HttpServlet {
 			String marque = request.getParameter("marque");
 			Integer ram = Integer.parseInt(request.getParameter("ram"));
 			Integer idStagiaire = Integer.parseInt(request.getParameter("stagiaire"));
-			Stagiaire stagiaire = daoStagiaire.findById(idStagiaire);
+			Stagiaire stagiaire = stagiaireService.getById(idStagiaire);
 			
 			Ordinateur ordinateur = new Ordinateur(id,marque,ram, stagiaire);
 			
-			daoOrdinateur.update(ordinateur);
+			ordinateurService.update(ordinateur);
 			response.sendRedirect("ordinateur");
 		}
 	}
