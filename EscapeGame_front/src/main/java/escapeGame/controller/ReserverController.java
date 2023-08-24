@@ -28,6 +28,9 @@ public class ReserverController extends HttpServlet {
 	private ParticipantService participantService = Singleton.getInstance().getParticipantService();
 	private ReservationService reservationService = Singleton.getInstance().getReservationService();
 	
+	
+
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Client client = (Client) request.getSession().getAttribute("compte");
 		List<Salle> salles = salleService.getAll();
