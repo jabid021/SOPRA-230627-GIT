@@ -6,9 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Canard;
-import model.Chat;
-import model.Chien;
+import demoHeritage.single.Canard;
+import demoHeritage.single.Chat;
+import demoHeritage.single.Chien;
+import model.Adresse;
 import model.Marque;
 import model.Ordinateur;
 import model.Os;
@@ -21,11 +22,13 @@ public class Test {
 		Ordinateur o1 = new Ordinateur(Marque.Apple,Os.MacOs);
 		Ordinateur o2 = new Ordinateur(Marque.Asus,Os.Linux);
 
-		Personne p1 = new Personne("Abid","Jordan",LocalDate.parse("1993-05-01"),174);
+		Adresse adresse1 = new Adresse ("6","Rue rougemont","Paris","75009");
+		
+		Personne p1 = new Personne("Abid","Jordan",LocalDate.parse("1993-05-01"),174,adresse1);
 
-		Personne p2 = new Personne("Doe","John",LocalDate.parse("1960-01-01"),160);
+		Personne p2 = new Personne("Doe","John",LocalDate.parse("1960-01-01"),160,adresse1);
 
-		Canard canard1 = new Canard("donald","rouge");
+		Canard canard1 = new Canard("donald","red");
 		Chien chien1 = new Chien("chien");
 		Chat chat1 = new Chat("chat");
 

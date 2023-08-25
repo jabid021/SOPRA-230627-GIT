@@ -1,15 +1,18 @@
-package model;
+package demoHeritage.single;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("duck")
 public class Canard extends Animal{
 
+	@Column(name="color",length=10)
 	private String couleur;
 	
-	public Canard() {
-		super();
-	}
+	public Canard() {}
+	
 	public Canard(String nom, String couleur) {
 		super(nom);
 		this.couleur=couleur;

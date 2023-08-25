@@ -1,14 +1,13 @@
-package model;
+package demoHeritage.single;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("dog")
 public class Chien extends Animal{
 
-	
-	public Chien() {
-		super();
-	}
+	public Chien() {}
 
 	public Chien(String nom) {
 		super(nom);

@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,21 +29,26 @@ public class Personne {
 	
 	private int taille;
 	
+	@Embedded
+	private Adresse adresse;
+	
 	public Personne() {}
 	
-	public Personne(Integer id, String nom, String prenom, LocalDate naissance,int taille) {
+	public Personne(Integer id, String nom, String prenom, LocalDate naissance,int taille,Adresse adresse) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.naissance = naissance;
 		this.taille=taille;
+		this.adresse=adresse;
 	}
 	
-	public Personne( String nom, String prenom, LocalDate naissance,int taille) {
+	public Personne( String nom, String prenom, LocalDate naissance,int taille,Adresse adresse) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.naissance = naissance;
 		this.taille=taille;
+		this.adresse=adresse;
 	}
 
 	public Integer getId() {
@@ -86,12 +92,22 @@ public class Personne {
 		this.taille = taille;
 	}
 
+	
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
 	@Override
 	public String toString() {
 		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", naissance=" + naissance + ", taille="
-				+ taille + "]";
+				+ taille + ", adresse=" + adresse + "]";
 	}
 
+	
 	
 	
 	

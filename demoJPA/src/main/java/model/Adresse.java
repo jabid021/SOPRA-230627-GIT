@@ -1,12 +1,22 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Adresse {
 
+	@Column(name="num",length=15, nullable=false)
 	private String numero;
+	@Column(nullable=false)
 	private String voie;
+	@Column(name="city",nullable=false)
 	private String ville;
+	@Column(name="pc",nullable=false)
 	private String cp;
+	
 
+	public Adresse() {}
 	
 	public Adresse(String numero, String voie, String ville, String cp) {
 		this.numero = numero;

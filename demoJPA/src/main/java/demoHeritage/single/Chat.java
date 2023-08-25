@@ -1,13 +1,14 @@
-package model;
+package demoHeritage.single;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("cat")
 public class Chat extends Animal{
 
-	public Chat() {
-		super();
-	}
+	public Chat() {}
+	
 	public Chat(String nom) {
 		super(nom);
 	}
