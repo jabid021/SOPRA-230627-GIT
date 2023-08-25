@@ -6,31 +6,51 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import demoHeritage.single.Canard;
-import demoHeritage.single.Chat;
-import demoHeritage.single.Chien;
 import model.Adresse;
+import model.Centre;
 import model.Marque;
+import model.Matiere;
 import model.Ordinateur;
 import model.Os;
 import model.Personne;
+import model.Session;
 
 public class Test {
 
 	public static void main(String[] args) {
 
+		
+		Matiere m1 = new Matiere("Java");
+		Matiere m2 = new Matiere("SQL");
+		Matiere m3 = new Matiere("Agile");
+		
+		Session s1 = new Session("JAVA-230327");
+		Session s2 = new Session("JAVA-230627");
+		Session s3 = new Session("JAVA-230927");
+		
+		Centre centre = new Centre("AJC");
+		centre.getSessions().add(s1);
+		centre.getSessions().add(s2);
+		centre.getSessions().add(s3);
+		
+		
+		
 		Ordinateur o1 = new Ordinateur(Marque.Apple,Os.MacOs);
 		Ordinateur o2 = new Ordinateur(Marque.Asus,Os.Linux);
 
 		Adresse adresse1 = new Adresse ("6","Rue rougemont","Paris","75009");
 		
-		Personne p1 = new Personne("Abid","Jordan",LocalDate.parse("1993-05-01"),174,adresse1);
+		Personne p1 = new Personne("Abid","Jordan",LocalDate.parse("1993-05-01"),174,adresse1,o2,s1);
 
-		Personne p2 = new Personne("Doe","John",LocalDate.parse("1960-01-01"),160,adresse1);
+		Personne p2 = new Personne("Doe","John",LocalDate.parse("1960-01-01"),160,adresse1,o1,s1);
 
-		Canard canard1 = new Canard("donald","red");
+		
+		p1.getFormations().add(m1);
+		p1.getFormations().add(m2);
+		p1.getFormations().add(m3);
+		/*Canard canard1 = new Canard("donald","red");
 		Chien chien1 = new Chien("chien");
-		Chat chat1 = new Chat("chat");
+		Chat chat1 = new Chat("chat");*/
 
 		//
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("configJPA");
@@ -44,9 +64,15 @@ public class Test {
 		em.persist(p2);
 		em.persist(o1);
 		em.persist(o2);
-		em.persist(chien1);
-		em.persist(canard1);
-		em.persist(chat1);
+		em.persist(m1);
+		em.persist(m2);
+		em.persist(m3);
+		em.persist(s1);
+		em.persist(s2);
+		em.persist(s3);
+		em.persist(centre);
+		
+		
 		em.getTransaction().commit();
 
 

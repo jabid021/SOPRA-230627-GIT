@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -8,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -29,26 +34,31 @@ public class Personne {
 	
 	private int taille;
 	
+	
+	//@XToY,  le Y represente l'attribut sur lequel on gere la jointure, si on a une Liste / Tableau => ToMany, sinon ToOne
+	@OneToOne
+	private Ordinateur ordinateur;
+	
+	@ManyToOne
+	private Session filiere;
+	
+	@ManyToMany
+	private List<Matiere> formations = new ArrayList();
+	
 	@Embedded
 	private Adresse adresse;
 	
 	public Personne() {}
 	
-	public Personne(Integer id, String nom, String prenom, LocalDate naissance,int taille,Adresse adresse) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.naissance = naissance;
-		this.taille=taille;
-		this.adresse=adresse;
-	}
 	
-	public Personne( String nom, String prenom, LocalDate naissance,int taille,Adresse adresse) {
+	public Personne( String nom, String prenom, LocalDate naissance,int taille,Adresse adresse,Ordinateur ordinateur,Session filiere) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.naissance = naissance;
 		this.taille=taille;
 		this.adresse=adresse;
+		this.ordinateur=ordinateur;
+		this.filiere=filiere;
 	}
 
 	public Integer getId() {
@@ -101,12 +111,48 @@ public class Personne {
 		this.adresse = adresse;
 	}
 
+	
+	public Ordinateur getOrdinateur() {
+		return ordinateur;
+	}
+
+
+	public void setOrdinateur(Ordinateur ordinateur) {
+		this.ordinateur = ordinateur;
+	}
+
+
+	public Session getFiliere() {
+		return filiere;
+	}
+
+
+	public void setFiliere(Session filiere) {
+		this.filiere = filiere;
+	}
+
+
+	public List<Matiere> getFormations() {
+		return formations;
+	}
+
+
+	public void setFormations(List<Matiere> formations) {
+		this.formations = formations;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", naissance=" + naissance + ", taille="
-				+ taille + ", adresse=" + adresse + "]";
+				+ taille + ", ordinateur=" + ordinateur + ", filiere=" + filiere + ", adresse=" + adresse + "]";
 	}
 
+
+	
+
+
+	
 	
 	
 	
