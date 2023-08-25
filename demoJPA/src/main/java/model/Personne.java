@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -36,13 +38,22 @@ public class Personne {
 	
 	
 	//@XToY,  le Y represente l'attribut sur lequel on gere la jointure, si on a une Liste / Tableau => ToMany, sinon ToOne
+	
 	@OneToOne
+	@JoinColumn(name="ordi",nullable = false)
 	private Ordinateur ordinateur;
 	
 	@ManyToOne
+	@JoinColumn(name="session")
 	private Session filiere;
 	
 	@ManyToMany
+	@JoinTable(
+			name="formations",
+			joinColumns =  @JoinColumn(name="stagiaire"),
+			inverseJoinColumns = @JoinColumn(name="cours")
+			// ,uniqueConstraints = @UniqueConstraint(columnNames = {"stagiaire","cours"})
+			)
 	private List<Matiere> formations = new ArrayList();
 	
 	@Embedded

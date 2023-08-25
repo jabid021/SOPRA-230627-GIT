@@ -42,7 +42,7 @@ public class Test {
 		
 		Personne p1 = new Personne("Abid","Jordan",LocalDate.parse("1993-05-01"),174,adresse1,o2,s1);
 
-		Personne p2 = new Personne("Doe","John",LocalDate.parse("1960-01-01"),160,adresse1,o1,s1);
+		Personne p2 = new Personne("Doe","John",LocalDate.parse("1960-01-01"),160,adresse1,o1,null);
 
 		
 		p1.getFormations().add(m1);
@@ -60,10 +60,11 @@ public class Test {
 
 		em.getTransaction().begin();
 
-		em.persist(p1);
-		em.persist(p2);
 		em.persist(o1);
 		em.persist(o2);
+		
+		em.persist(p1);
+		em.persist(p2);
 		em.persist(m1);
 		em.persist(m2);
 		em.persist(m3);
@@ -71,6 +72,8 @@ public class Test {
 		em.persist(s2);
 		em.persist(s3);
 		em.persist(centre);
+		
+		
 		
 		
 		em.getTransaction().commit();
