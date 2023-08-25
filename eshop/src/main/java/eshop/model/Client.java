@@ -7,7 +7,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("customer")
@@ -20,8 +22,13 @@ public class Client extends Personne{
 	private int age;
 	
 	
-	@ManyToMany
-	private List<Produit> produits = new ArrayList();
+	@OneToMany
+	@JoinTable(
+			name="achats",
+			joinColumns = @JoinColumn(name="acheteur"),
+			inverseJoinColumns = @JoinColumn(name="produit")
+			)
+	private List<Achat> achats = new ArrayList();
 	
 	public Client() {
 	}
@@ -55,14 +62,6 @@ public class Client extends Personne{
 	
 
 
-	public List<Produit> getProduits() {
-		return produits;
-	}
-
-
-	public void setProduits(List<Produit> produits) {
-		this.produits = produits;
-	}
 
 
 	@Override
