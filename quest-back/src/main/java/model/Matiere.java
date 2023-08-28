@@ -1,10 +1,25 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="matiere")
 public class Matiere {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(length = 25,nullable = false)
 	private String libelle;
+	@Column(columnDefinition ="INTEGER(4)")
 	private int quest;
+	
+	public Matiere() {}
 	
 	public Matiere(Integer id, String libelle, int quest) {
 		this.id = id;

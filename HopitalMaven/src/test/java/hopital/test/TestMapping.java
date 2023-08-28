@@ -1,4 +1,4 @@
-package test;
+package hopital.test;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
