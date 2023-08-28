@@ -27,7 +27,6 @@ public class Test {
 		Produit produit1 = new Produit("Formation SQL",850,f1);
 		Produit produit2 = new Produit("Formation JPA", 1500,f1);
 		
-		
 		Client c1 = new Client("Abid","Jordan",a1,LocalDate.parse("1993-05-01"),30);
 
 	

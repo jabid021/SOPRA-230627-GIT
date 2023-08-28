@@ -66,7 +66,7 @@ public class Test {
 		//System.out.println(personneBdd);
 		
 		
-		em.getTransaction().begin();
+		/*em.getTransaction().begin();
 
 		em.persist(o1);
 		em.persist(o2);
@@ -84,7 +84,7 @@ public class Test {
 		
 		
 		
-		em.getTransaction().commit();
+		em.getTransaction().commit();*/
 
 
 

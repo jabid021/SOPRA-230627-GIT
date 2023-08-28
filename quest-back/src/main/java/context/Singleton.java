@@ -20,10 +20,7 @@ public class Singleton {
 	private IDAOFiliere daoFiliere = new DAOFiliere();
 	private IDAOOrdinateur daoOrdinateur = new DAOOrdinateur();
 	private IDAOStagiaire daoStagiaire = new DAOStagiaire();
-	private MatiereService matiereService = new MatiereService(daoMatiere);
-	private FiliereService filiereService = new FiliereService(daoFiliere);
-	private OrdinateurService ordinateurService = new OrdinateurService(daoOrdinateur);
-	private StagiaireService stagiaireService = new StagiaireService(daoStagiaire);
+	
 	
 	private MatiereService matiereService = new MatiereService(daoMatiere);
 	private FiliereService filiereService = new FiliereService(daoFiliere);

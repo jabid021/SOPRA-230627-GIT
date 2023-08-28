@@ -26,7 +26,7 @@ public class Personne {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="lastname",columnDefinition = "VARCHAR(35)",nullable = false,unique=true)
+	@Column(name="lastname",columnDefinition = "VARCHAR(35) default 'DOOE' ",nullable = false,unique=true)
 	private String nom;
 	
 	@Column(name="firstname",length = 35 )

@@ -5,6 +5,8 @@ public class Ordinateur {
 	private Integer id;
 	private String marque;
 	private int ram;
+	
+	//Un Stagiaire n'a QU'UN SEUL ordinateur
 	private Stagiaire stagiaire;
 	
 	

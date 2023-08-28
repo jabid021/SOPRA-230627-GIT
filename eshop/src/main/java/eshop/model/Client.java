@@ -22,12 +22,12 @@ public class Client extends Personne{
 	private int age;
 	
 	
-	@OneToMany
-	@JoinTable(
+	@OneToMany(mappedBy = "client")
+	/*@JoinTable(
 			name="achats",
 			joinColumns = @JoinColumn(name="acheteur"),
 			inverseJoinColumns = @JoinColumn(name="produit")
-			)
+			)*/
 	private List<Achat> achats = new ArrayList();
 	
 	public Client() {
