@@ -3,18 +3,51 @@ package escapeGame.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="salle")
 public class Salle {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(columnDefinition = "default 2")
 	private int min; 
 	private int max;
+	@Column(length=25, nullable=false)
 	private String titre;
+	@Column(columnDefinition = "text")
 	private String description;
+	@Column(columnDefinition = "default 60")
 	private int duree;
+	@Column(columnDefinition = "decimal(4,2)")
 	private double prix;
+	@Column(columnDefinition = "tinyint(1)")
 	private boolean accessibilite;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Debutant', 'Intermediaire', 'Expert')", nullable = false)
 	private Difficulte difficulte;
+	
+	@ElementCollection(targetClass = Caracteristique.class,fetch = FetchType.EAGER)
+    @JoinTable(name = "caracteristique", joinColumns = @JoinColumn(name = "salle"))
+    @Column(name = "label", nullable = false,columnDefinition = "ENUM('Fouille', 'Observation', 'Reflexion', 'Action')")
+    @Enumerated(EnumType.STRING)
 	private List<Caracteristique> caracteristiques = new ArrayList();
+	
+	public Salle() {}
 	
 	public Salle(Integer id,int min, int max, String titre, String description, int duree, double prix, boolean accessible,
 			Difficulte difficulte) {

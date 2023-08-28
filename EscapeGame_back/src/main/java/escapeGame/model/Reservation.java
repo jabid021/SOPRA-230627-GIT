@@ -5,19 +5,51 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="reservation")
 public class Reservation {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name="date_reservation", nullable=false)
 	private LocalDate dateReservation;
+	@Column(name="heure_reservation", nullable=false)
 	private LocalTime heureReservation;
 	private Integer timer;
+	@Column(nullable=false)
 	private String equipe;
+	
+	@ManyToOne
+	@JoinColumn(nullable=false)
 	private Client client;
+	
+	@ManyToOne
+	@JoinColumn(nullable=false)
 	private Salle salle;
+
+	@Column(columnDefinition="decimal(5,2)")
 	private double prix;
+	
+	@ManyToOne
+	@JoinColumn(name="gm")
 	private GameMaster gameMaster;
+	
+	@ManyToMany
 	private List<Participant> participants=new ArrayList();
 
+	public Reservation() {}
+	
 	public Reservation(Integer id,LocalDate dateReservation, LocalTime heureReservation, Integer timer, String equipe,
 			double prix,Client client, Salle salle,GameMaster gameMaster) {
 		this.id=id;
