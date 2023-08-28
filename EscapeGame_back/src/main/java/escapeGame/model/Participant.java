@@ -1,10 +1,34 @@
 package escapeGame.model;
 
-public final class Participant {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="participant")
+public  class Participant {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(length = 25, nullable = false)
 	private String nom;
+	
+	@Column(length = 25, nullable = false)
 	private String prenom;
+	
+	@ManyToOne
+	@JoinColumn(name="client",nullable = false)
 	private Client client;
+	
+	public Participant() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Participant(Integer id,String nom, String prenom,Client client) {
 		this.id=id;

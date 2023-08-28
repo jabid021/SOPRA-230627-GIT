@@ -1,8 +1,14 @@
 package escapeGame.model;
+
+import javax.persistence.Entity;
+
+@Entity
 public class Mecanisme extends Materiel {
     private boolean electrique;
 
-    
+    public Mecanisme() {
+		// TODO Auto-generated constructor stub
+	}
     public Mecanisme(Integer id,String libelle, Salle salle, Etat etat, boolean electrique) {
         super(id,libelle,salle,etat);
         this.electrique = electrique;
