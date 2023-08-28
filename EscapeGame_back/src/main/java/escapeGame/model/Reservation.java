@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -31,11 +32,11 @@ public class Reservation {
 	private String equipe;
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="client", nullable=false)
 	private Client client;
 	
 	@ManyToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="salle",nullable=false)
 	private Salle salle;
 
 	@Column(columnDefinition="decimal(5,2)")
@@ -46,6 +47,7 @@ public class Reservation {
 	private GameMaster gameMaster;
 	
 	@ManyToMany
+	@JoinTable(name="inscription",joinColumns = @JoinColumn(name="reservation"),inverseJoinColumns = @JoinColumn(name="participant"))
 	private List<Participant> participants=new ArrayList();
 
 	public Reservation() {}

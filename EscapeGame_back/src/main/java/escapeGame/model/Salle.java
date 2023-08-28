@@ -34,7 +34,7 @@ public class Salle {
 	private int duree;
 	@Column(columnDefinition = "decimal(4,2)")
 	private double prix;
-	@Column(columnDefinition = "tinyint(1)")
+	@Column
 	private boolean accessibilite;
 	
 	@Enumerated(EnumType.STRING)
