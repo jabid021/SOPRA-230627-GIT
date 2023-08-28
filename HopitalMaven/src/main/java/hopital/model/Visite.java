@@ -30,6 +30,7 @@ public class Visite {
 	@JoinColumn(name="id_patient" , nullable = false)
 	private Patient patient;
 	
+	public Visite() {}
 	
 	public Visite(Integer numero, double prix, int salle, LocalDate dateVisite, Medecin medecin, Patient patient) {
 		this.numero = numero;
