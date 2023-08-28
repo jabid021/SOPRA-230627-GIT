@@ -57,7 +57,15 @@ public class Test {
 
 		EntityManager em = emf.createEntityManager();
 
+		//Ordinateur ordiBdd = em.find(Ordinateur.class,1);
+		//Personne personneBdd = em.find(Personne.class, 2);
 
+		
+		//System.out.println(ordiBdd.getProprio().getNom());
+
+		//System.out.println(personneBdd);
+		
+		
 		em.getTransaction().begin();
 
 		em.persist(o1);

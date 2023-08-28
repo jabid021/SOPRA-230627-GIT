@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity //Precise qu'il faut creer une table (OBLIGATOIRE)
@@ -23,6 +24,10 @@ public class Ordinateur{
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Linux','MacOs','Windows')")
 	private Os os;
+	
+	@OneToOne(mappedBy = "ordinateur")
+	private Personne proprio;
+	
 	
 	public Ordinateur() {} //(OBLIGATOIRE)
 	
@@ -61,14 +66,25 @@ public class Ordinateur{
 		this.os = os;
 	}
 	
-	
 
-	
+	public Personne getProprio() {
+		return proprio;
+	}
+
+	public void setProprio(Personne proprio) {
+		this.proprio = proprio;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
 
 	@Override
 	public String toString() {
 		return "Ordinateur [numero=" + numero + ", marque=" + marque + ", os=" + os + "]";
 	}
+
+	
 	
 	
 	
