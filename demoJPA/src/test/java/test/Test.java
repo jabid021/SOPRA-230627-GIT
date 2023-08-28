@@ -48,10 +48,7 @@ public class Test {
 		p1.getFormations().add(m1);
 		p1.getFormations().add(m2);
 		p1.getFormations().add(m3);
-		/*Canard canard1 = new Canard("donald","red");
-		Chien chien1 = new Chien("chien");
-		Chat chat1 = new Chat("chat");*/
-
+		
 		//
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("configJPA");
 
@@ -66,9 +63,9 @@ public class Test {
 		//System.out.println(personneBdd);
 		
 		
-		/*em.getTransaction().begin();
+		em.getTransaction().begin();
 
-		em.persist(o1);
+		/*em.persist(o1);
 		em.persist(o2);
 		
 		em.persist(p1);
@@ -80,11 +77,10 @@ public class Test {
 		em.persist(s2);
 		em.persist(s3);
 		em.persist(centre);
+		*/
 		
 		
-		
-		
-		em.getTransaction().commit();*/
+		em.getTransaction().commit(); 
 
 
 
