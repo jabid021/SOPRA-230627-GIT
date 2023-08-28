@@ -1,7 +1,14 @@
 package escapeGame.model;
 
-public class GameMaster extends Compte{
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("GameMaster")
+public class GameMaster extends Compte{
+	
+	public GameMaster() {}
+	
 	public GameMaster(Integer id,String login, String password, String nom, String prenom) {
 		super(id,login, password, nom, prenom);
 	}

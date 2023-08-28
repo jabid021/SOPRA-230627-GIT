@@ -1,10 +1,24 @@
 package escapeGame.model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Client")
 public class Client extends Compte {
+	
+	@Column (length = 15 , nullable=true)
 	private String tel;
+	
+	@Column (length = 50, nullable=true)
 	private String mail;
+	@Embedded 
+	@Column(nullable = true)
 	private Adresse adresse;
 	
+	public Client() {}
 	
 	public Client(Integer id,String login, String password, String nom, String prenom,String tel,String mail,Adresse adresse) {
 		super(id,login, password, nom, prenom);

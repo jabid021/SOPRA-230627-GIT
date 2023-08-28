@@ -1,12 +1,37 @@
 package escapeGame.model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name="compte")
+@DiscriminatorColumn(name = "type_compte",columnDefinition = "ENUM('Gerant','GameMaster','Client')")
 public abstract class Compte {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
+	
+	@Column (length = 25, nullable=false, unique = true)
 	protected String login;
+	
+	@Column (length = 130, nullable=false)
 	protected String password;
+	
+	@Column (length = 25, nullable=false)
 	protected String nom;
+	@Column (length = 25, nullable=false)
 	protected String prenom;
+	
+	public Compte() {}
 	
 	public Compte(Integer id,String login, String password, String nom, String prenom) {
 		this.id=id;
