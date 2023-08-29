@@ -2,8 +2,12 @@
 package demoHeritage.joined;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="ship")
+@PrimaryKeyJoinColumn(name="id_bateau")
 public class Bateau extends Vehicule {
 
 	

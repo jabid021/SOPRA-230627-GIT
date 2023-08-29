@@ -1,5 +1,8 @@
 package demoHeritage.map;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Telephone extends Materiel {
 
 	private String model;

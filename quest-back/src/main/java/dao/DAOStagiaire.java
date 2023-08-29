@@ -14,125 +14,26 @@ public class DAOStagiaire implements IDAOStagiaire {
 
 	@Override
 	public Stagiaire findById(Integer id) {
-		Stagiaire stagiaire=null;
-		DAOFiliere daoFiliere = new DAOFiliere();
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
-
-			PreparedStatement ps = conn.prepareStatement("SELECT * from stagiaire where id=?");
-			ps.setInt(1, id);
-
-			ResultSet rs =  ps.executeQuery();
-
-			while(rs.next()) 
-			{
-				Filiere f = daoFiliere.findById(rs.getInt("filiere"));
-				stagiaire = new Stagiaire(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),f);
-			}
-
-			ps.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return stagiaire;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<Stagiaire> findAll() {
-		Stagiaire stagiaire=null;
-		List<Stagiaire> stagiaires=new ArrayList();
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Stagiaire save(Stagiaire stagiaire) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Stagiaire stagiaire) {
+		// TODO Auto-generated method stub
 		
-		DAOFiliere daoFiliere = new DAOFiliere();
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
-
-			PreparedStatement ps = conn.prepareStatement("SELECT * from stagiaire");
-
-			ResultSet rs =  ps.executeQuery();
-
-			while(rs.next()) 
-			{
-				Filiere f = daoFiliere.findById(rs.getInt("filiere"));
-				stagiaire = new Stagiaire(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),f);
-				stagiaires.add(stagiaire);
-			}
-
-			ps.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return stagiaires;
 	}
-
-	@Override
-	public Stagiaire insert(Stagiaire s) {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
-
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO stagiaire (nom,prenom,email,filiere) VALUES (?,?,?,?)");
-			ps.setString(1, s.getNom());
-			ps.setString(2, s.getPrenom());
-			ps.setString(3, s.getEmail());
-			ps.setInt(4, s.getFiliere().getId());
-
-			ps.executeUpdate();
-			ps.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public Stagiaire update(Stagiaire s) {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
-
-			PreparedStatement ps = conn.prepareStatement("UPDATE stagiaire set nom=?,prenom=?,email=?,filiere=? where id=?");
-			ps.setString(1, s.getNom());
-			ps.setString(2, s.getPrenom());
-			ps.setString(3, s.getEmail());
-			ps.setInt(4, s.getFiliere().getId());
-			ps.setInt(5, s.getId());
-
-			ps.executeUpdate();
-			ps.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public void delete(Integer id) {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
-
-			PreparedStatement ps = conn.prepareStatement("DELETE from stagiaire where id=?");
-			ps.setInt(1, id);
-
-			ps.executeUpdate();
-			ps.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 
 }

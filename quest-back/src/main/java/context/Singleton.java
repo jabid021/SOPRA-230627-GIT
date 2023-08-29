@@ -1,5 +1,8 @@
 package context;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import dao.DAOFiliere;
 import dao.DAOMatiere;
 import dao.DAOOrdinateur;
@@ -26,6 +29,10 @@ public class Singleton {
 	private FiliereService filiereService = new FiliereService(daoFiliere);
 	private StagiaireService stagiaireService = new StagiaireService(daoStagiaire);
 	private OrdinateurService ordinateurService = new OrdinateurService(daoOrdinateur);
+	
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("configJPA");
+
+	
 	
 	
 	private static Singleton instance=null; 
@@ -57,4 +64,9 @@ public class Singleton {
 		return stagiaireService;
 	}
 
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
+
+	
 }

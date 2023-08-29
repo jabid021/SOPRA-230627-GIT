@@ -1,10 +1,13 @@
 package demoHeritage.map;
 
-public class Ordinateur extends Materiel {
+import javax.persistence.Entity;
+
+@Entity
+public class Laptop extends Materiel {
 
 	private boolean pave;
-	public Ordinateur() {}
-	public Ordinateur(String marque, boolean pave) {
+	public Laptop() {}
+	public Laptop(String marque, boolean pave) {
 		super(marque);
 		this.pave = pave;
 	}

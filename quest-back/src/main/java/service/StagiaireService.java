@@ -22,12 +22,12 @@ public class StagiaireService {
 
 	public Stagiaire create(Stagiaire stagiaire) {
 		checkStagiaire(stagiaire);
-		return daoStagiaire.insert(stagiaire);
+		return daoStagiaire.save(stagiaire);
 	}
 
 	public Stagiaire update(Stagiaire stagiaire) {
 		checkStagiaire(stagiaire);
-		return daoStagiaire.update(stagiaire);
+		return daoStagiaire.save(stagiaire);
 	}
 
 
@@ -53,6 +53,15 @@ public class StagiaireService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		daoStagiaire.delete(id);
+		Stagiaire stagiaire =getById(id);
+		delete(stagiaire);
+	}	
+	
+	public void delete(Stagiaire stagiaire) {
+		
+		if (stagiaire == null) {
+			throw new RuntimeException("stagiaire ne peut pas etre null");
+		}
+		daoStagiaire.delete(stagiaire);
 	}	
 }

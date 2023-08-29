@@ -9,6 +9,12 @@ import javax.persistence.Persistence;
 import demoHeritage.joined.Avion;
 import demoHeritage.joined.Bateau;
 import demoHeritage.joined.Vehicule;
+import demoHeritage.map.Laptop;
+import demoHeritage.map.Materiel;
+import demoHeritage.map.Telephone;
+import demoHeritage.perclass.Humain;
+import demoHeritage.perclass.Nain;
+import demoHeritage.perclass.Orc;
 import demoHeritage.perclass.Race;
 import demoHeritage.single.Animal;
 import demoHeritage.single.Canard;
@@ -27,19 +33,32 @@ public class TestHeritage {
 		Bateau bateau = new Bateau(0);
 		Avion avion = new Avion(2,250);
 
+		Orc orc = new Orc("Zog Zog");
+		Humain humain = new Humain("Humain lambda","Herboriste");
+		Nain nain = new Nain("c'est un nain",5000);
 
-
+		Laptop laptop = new Laptop("Asus", true);
+		Telephone tel = new Telephone("Apple","Iphone 15");
+		
+		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("configJPA");
 		EntityManager em = emf.createEntityManager();
 
 		em.getTransaction().begin();
-		//em.persist(canard1);
-		//em.persist(chien1);
-		//em.persist(chat1);
+		em.persist(canard1);
+		em.persist(chien1);
+		em.persist(chat1);
 
-		//em.persist(avion);
-		//em.persist(bateau);
+		em.persist(avion);
+		em.persist(bateau);
+		
+		em.persist(orc);
+		em.persist(humain);
+		em.persist(nain);
 
+		em.persist(laptop);
+		em.persist(tel);
+		
 		em.getTransaction().commit();
 		em.close();
 
@@ -73,6 +92,18 @@ public class TestHeritage {
 		}
 		 
 
+		/*List<Materiel> stock = em.createQuery("FROM Materiel").getResultList();
+
+		for(Materiel s : stock) 
+		{
+			System.out.println(s);
+		}*/
+		 
+		//em.find(Laptop.class, 1);
+		
+		//System.out.println(em.find(Animal.class,2));
+		
+		//System.out.println(em.find(Bateau.class,2));
 		em.close();
 
 		emf.close();

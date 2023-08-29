@@ -22,12 +22,12 @@ public class MatiereService {
 
 	public Matiere create(Matiere matiere) {
 		checkMatiere(matiere);
-		return daoMatiere.insert(matiere);
+		return daoMatiere.save(matiere);
 	}
 
 	public Matiere update(Matiere matiere) {
 		checkMatiere(matiere);
-		return daoMatiere.update(matiere);
+		return daoMatiere.save(matiere);
 	}
 
 
@@ -53,6 +53,15 @@ public class MatiereService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		daoMatiere.delete(id);
+		Matiere matiere =getById(id);
+		delete(matiere);
+	}	
+	
+	public void delete(Matiere matiere) {
+		
+		if (matiere == null) {
+			throw new RuntimeException("matiere ne peut pas etre null");
+		}
+		daoMatiere.delete(matiere);
 	}	
 }

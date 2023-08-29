@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ public class Centre {
 	private Integer id;
 	private String nom;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)//Le chargement de toutes les sessions à chaque find d'un centre 
 	private List<Session> sessions=new ArrayList();
 	
 	public Centre() {

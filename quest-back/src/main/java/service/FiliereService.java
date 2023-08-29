@@ -22,12 +22,12 @@ public class FiliereService {
 
 	public Filiere create(Filiere filiere) {
 		checkFiliere(filiere);
-		return daoFiliere.insert(filiere);
+		return daoFiliere.save(filiere);
 	}
 
 	public Filiere update(Filiere filiere) {
 		checkFiliere(filiere);
-		return daoFiliere.update(filiere);
+		return daoFiliere.save(filiere);
 	}
 
 
@@ -53,6 +53,17 @@ public class FiliereService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		daoFiliere.delete(id);
+		Filiere filiere =getById(id);
+		delete(filiere);
 	}	
+	
+	public void delete(Filiere filiere) {
+		
+		if (filiere == null) {
+			throw new RuntimeException("filiere ne peut pas etre null");
+		}
+		daoFiliere.delete(filiere);
+	}	
+	
+	
 }

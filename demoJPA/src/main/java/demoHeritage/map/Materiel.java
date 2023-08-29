@@ -1,7 +1,15 @@
 package demoHeritage.map;
 
-public class Materiel {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
+public abstract class Materiel {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 	protected String marque;
 	

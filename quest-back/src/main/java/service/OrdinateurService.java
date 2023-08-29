@@ -22,12 +22,12 @@ public class OrdinateurService {
 
 	public Ordinateur create(Ordinateur ordinateur) {
 		checkOrdinateur(ordinateur);
-		return daoOrdinateur.insert(ordinateur);
+		return daoOrdinateur.save(ordinateur);
 	}
 
 	public Ordinateur update(Ordinateur ordinateur) {
 		checkOrdinateur(ordinateur);
-		return daoOrdinateur.update(ordinateur);
+		return daoOrdinateur.save(ordinateur);
 	}
 
 
@@ -53,6 +53,15 @@ public class OrdinateurService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		daoOrdinateur.delete(id);
+		Ordinateur ordinateur =getById(id);
+		delete(ordinateur);
+	}	
+	
+	public void delete(Ordinateur ordinateur) {
+		
+		if (ordinateur == null) {
+			throw new RuntimeException("ordinateur ne peut pas etre null");
+		}
+		daoOrdinateur.delete(ordinateur);
 	}	
 }
