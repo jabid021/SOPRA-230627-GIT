@@ -29,12 +29,12 @@ public class ReservationService {
 			Singleton.getInstance().getParticipantService().create(p);
 		}
 
-		return daoReservation.insert(reservation);
+		return daoReservation.save(reservation);
 	}
 
 	public Reservation update(Reservation reservation) {
 		checkReservation(reservation);
-		return daoReservation.update(reservation);
+		return daoReservation.save(reservation);
 	}
 
 
@@ -55,11 +55,19 @@ public class ReservationService {
 		return daoReservation.findAll();
 	}
 
-
 	public void delete(Integer id) {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		daoReservation.delete(id);
+		Reservation reservation =getById(id);
+		delete(reservation);
+	}	
+	
+	public void delete(Reservation reservation) {
+		
+		if (reservation == null) {
+			throw new RuntimeException("reservation ne peut pas etre null");
+		}
+		daoReservation.delete(reservation);
 	}	
 }

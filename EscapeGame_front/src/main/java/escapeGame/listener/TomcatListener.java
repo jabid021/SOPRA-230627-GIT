@@ -4,20 +4,30 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import escapeGame.context.Singleton;
+
 
 @WebListener
 public class TomcatListener implements ServletContextListener {
 
    
     
-	 public void contextInitialized(ServletContextEvent sce)  { 
-         System.out.println("Tomcat a start");
+	 public void contextDestroyed(ServletContextEvent sce)  { 
+	     
+	    	Singleton.getInstance().getEmf().close();
 	    }
-	 
-	 
-    public void contextDestroyed(ServletContextEvent sce)  { 
-    	System.out.println("Tomcat est close");
-    }
+	    
+	    
+	    public void contextInitialized(ServletContextEvent sce)  { 
+	    	
+	    	try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Singleton.getInstance();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+	    }
+		
 
 
    

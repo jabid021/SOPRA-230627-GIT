@@ -2,7 +2,6 @@ package escapeGame.service;
 
 import java.util.List;
 
-import escapeGame.context.Singleton;
 import escapeGame.dao.IDAOSalle;
 import escapeGame.model.Salle;
 
@@ -23,12 +22,12 @@ public class SalleService {
 
 	public Salle create(Salle salle) {
 		checkSalle(salle);
-		return daoSalle.insert(salle);
+		return daoSalle.save(salle);
 	}
 
 	public Salle update(Salle salle) {
 		checkSalle(salle);
-		return daoSalle.update(salle);
+		return daoSalle.save(salle);
 	}
 
 
@@ -54,6 +53,15 @@ public class SalleService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		daoSalle.delete(id);
+		Salle salle =getById(id);
+		delete(salle);
+	}	
+	
+	public void delete(Salle salle) {
+		
+		if (salle == null) {
+			throw new RuntimeException("salle ne peut pas etre null");
+		}
+		daoSalle.delete(salle);
 	}	
 }

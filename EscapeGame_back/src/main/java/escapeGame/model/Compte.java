@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -28,6 +30,9 @@ public abstract class Compte {
 	
 	@Column (length = 25, nullable=false)
 	protected String nom;
+	
+	@Size(min=5,max =25)
+	@NotBlank
 	@Column (length = 25, nullable=false)
 	protected String prenom;
 	

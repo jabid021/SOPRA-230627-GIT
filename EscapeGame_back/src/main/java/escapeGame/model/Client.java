@@ -1,22 +1,29 @@
 package escapeGame.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("Client")
 public class Client extends Compte {
 	
-	@Column (length = 15 , nullable=true)
+	@Column (length = 15)
 	private String tel;
 	
-	@Column (length = 50, nullable=true)
+	@Column (length = 50)
 	private String mail;
 	@Embedded 
-	@Column(nullable = true)
 	private Adresse adresse;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Participant> participants;
+	@OneToMany(mappedBy = "client")
+	private List<Reservation> reservations;
 	
 	public Client() {}
 	
@@ -71,6 +78,22 @@ public class Client extends Compte {
 	}
 
 
+
+	public List<Participant> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(List<Participant> participants) {
+		this.participants = participants;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 
 	@Override
 	public String toString() {

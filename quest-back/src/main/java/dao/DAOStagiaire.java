@@ -1,38 +1,55 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
-import model.Filiere;
+import javax.persistence.EntityManager;
+
+import context.Singleton;
 import model.Stagiaire;
 
 public class DAOStagiaire implements IDAOStagiaire {
 
+
 	@Override
 	public Stagiaire findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+
+			EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
+				Stagiaire stagiaire =em.find(Stagiaire.class, id);	
+			em.close();
+			return stagiaire;
 	}
 
 	@Override
 	public List<Stagiaire> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
+			List<Stagiaire> stagiaires =em.createQuery("from Stagiaire").getResultList();	
+		em.close();
+		return stagiaires;
 	}
 
 	@Override
-	public Stagiaire save(Stagiaire stagiaire) {
-		// TODO Auto-generated method stub
-		return null;
+	public Stagiaire save(Stagiaire p) {
+		
+		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
+		
+		em.getTransaction().begin();
+		
+			p = em.merge(p);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		return p;
 	}
 
 	@Override
 	public void delete(Stagiaire stagiaire) {
-		// TODO Auto-generated method stub
+		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			stagiaire=em.merge(stagiaire);
+			em.remove(stagiaire);
+		em.getTransaction().commit();
+		em.close();
 		
 	}
 

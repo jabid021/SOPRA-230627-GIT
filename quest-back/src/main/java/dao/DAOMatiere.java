@@ -1,37 +1,55 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import context.Singleton;
 import model.Matiere;
 
 public class DAOMatiere implements IDAOMatiere {
 
+
 	@Override
 	public Matiere findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+
+			EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
+				Matiere matiere =em.find(Matiere.class, id);	
+			em.close();
+			return matiere;
 	}
 
 	@Override
 	public List<Matiere> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
+			List<Matiere> matieres =em.createQuery("from Matiere").getResultList();	
+		em.close();
+		return matieres;
 	}
 
 	@Override
-	public Matiere save(Matiere matiere) {
-		// TODO Auto-generated method stub
-		return null;
+	public Matiere save(Matiere p) {
+		
+		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
+		
+		em.getTransaction().begin();
+		
+			p = em.merge(p);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		return p;
 	}
 
 	@Override
 	public void delete(Matiere matiere) {
-		// TODO Auto-generated method stub
+		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			matiere=em.merge(matiere);
+			em.remove(matiere);
+		em.getTransaction().commit();
+		em.close();
 		
 	}
 

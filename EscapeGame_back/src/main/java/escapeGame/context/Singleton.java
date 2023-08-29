@@ -1,5 +1,8 @@
 package escapeGame.context;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import escapeGame.dao.DAOCompte;
 import escapeGame.dao.DAOMateriel;
 import escapeGame.dao.DAOParticipant;
@@ -24,6 +27,8 @@ public class Singleton {
 	private IDAOParticipant daoParticipant = new DAOParticipant();
 	private IDAOReservation daoReservation = new DAOReservation();
 	private IDAOSalle daoSalle = new DAOSalle();
+	
+	
 	private MaterielService materielService = new MaterielService(daoMateriel);
 	private CompteService compteService = new CompteService(daoCompte);
 	private ParticipantService participantService = new ParticipantService(daoParticipant);
@@ -31,7 +36,7 @@ public class Singleton {
 	
 	private SalleService salleService = new SalleService(daoSalle);
 	
-	
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("configJPA");
 	
 	private static Singleton instance=null; 
 	
@@ -65,6 +70,10 @@ public class Singleton {
 
 	public SalleService getSalleService() {
 		return salleService;
+	}
+
+	public EntityManagerFactory getEmf() {
+		return emf;
 	}
 
 	

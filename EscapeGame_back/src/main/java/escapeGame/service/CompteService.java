@@ -1,10 +1,5 @@
 package escapeGame.service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import escapeGame.dao.IDAOCompte;
@@ -70,12 +65,12 @@ public class CompteService {
 
 	public Compte create(Compte compte) {
 		checkCompte(compte);
-		return daoCompte.insert(compte);
+		return daoCompte.save(compte);
 	}
 
 	public Compte update(Compte compte) {
 		checkCompte(compte);
-		return daoCompte.update(compte);
+		return daoCompte.save(compte);
 	}
 
 
@@ -114,8 +109,17 @@ public class CompteService {
 
 	public void delete(Integer id) {
 		if (id == null) {
-			throw new CompteException("id obligatoire");
+			throw new RuntimeException("id obligatoire");
 		}
-		daoCompte.delete(id);
+		Compte compte =getById(id);
+		delete(compte);
+	}	
+	
+	public void delete(Compte compte) {
+		
+		if (compte == null) {
+			throw new RuntimeException("compte ne peut pas etre null");
+		}
+		daoCompte.delete(compte);
 	}	
 }

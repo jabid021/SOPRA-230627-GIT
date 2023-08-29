@@ -2,7 +2,6 @@ package escapeGame.service;
 
 import java.util.List;
 
-import escapeGame.context.Singleton;
 import escapeGame.dao.IDAOMateriel;
 import escapeGame.model.Materiel;
 
@@ -23,12 +22,12 @@ public class MaterielService {
 
 	public Materiel create(Materiel materiel) {
 		checkMateriel(materiel);
-		return daoMateriel.insert(materiel);
+		return daoMateriel.save(materiel);
 	}
 
 	public Materiel update(Materiel materiel) {
 		checkMateriel(materiel);
-		return daoMateriel.update(materiel);
+		return daoMateriel.save(materiel);
 	}
 
 
@@ -54,6 +53,15 @@ public class MaterielService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		daoMateriel.delete(id);
+		Materiel materiel =getById(id);
+		delete(materiel);
+	}	
+	
+	public void delete(Materiel materiel) {
+		
+		if (materiel == null) {
+			throw new RuntimeException("materiel ne peut pas etre null");
+		}
+		daoMateriel.delete(materiel);
 	}	
 }

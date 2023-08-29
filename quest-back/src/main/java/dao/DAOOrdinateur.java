@@ -1,40 +1,58 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import context.Singleton;
 import model.Ordinateur;
-import model.Stagiaire;
 
 public class DAOOrdinateur implements IDAOOrdinateur {
 
+
 	@Override
 	public Ordinateur findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+
+			EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
+				Ordinateur ordinateur =em.find(Ordinateur.class, id);	
+			em.close();
+			return ordinateur;
 	}
 
 	@Override
 	public List<Ordinateur> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
+			List<Ordinateur> ordinateurs =em.createQuery("from Ordinateur").getResultList();	
+		em.close();
+		return ordinateurs;
 	}
 
 	@Override
-	public Ordinateur save(Ordinateur ordinateur) {
-		// TODO Auto-generated method stub
-		return null;
+	public Ordinateur save(Ordinateur p) {
+		
+		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
+		
+		em.getTransaction().begin();
+		
+			p = em.merge(p);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		return p;
 	}
 
 	@Override
 	public void delete(Ordinateur ordinateur) {
-		// TODO Auto-generated method stub
+		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+			ordinateur=em.merge(ordinateur);
+			em.remove(ordinateur);
+		em.getTransaction().commit();
+		em.close();
 		
 	}
+
 
 	
 

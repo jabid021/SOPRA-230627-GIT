@@ -27,7 +27,6 @@ public class Participant {
 	private Client client;
 	
 	public Participant() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Participant(Integer id,String nom, String prenom,Client client) {

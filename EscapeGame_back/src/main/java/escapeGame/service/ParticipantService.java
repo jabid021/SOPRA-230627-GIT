@@ -22,12 +22,12 @@ public class ParticipantService {
 
 	public Participant create(Participant participant) {
 		checkParticipant(participant);
-		return daoParticipant.insert(participant);
+		return daoParticipant.save(participant);
 	}
 
 	public Participant update(Participant participant) {
 		checkParticipant(participant);
-		return daoParticipant.update(participant);
+		return daoParticipant.save(participant);
 	}
 
 
@@ -65,6 +65,15 @@ public class ParticipantService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		daoParticipant.delete(id);
+		Participant participant =getById(id);
+		delete(participant);
+	}	
+	
+	public void delete(Participant participant) {
+		
+		if (participant == null) {
+			throw new RuntimeException("participant ne peut pas etre null");
+		}
+		daoParticipant.delete(participant);
 	}	
 }

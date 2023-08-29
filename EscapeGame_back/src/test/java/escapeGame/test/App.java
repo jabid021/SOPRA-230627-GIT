@@ -109,7 +109,7 @@ public class App {
 		Adresse adresse = new Adresse(numero, voie, ville, cp);
 		Client client = new Client(login, password, nom, prenom, tel, mail, adresse);
 
-		daoCompte.insert(client);
+		daoCompte.save(client);
 
 	}
 
@@ -227,7 +227,7 @@ public class App {
 			materiel.setSalle(salle);
 		}
 
-		daoMateriel.insert(materiel);
+		daoMateriel.save(materiel);
 
 	}
 
@@ -280,7 +280,7 @@ public class App {
 		Salle salle = new Salle(min, max, titre, description, duree, prix, accessibilite,
 				Difficulte.valueOf(difficulte));
 
-		daoSalle.insert(salle);
+		daoSalle.save(salle);
 	}
 
 	public static void gestionCompte() {
@@ -343,7 +343,7 @@ public class App {
 			compte = new GameMaster(login, password, nom, prenom);
 		}
 
-		daoCompte.insert(compte);
+		daoCompte.save(compte);
 
 	}
 
@@ -435,7 +435,7 @@ public class App {
 		} else {
 			reservation.setGameMaster(null);
 		}
-		daoReservation.update(reservation);
+		daoReservation.save(reservation);
 
 	}
 
@@ -519,7 +519,7 @@ public class App {
 	public static void supprimerMesParticipants() {
 		afficherMesParticipants();
 		int id = saisieInt("Saisir l'id du participant à supprimer");
-		daoParticipant.delete(id);
+		daoParticipant.delete(null);
 	}
 
 	
@@ -546,7 +546,7 @@ public class App {
 				String nom = saisieString("Saisir le nom du participant");
 				String prenom = saisieString("Saisir le prenom du participant");
 				Participant p = new Participant(nom, prenom, client);
-				daoParticipant.insert(p);
+				daoParticipant.save(p);
 				inscriptions.add(p);
 			}
 
@@ -556,7 +556,7 @@ public class App {
 		double prix = salle.getPrix() * inscriptions.size();
 		Reservation r = new Reservation(LocalDate.now(), LocalTime.now(), null, equipe, prix, client, salle, null);
 		r.setParticipants(inscriptions);
-		daoReservation.insert(r);
+		daoReservation.save(r);
 	}
 
 	public static void main(String[] args) {
