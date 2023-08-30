@@ -11,12 +11,10 @@ public class Test {
 		
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:application-context.xml");
 		
-		
-		Canard c1 =  (Canard) ctx.getBean("toto");
-		//Canard c2 =  (Canard) ctx.getBean(Canard.class);
-		Canard c3 =  (Canard) ctx.getBean("titi",Canard.class);
-		System.out.println(c3);
+		Canard c1 =  (Canard) ctx.getBean("canard");
+		System.out.println(c1);
 
+		System.out.println(c1.getArme());
 
 	}
 
