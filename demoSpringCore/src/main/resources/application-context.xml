@@ -18,11 +18,12 @@
 	<property name="arme" ref="arme"/>
 </bean>
 
+<context:component-scan base-package="demo.model"/>
 -->
 
 
 
-<context:component-scan base-package="demo.model"/>
+
 
 
 </beans>

@@ -15,6 +15,13 @@ public class Canard {
 	{
 		this.nom="test";
 	}
+	
+	
+	public Canard(String nom) 
+	{
+		this.nom=nom;
+	}
+	
 	public String getNom() {
 		return nom;
 	}
