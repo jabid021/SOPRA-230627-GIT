@@ -1,22 +1,27 @@
 package orchestre.test;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import orchestre.model.IMusicien;
 
 public class Test {
 
-	public static void main(String[] args) {
-
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:application-context.xml");
-
-		IMusicien guitariste = (IMusicien) ctx.getBean("guitariste");
-		IMusicien flutiste = (IMusicien) ctx.getBean("flutiste");
-		IMusicien pianiste = (IMusicien) ctx.getBean("pianiste");
+	@Autowired
+	IMusicien guitariste;
+	@Autowired
+	IMusicien flutiste;
+	@Autowired
+	IMusicien musicien;
+	@Autowired
+	IMusicien pianiste;
+	
+	public void run(String ...args) {
 
 		guitariste.jouer();
 		pianiste.jouer();
 		flutiste.jouer();
+		musicien.jouer();
+		
 
 	}
 

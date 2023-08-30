@@ -9,8 +9,10 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		
+		//Si la config principale est en xml :
 		//ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:application-context.xml");
+		
+		//Si la config principale est en Java
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 
 		Canard c1 =  (Canard) ctx.getBean("monCanard");

@@ -12,6 +12,7 @@ public class Flutiste implements IMusicien{
 	
 	public Flutiste() {this.prenom="Olivier";}
 
+	public Flutiste(String prenom) {this.prenom=prenom;}
 	public String getPrenom() {
 		return prenom;
 	}

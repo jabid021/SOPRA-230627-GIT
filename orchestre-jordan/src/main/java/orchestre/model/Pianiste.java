@@ -7,10 +7,14 @@ import org.springframework.stereotype.Component;
 public class Pianiste implements IMusicien{
 
 	private String prenom;
+	
 	@Autowired
 	private Piano instrument;
 	
-	public Pianiste() {this.prenom = "Eric"; }
+	public Pianiste() {
+		this.prenom = "Eric"; 
+		//System.out.println("Eric utilise un "+instrument.getClass().getSimpleName()); ne marche que si on ajoute "Piano instrument" en parametre
+	}
 
 	public String getPrenom() {
 		return prenom;
