@@ -61,10 +61,12 @@ public class MatiereController extends HttpServlet {
 		else 
 		{
 			Integer id = Integer.parseInt(request.getParameter("id"));
+			Integer version = Integer.parseInt(request.getParameter("version"));
 			String libelle = request.getParameter("libelle");
 			Integer quest = Integer.parseInt(request.getParameter("quest"));
 			
 			Matiere matiere = new Matiere(id,libelle,quest);
+			matiere.setVersion(version);
 			
 			matiereService.update(matiere);
 			response.sendRedirect("matiere");

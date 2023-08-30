@@ -47,6 +47,7 @@ public class DAOMatiere implements IDAOMatiere {
 		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 			matiere=em.merge(matiere);
+			//matiere = em.find(Matiere.class,matiere.getId());
 			em.remove(matiere);
 		em.getTransaction().commit();
 		em.close();

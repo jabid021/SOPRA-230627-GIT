@@ -2,9 +2,11 @@ package quest.listener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import quest.context.Singleton;
 
+@WebListener
 public class LaunchServ implements ServletContextListener {
 
  

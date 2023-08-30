@@ -10,7 +10,5 @@
       <include-prelude>/WEB-INF/include.jsp</include-prelude>
     </jsp-property-group>
   </jsp-config>
-  <listener>
-    <listener-class>listener.LaunchServ</listener-class>
-  </listener>
+
 </web-app>
