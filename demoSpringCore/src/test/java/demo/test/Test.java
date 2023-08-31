@@ -16,10 +16,15 @@ public class Test {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 
 		Canard c1 =  (Canard) ctx.getBean("monCanard");
-		System.out.println(c1);
+		//System.out.println(c1);
+		//System.out.println(c1);
 
-		System.out.println(c1.getArme());
+		//System.out.println(c1.getArme());
 
+		
+		c1.faireBlague();
+		
+		c1.fonctionQuiRetourneUnAge();
 	}
 
 }

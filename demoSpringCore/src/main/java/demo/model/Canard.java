@@ -38,6 +38,25 @@ public class Canard {
 	public void setArme(Arme arme) {
 		this.arme = arme;
 	}
+	
+	
+	
+	
+	public void faireBlague() 
+	{
+		System.out.println("C'est toto qui...");
+	}
+	
+	
+	public int fonctionQuiRetourneUnAge() 
+	{
+		System.out.println("Fonction qui return 25");
+		return 25;
+	} 
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Canard [nom=" + nom + "]";
