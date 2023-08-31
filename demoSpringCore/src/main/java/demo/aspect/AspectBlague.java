@@ -8,8 +8,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-@Component
-@Aspect
+@Component // Precise à Spring de manager cette classe
+@Aspect // Tu es un aspect harry
 public class AspectBlague {
 	
 	@Pointcut("execution(public void demo.model.Canard.faireBlague())")

@@ -17,7 +17,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		Adresse a1 = new Adresse("6","rue rougemont","Paris","75009");
+	/*	Adresse a1 = new Adresse("6","rue rougemont","Paris","75009");
 		
 		Adresse a2 = new Adresse("1","rue rougemont","Paris","75009");
 		
@@ -76,7 +76,7 @@ public class Test {
 	
 		emf.close();
 	
-	*/
+
 	
 		//em.persist(objet) => impossible de persist un element avec un id / 	l'objet persist EST Managed
 		//em.find(Personne.class,1) => retourne null, ou la personne avec l'id 1 (Managed)
@@ -86,7 +86,7 @@ public class Test {
 	
 		
 		
-		Singleton.getInstance().getEmf().close();
+		Singleton.getInstance().getEmf().close();*/
 	}
 
 }

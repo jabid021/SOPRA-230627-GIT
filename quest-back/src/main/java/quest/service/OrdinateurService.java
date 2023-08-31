@@ -2,19 +2,21 @@ package quest.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import quest.dao.IDAOOrdinateur;
 import quest.model.Ordinateur;
 
-public class OrdinateurService {
 
+@Service
+public class OrdinateurService {
+	@Autowired
 	private IDAOOrdinateur daoOrdinateur;
 
 
 	
-	public OrdinateurService(IDAOOrdinateur daoOrdinateur) {
-		this.daoOrdinateur = daoOrdinateur;
-	}
-
+	
 	public void checkOrdinateur(Ordinateur ordinateur) 
 	{
 

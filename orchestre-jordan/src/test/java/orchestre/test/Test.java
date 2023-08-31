@@ -17,7 +17,7 @@ public class Test {
 	
 	public void run(String ...args) {
 
-		guitariste.jouer();
+		guitariste.jouerStyle("Rock");
 		//pianiste.jouer();
 		//flutiste.jouer();
 		//musicien.jouer();

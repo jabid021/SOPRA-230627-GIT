@@ -10,7 +10,7 @@ import demo.model.Canard;
 @Configuration
 @ComponentScan({"demo.model","demo.aspect"}) // check tous les @Component dans le package model pour creer les beans
 //@ImportResource("classpath:application-context.xml") //Si on veut avoir de la config xml en plus
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy //Permet d'activer les @Before, @PointCut, @Aspect... dans le projet
 public class AppConfig {
 	
 	@Bean

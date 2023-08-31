@@ -2,18 +2,17 @@ package quest.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import quest.dao.IDAOMatiere;
 import quest.model.Matiere;
 
+
+@Service
 public class MatiereService {
-
+	@Autowired
 	private IDAOMatiere daoMatiere;
-
-
-	
-	public MatiereService(IDAOMatiere daoMatiere) {
-		this.daoMatiere = daoMatiere;
-	}
 
 	public void checkMatiere(Matiere matiere) 
 	{

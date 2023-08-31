@@ -3,57 +3,45 @@ package quest.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-import quest.context.Singleton;
+import org.springframework.stereotype.Repository;
+
 import quest.model.Matiere;
 
+@Repository
+@Transactional
 public class DAOMatiere implements IDAOMatiere {
-
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public Matiere findById(Integer id) {
 
-			EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
-				Matiere matiere =em.find(Matiere.class, id);	
-			em.close();
-			return matiere;
+		Matiere matiere =em.find(Matiere.class, id);	
+		return matiere;
 	}
 
 	@Override
 	public List<Matiere> findAll() {
-		EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
-			List<Matiere> matieres =em.createQuery("from Matiere").getResultList();	
-		em.close();
+		List<Matiere> matieres =em.createQuery("from Matiere").getResultList();	
 		return matieres;
 	}
 
 	@Override
 	public Matiere save(Matiere p) {
-		
-		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
-		
-		em.getTransaction().begin();
-		
-			p = em.merge(p);
-		
-		em.getTransaction().commit();
-		em.close();
-		
+		p = em.merge(p);
 		return p;
 	}
 
 	@Override
 	public void delete(Matiere matiere) {
-		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-			matiere=em.merge(matiere);
-			//matiere = em.find(Matiere.class,matiere.getId());
-			em.remove(matiere);
-		em.getTransaction().commit();
-		em.close();
-		
+		matiere=em.merge(matiere);
+		//matiere = em.find(Matiere.class,matiere.getId());
+		em.remove(matiere);
 	}
 
-	
+
 
 }

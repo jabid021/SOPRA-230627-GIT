@@ -33,15 +33,22 @@ public class Guitariste implements IMusicien{
 	}
 
 	public void jouer() {
+		System.out.println("le guitariste "+prenom+" joue ! "+instrument.son());
+	}
+
+	
+	
+	public void jouerStyle(String style) {
 		Random random = new Random();
 		if(random.nextInt(3)==0) //1 chance sur trois de faire une fausse note
 		{
 			System.out.println("le guitariste "+prenom+" joue mais fait une fausse note !");
 			throw new RuntimeException("Fausse note....");
 		}
-		System.out.println("le guitariste "+prenom+" joue ! "+instrument.son());
+		System.out.println("le guitariste "+prenom+" joue "+style+" ! "+instrument.son());
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "Guitariste [prenom=" + prenom + "]";
