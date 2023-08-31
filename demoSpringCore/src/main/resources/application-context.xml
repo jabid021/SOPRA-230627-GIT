@@ -26,30 +26,33 @@
 
 
 
+
+
+<!--  
 <bean id="aspectBlague" class="demo.aspect.AspectBlague"/>
-
-
 <aop:config>
 
 	<aop:pointcut id="pointcutBlague" expression="execution(public void demo.model.Canard.faireBlague())"/>
 
 	<aop:aspect id="monAspect" ref="aspectBlague">
 
-		<!--  <aop:before method="avantBlague" pointcut-ref="pointcutBlague"/>
-		<aop:after method="apresBlague" pointcut-ref="pointcutBlague"/>-->
+		<aop:before method="avantBlague" pointcut-ref="pointcutBlague"/>
+		<aop:after method="apresBlague" pointcut-ref="pointcutBlague"/>
 		
 		<aop:around method="autoursBlague"  pointcut-ref="pointcutBlague"/>
 
 		
 		<aop:after-returning method="seLanceApresAge" pointcut="execution(public int demo.model.Canard.fonctionQuiRetourneUnAge())" returning="ageReturn"/>
 	
-	<!--<aop:before method="avantBlague" pointcut="execution(public void demo.model.Canard.faireBlague())"/>
+	<aop:before method="avantBlague" pointcut="execution(public void demo.model.Canard.faireBlague())"/>
 	<aop:after method="apresBlague" pointcut="execution(public void demo.model.Canard.faireBlague())"/>
 	
-	 <aop:before method="partout" pointcut="execution( * *.*(..))"/> -->
+	 <aop:before method="partout" pointcut="execution( * *.*(..))"/> 
 </aop:aspect>
 
 </aop:config>
+<aop:aspectj-autoproxy/>
+-->
 
 
 </beans>

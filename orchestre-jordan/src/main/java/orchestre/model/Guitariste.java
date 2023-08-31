@@ -36,7 +36,7 @@ public class Guitariste implements IMusicien{
 
 	@Override
 	public String toString() {
-		return "Guitariste [prenom=" + prenom + ", instrument=" + instrument + "]";
+		return "Guitariste [prenom=" + prenom + "]";
 	}
 
 
