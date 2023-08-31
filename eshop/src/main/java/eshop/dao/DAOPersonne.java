@@ -3,53 +3,39 @@ package eshop.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-import eshop.context.Singleton;
+import org.springframework.stereotype.Repository;
+
 import eshop.model.Personne;
 
+@Repository
+@Transactional
 public class DAOPersonne implements IDAOPersonne{
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public Personne findById(Integer id) {
-
-			EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
-				Personne personne =em.find(Personne.class, id);	
-			em.close();
-			return personne;
+		return em.find(Personne.class, id);	
 	}
 
 	@Override
 	public List<Personne> findAll() {
-		EntityManager em =  Singleton.getInstance().getEmf().createEntityManager();
-			List<Personne> personnes =em.createQuery("from Personne").getResultList();	
-		em.close();
-		return personnes;
+		return em.createQuery("from Personne").getResultList();
 	}
 
 	@Override
 	public Personne save(Personne p) {
-		
-		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
-		
-		em.getTransaction().begin();
-		
-			p = em.merge(p);
-		
-		em.getTransaction().commit();
-		em.close();
-		
-		return p;
+		return em.merge(p);
 	}
 
 	@Override
 	public void delete(Personne personne) {
-		EntityManager em  = Singleton.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-			personne=em.merge(personne);
-			em.remove(personne);
-		em.getTransaction().commit();
-		em.close();
-		
+		personne=em.merge(personne);
+		em.remove(personne);
 	}
 
 }

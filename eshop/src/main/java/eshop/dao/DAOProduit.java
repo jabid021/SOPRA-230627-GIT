@@ -1,130 +1,41 @@
 package eshop.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-import eshop.context.Singleton;
+import org.springframework.stereotype.Repository;
+
 import eshop.model.Produit;
 
+@Repository
+@Transactional
 public class DAOProduit implements IDAOProduit {
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public Produit findById(Integer id) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-		Produit produit = null;
-		try 
-		{
-			em =  Singleton.getInstance().getEmf().createEntityManager();
-
-			produit=em.find(Produit.class, id);
-
-		}catch(Exception e) 
-		{
-			e.printStackTrace();
-		}
-		finally 
-		{
-			if(em!=null) 
-			{
-				em.close();
-			}
-		}
-		return produit;
+		return em.find(Produit.class, id);
 	}
 
 	@Override
 	public List<Produit> findAll() {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-		List<Produit> produits=null;
-		try 
-		{
-			em =  Singleton.getInstance().getEmf().createEntityManager();
-
-			produits=em.createQuery("from Produit").getResultList();
-
-		}catch(Exception e) 
-		{
-			e.printStackTrace();
-		}
-		finally 
-		{
-			if(em!=null) 
-			{
-				em.close();
-			}
-		}
-		return produits;
+		return em.createQuery("from Produit").getResultList();
 	}
 
 	@Override
 	public Produit save(Produit p) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try 
-		{
-			em =  Singleton.getInstance().getEmf().createEntityManager();
-			tx=em.getTransaction();
-			tx.begin();
-
-			p = em.merge(p);
-
-			tx.commit();
-
-		}catch(Exception e) 
-		{
-			e.printStackTrace();
-			if(tx!=null && tx.isActive()) 
-			{
-				tx.rollback();
-			}
-		}
-		finally 
-		{
-			if(em!=null) 
-			{
-				em.close();
-			}
-		}
-		return p;
+		return em.merge(p);
 	}
 
 	@Override
 	public void delete(Produit produit) {
-		EntityManager em = null;
-		EntityTransaction tx = null;
-
-		try 
-		{
-			em =  Singleton.getInstance().getEmf().createEntityManager();
-			tx=em.getTransaction();
-			tx.begin();
-
-			produit = em.merge(produit);
-			em.remove(produit);
-
-			tx.commit();
-
-		}catch(Exception e) 
-		{
-			e.printStackTrace();
-			if(tx!=null && tx.isActive()) 
-			{
-				tx.rollback();
-			}
-		}
-		finally 
-		{
-			if(em!=null) 
-			{
-				em.close();
-			}
-		}
+		produit = em.merge(produit);
+		em.remove(produit);
 	}
 
 }
