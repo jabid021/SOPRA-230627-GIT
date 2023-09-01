@@ -44,7 +44,7 @@ public class DemoTest {
 			Adresse a = new Adresse("1","rue de paris","Paris","75001");
 			Fournisseur f = new Fournisseur("nom", "prenom",a , "societe");
 		//Act
-			p = new Produit("libell", 10, f);
+			p = new Produit("libelle", 10, f);
 		//Assert
 		//assertNotNull(p);
 		//if(p==null) {fail();}
