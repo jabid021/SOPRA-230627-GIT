@@ -1,6 +1,7 @@
 package quest.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +35,12 @@ public class FiliereService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		Filiere filiere = daoFiliere.findById(id);
-		if(filiere==null) 
+		Optional<Filiere> opt = daoFiliere.findById(id);
+		if(opt.isEmpty()) 
 		{
 			throw new RuntimeException("id inconnu");
 		}
-		return filiere;
+		return opt.get();
 	}
 
 

@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -19,12 +20,12 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan({"quest.dao","quest.service"})
+@ComponentScan("quest.service")
 @EnableTransactionManagement
 @PropertySource("classpath:infos.properties")
+@EnableJpaRepositories("quest.dao")
 public class AppConfig {
 
-	
 	@Autowired
 	private Environment env;
 	
@@ -32,11 +33,11 @@ public class AppConfig {
 	@Bean
 	public BasicDataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl(env.getProperty("url"));
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
-		dataSource.setMaxTotal(Integer.parseInt(env.getProperty("max")));
+		dataSource.setDriverClassName(env.getProperty("sql.driver"));
+		dataSource.setUrl(env.getProperty("sql.url"));
+		dataSource.setUsername(env.getProperty("sql.login"));
+		dataSource.setPassword(env.getProperty("sql.password"));
+		dataSource.setMaxTotal(Integer.parseInt(env.getProperty("sql.total")));
 		return dataSource;
 	}
 
@@ -45,7 +46,7 @@ public class AppConfig {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		emf.setDataSource(dataSource);
-		emf.setPackagesToScan(env.getProperty("scan"));
+		emf.setPackagesToScan(env.getProperty("package.model"));
 		emf.setJpaVendorAdapter(vendorAdapter);
 		emf.setJpaProperties(this.hibernateProperties());
 		return emf;
@@ -53,10 +54,10 @@ public class AppConfig {
 
 	private Properties hibernateProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "update");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-		properties.setProperty("hibernate.show_sql", "true");
-		properties.setProperty("hibernate.format_sql", "true");
+		properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.mode"));
+		properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+		properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.showsql"));
+		properties.setProperty("hibernate.format_sql", env.getProperty("hibernate.showsql"));
 		return properties;
 	}
 

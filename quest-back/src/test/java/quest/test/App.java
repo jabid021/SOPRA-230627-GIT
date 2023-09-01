@@ -1,10 +1,5 @@
 package quest.test;
 
-import quest.dao.DAOFiliere;
-import quest.dao.DAOMatiere;
-import quest.dao.DAOOrdinateur;
-import quest.dao.DAOStagiaire;
-
 public class App {
 
 	public static void main(String[] args) {

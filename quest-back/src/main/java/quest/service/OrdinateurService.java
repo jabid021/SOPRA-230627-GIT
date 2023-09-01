@@ -1,6 +1,7 @@
 package quest.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,12 +38,12 @@ public class OrdinateurService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		Ordinateur ordinateur = daoOrdinateur.findById(id);
-		if(ordinateur==null) 
+		Optional<Ordinateur> opt = daoOrdinateur.findById(id);
+		if(opt.isEmpty()) 
 		{
 			throw new RuntimeException("id inconnu");
 		}
-		return ordinateur;
+		return opt.get();
 	}
 
 

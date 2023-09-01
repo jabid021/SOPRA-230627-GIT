@@ -1,6 +1,7 @@
 package quest.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,12 +36,12 @@ public class StagiaireService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		Stagiaire stagiaire = daoStagiaire.findById(id);
-		if(stagiaire==null) 
+		Optional<Stagiaire> opt = daoStagiaire.findById(id);
+		if(opt.isEmpty()) 
 		{
 			throw new RuntimeException("id inconnu");
 		}
-		return stagiaire;
+		return opt.get();
 	}
 
 

@@ -1,6 +1,7 @@
 package quest.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,12 +35,12 @@ public class MatiereService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		Matiere matiere = daoMatiere.findById(id);
-		if(matiere==null) 
+		Optional<Matiere> optMatiere = daoMatiere.findById(id);
+		if(optMatiere.isEmpty()) 
 		{
 			throw new RuntimeException("id inconnu");
 		}
-		return matiere;
+		return optMatiere.get();
 	}
 
 
