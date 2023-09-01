@@ -34,7 +34,6 @@ public class Test {
 		//Filiere f = daoFiliere.findById(1);
 		//System.out.println(f);
 		
-		System.out.println(daoMatiere.findById(1));
 		System.out.println(daoMatiere.findById(18));
 		
 		Optional<Matiere> opt = daoMatiere.findById(1);

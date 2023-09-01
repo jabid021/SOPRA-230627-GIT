@@ -19,7 +19,7 @@ public class Test {
 	
 	public void run(String ...args) {
 		
-		Adresse a2 = new Adresse("1","rue rougemont","Paris","75009");
+	/*	Adresse a2 = new Adresse("1","rue rougemont","Paris","75009");
 		
 		Client c1 = new Client("Abid","Jordan",a2,LocalDate.parse("1993-05-01"),30);
 		
@@ -29,7 +29,11 @@ public class Test {
 		
 		
 		System.out.println(daoProduit.findAll());
-	
+	*/
+		
+		System.out.println(daoProduit.findByLibelle("Formation SQL"));
+		System.out.println(daoProduit.findParLib("Formation SQL"));
+		System.out.println(daoProduit.findByPrixBetween(900,5000));
 		
 	}
 }

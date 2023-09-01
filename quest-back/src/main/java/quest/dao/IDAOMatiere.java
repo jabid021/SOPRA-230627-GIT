@@ -16,8 +16,8 @@ public interface IDAOMatiere extends JpaRepository<Matiere,Integer> {
 	@Query("SELECT m FROM Matiere m WHERE m.libelle like %:chaine%")
 	public List<Matiere> matiereTitreLike(@Param("chaine") String chaine);
 	
-	@Query("SELECT m FROM Matiere m WHERE m.libelle =:chaine")
-	public List<Matiere> matiereTitreEgal(String chaine);
+	/*@Query("SELECT m FROM Matiere m WHERE m.libelle =:chaine")
+	public List<Matiere> matiereTitreEgal(String chaine);*/
 	
 	public Matiere findByLibelleAndQuest(String chaine,int quest);
 }
