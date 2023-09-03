@@ -1,6 +1,10 @@
 package escapeGame.service;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import escapeGame.dao.IDAOCompte;
 import escapeGame.exception.CompteException;
@@ -8,14 +12,11 @@ import escapeGame.model.Client;
 import escapeGame.model.Compte;
 import escapeGame.model.GameMaster;
 
+@Service
 public class CompteService {
 
+	@Autowired
 	private IDAOCompte daoCompte;
-
-
-	public CompteService(IDAOCompte daoCompte) {
-		this.daoCompte = daoCompte;
-	}
 
 	public void checkCompte(Compte compte) 
 	{
@@ -78,12 +79,12 @@ public class CompteService {
 		if (id == null) {
 			throw new CompteException("id obligatoire");
 		}
-		Compte compte = daoCompte.findById(id);
-		if(compte==null) 
+		Optional<Compte> opt = daoCompte.findById(id);
+		if(opt.isEmpty()) 
 		{
 			throw new CompteException("id inconnu");
 		}
-		return compte;
+		return opt.get();
 	}
 
 

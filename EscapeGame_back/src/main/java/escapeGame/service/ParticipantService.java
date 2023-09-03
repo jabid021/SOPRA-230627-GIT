@@ -1,19 +1,18 @@
 package escapeGame.service;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import escapeGame.dao.IDAOParticipant;
 import escapeGame.model.Client;
 import escapeGame.model.Participant;
-
+@Service
 public class ParticipantService {
-
+	@Autowired
 	private IDAOParticipant daoParticipant;
-
-	
-	public ParticipantService(IDAOParticipant daoParticipant) {
-		this.daoParticipant = daoParticipant;
-	}
 
 	public void checkParticipant(Participant participant) 
 	{
@@ -35,12 +34,12 @@ public class ParticipantService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		Participant participant = daoParticipant.findById(id);
-		if(participant==null) 
+		Optional<Participant> opt = daoParticipant.findById(id);
+		if(opt.isEmpty()) 
 		{
 			throw new RuntimeException("id inconnu");
 		}
-		return participant;
+		return opt.get();
 	}
 	
 	public List<Participant> getAllByClient(Client client) {

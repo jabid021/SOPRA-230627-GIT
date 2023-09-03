@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import escapeGame.context.Singleton;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import escapeGame.model.GameMaster;
 import escapeGame.model.Reservation;
 import escapeGame.service.CompteService;
@@ -18,10 +21,16 @@ import escapeGame.service.ReservationService;
 
 @WebServlet("/reservation")
 public class ReservationController extends HttpServlet {
-
-	private ReservationService reservationService = Singleton.getInstance().getReservationService();
-	private CompteService compteService = Singleton.getInstance().getCompteService();
-
+	@Autowired
+	private ReservationService reservationService;
+	@Autowired
+	private CompteService compteService;
+	
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

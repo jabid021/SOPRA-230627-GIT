@@ -1,18 +1,8 @@
 package escapeGame.test;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import escapeGame.context.Singleton;
-import escapeGame.dao.DAOReservation;
-import escapeGame.model.Client;
-import escapeGame.model.GameMaster;
-import escapeGame.model.Participant;
-import escapeGame.model.Reservation;
-
 public class TestMapping {
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 	
 		
 		for(Participant p : Singleton.getInstance().getParticipantService().getAll())
@@ -32,7 +22,7 @@ public class TestMapping {
 		for(Participant p : daop.findAllByClientPrenomContient("ordsffd"))
 		{
 		System.out.println(p);	
-		}*/
+		}
 		
 		GameMaster gm = (GameMaster) Singleton.getInstance().getCompteService().getById(2);
 		
@@ -42,5 +32,5 @@ public class TestMapping {
 		
 		System.out.println(resa.size());
 	}
-
+*/
 }

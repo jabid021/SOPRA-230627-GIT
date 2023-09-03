@@ -1,9 +1,5 @@
 package escapeGame.test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -11,11 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import escapeGame.dao.DAOCompte;
-import escapeGame.dao.DAOMateriel;
-import escapeGame.dao.DAOParticipant;
-import escapeGame.dao.DAOReservation;
-import escapeGame.dao.DAOSalle;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import escapeGame.dao.IDAOReservation;
 import escapeGame.model.Adresse;
 import escapeGame.model.Cadenas;
 import escapeGame.model.Client;
@@ -30,46 +24,58 @@ import escapeGame.model.Mecanisme;
 import escapeGame.model.Participant;
 import escapeGame.model.Reservation;
 import escapeGame.model.Salle;
+import escapeGame.service.CompteService;
+import escapeGame.service.MaterielService;
+import escapeGame.service.ParticipantService;
+import escapeGame.service.ReservationService;
+import escapeGame.service.SalleService;
 
 public class App {
 
-	static DAOCompte daoCompte = new DAOCompte();
-	static DAOReservation daoReservation = new DAOReservation();
-	static DAOSalle daoSalle = new DAOSalle();
-	static DAOParticipant daoParticipant = new DAOParticipant();
-	static DAOMateriel daoMateriel = new DAOMateriel();
+	@Autowired
+	CompteService daoCompte;
+	@Autowired
+	ReservationService daoReservation;
+	@Autowired
+	SalleService daoSalle;
+	@Autowired
+	ParticipantService daoParticipant;
+	@Autowired
+	MaterielService daoMateriel;
 
-	static Compte connected;
+	@Autowired
+	IDAOReservation daoR;
+	 Compte connected;
 
-	public static String saisieString(String msg) {
+	public  String saisieString(String msg) {
 		Scanner monScanner = new Scanner(System.in);
 		System.out.println(msg);
 		String variable = monScanner.nextLine();
 		return variable;
 	}
 
-	public static int saisieInt(String msg) {
+	public  int saisieInt(String msg) {
 		Scanner monScanner = new Scanner(System.in);
 		System.out.println(msg);
 		int variable = monScanner.nextInt();
 		return variable;
 	}
 
-	public static double saisieDouble(String msg) {
+	public  double saisieDouble(String msg) {
 		Scanner monScanner = new Scanner(System.in);
 		System.out.println(msg);
 		double variable = monScanner.nextDouble();
 		return variable;
 	}
 
-	public static boolean saisieBoolean(String msg) {
+	public  boolean saisieBoolean(String msg) {
 		Scanner monScanner = new Scanner(System.in);
 		System.out.println(msg);
 		boolean variable = monScanner.nextBoolean();
 		return variable;
 	}
 
-	public static void menuPrincipal() {
+	public  void menuPrincipal() {
 		System.out.println("Bienvenue sur l'app Escape Game");
 		System.out.println("1 - Se connecter");
 		System.out.println("2 - Inscription");
@@ -91,7 +97,7 @@ public class App {
 		menuPrincipal();
 	}
 
-	public static void inscription() {
+	public  void inscription() {
 
 		System.out.println("Inscription d'un client");
 		String login = saisieString("Saisir votre login");
@@ -109,16 +115,16 @@ public class App {
 		Adresse adresse = new Adresse(numero, voie, ville, cp);
 		Client client = new Client(login, password, nom, prenom, tel, mail, adresse);
 
-		daoCompte.save(client);
+		daoCompte.create(client);
 
 	}
 
-	public static void seConnecter() {
+	public  void seConnecter() {
 		System.out.println("\nEcran de connexion\n");
 		String login = saisieString("Saisir votre login");
 		String password = saisieString("Saisir votre password");
 
-		connected = daoCompte.findByLoginAndPassword(login, password);
+		connected = daoCompte.getByLoginAndPassword(login, password);
 
 		if (connected instanceof Client) {
 			menuClient();
@@ -132,7 +138,7 @@ public class App {
 
 	}
 
-	public static void menuGerant() {
+	public  void menuGerant() {
 		System.out.println("\nMenu Gerant\n");
 		System.out.println("1 - Gestion du Materiel");
 		System.out.println("2 - Gestion des Salles");
@@ -168,7 +174,7 @@ public class App {
 
 	}
 
-	public static void gestionMateriel() {
+	public  void gestionMateriel() {
 		System.out.println("Gestion du materiel :");
 		System.out.println("1 - Afficher le materiel");
 		System.out.println("2 - Ajouter du materiel");
@@ -190,8 +196,8 @@ public class App {
 		gestionMateriel();
 	}
 
-	public static void afficherMateriel() {
-		List<Materiel> materiels = daoMateriel.findAll();
+	public  void afficherMateriel() {
+		List<Materiel> materiels = daoMateriel.getAll();
 
 		if (materiels.isEmpty()) {
 			System.out.println("Pas de materiel");
@@ -202,7 +208,7 @@ public class App {
 
 	}
 
-	public static void ajouterMateriel() {
+	public  void ajouterMateriel() {
 		System.out.println("Ajout d'un materiel :");
 		String type = saisieString("Quel type de materiel ? (Cadenas / Coffre / Mecanisme)");
 		String libelle = saisieString("Saisir le libelle");
@@ -223,15 +229,15 @@ public class App {
 		afficherSalle();
 		int choix = saisieInt("Saisir l'id de la salle  (0 pour null)");
 		if (choix != 0) {
-			Salle salle = daoSalle.findById(choix);
+			Salle salle = daoSalle.getById(choix);
 			materiel.setSalle(salle);
 		}
 
-		daoMateriel.save(materiel);
+		daoMateriel.create(materiel);
 
 	}
 
-	public static void gestionSalle() {
+	public  void gestionSalle() {
 		System.out.println("Gestion des salles :");
 		System.out.println("1 - Afficher les salles");
 		System.out.println("2 - Ajouter une salle");
@@ -254,8 +260,8 @@ public class App {
 
 	}
 
-	public static void afficherSalle() {
-		List<Salle> salles = daoSalle.findAll();
+	public  void afficherSalle() {
+		List<Salle> salles = daoSalle.getAll();
 
 		if (salles.isEmpty()) {
 			System.out.println("Pas de salle");
@@ -265,7 +271,7 @@ public class App {
 		}
 	}
 
-	public static void ajouterSalle() {
+	public  void ajouterSalle() {
 		System.out.println("Ajout d'une salle :");
 
 		int min = saisieInt("Nombre de joueur min");
@@ -280,10 +286,10 @@ public class App {
 		Salle salle = new Salle(min, max, titre, description, duree, prix, accessibilite,
 				Difficulte.valueOf(difficulte));
 
-		daoSalle.save(salle);
+		daoSalle.create(salle);
 	}
 
-	public static void gestionCompte() {
+	public  void gestionCompte() {
 		System.out.println("Gestion des comptes :");
 		System.out.println("1 - Afficher les comptes");
 		System.out.println("2 - Ajouter un compte");
@@ -305,8 +311,8 @@ public class App {
 		gestionCompte();
 	}
 
-	public static void afficherCompte() {
-		List<Compte> comptes = daoCompte.findAll();
+	public  void afficherCompte() {
+		List<Compte> comptes = daoCompte.getAll();
 
 		if (comptes.isEmpty()) {
 			System.out.println("Pas de compte");
@@ -316,7 +322,7 @@ public class App {
 		}
 	}
 
-	public static void ajouterCompte() {
+	public  void ajouterCompte() {
 		Compte compte;
 		System.out.println("Ajout d'un compte :");
 		String typePersonne = saisieString("Qui êtes-vous? Gerant/GameMaster/Client");
@@ -343,11 +349,11 @@ public class App {
 			compte = new GameMaster(login, password, nom, prenom);
 		}
 
-		daoCompte.save(compte);
+		daoCompte.create(compte);
 
 	}
 
-	public static void gestionParticipant() {
+	public  void gestionParticipant() {
 		System.out.println("Gestion du materiel :");
 		System.out.println("1 - Afficher les participants");
 		System.out.println("2 - Retour");
@@ -365,8 +371,8 @@ public class App {
 		gestionParticipant();
 	}
 
-	public static void afficherParticipant() {
-		List<Participant> participants = daoParticipant.findAll();
+	public  void afficherParticipant() {
+		List<Participant> participants = daoParticipant.getAll();
 
 		if (participants.isEmpty()) {
 			System.out.println("Pas de participant");
@@ -377,7 +383,7 @@ public class App {
 
 	}
 
-	public static void gestionReservation() {
+	public  void gestionReservation() {
 		System.out.println("Gestion des reservations :");
 		System.out.println("1 - Afficher les reservations");
 		System.out.println("2 - Affecter un game master");
@@ -399,8 +405,8 @@ public class App {
 		gestionReservation();
 	}
 
-	public static void afficherReservation() {
-		List<Reservation> reservations = daoReservation.findAll();
+	public  void afficherReservation() {
+		List<Reservation> reservations = daoReservation.getAll();
 
 		if (reservations.isEmpty()) {
 			System.out.println("Pas de reservation");
@@ -411,8 +417,8 @@ public class App {
 
 	}
 
-	public static void afficherGameMaster() {
-		List<GameMaster> gameMasters = daoCompte.findAllGameMaster();
+	public  void afficherGameMaster() {
+		List<GameMaster> gameMasters = daoCompte.getAllGameMaster();
 
 		if (gameMasters.isEmpty()) {
 			System.out.println("Pas de game master");
@@ -423,23 +429,23 @@ public class App {
 
 	}
 
-	public static void affecterGameMaster() {
+	public  void affecterGameMaster() {
 		afficherReservation();
 		int choix = saisieInt("Saisir l'id de la reservation");
-		Reservation reservation = daoReservation.findById(choix);
+		Reservation reservation = daoReservation.getById(choix);
 		afficherGameMaster();
 		choix = saisieInt("Saisir l'id du game master (0 pour null)");
 		if (choix != 0) {
-			GameMaster gm = (GameMaster) daoCompte.findById(choix);
+			GameMaster gm = (GameMaster) daoCompte.getById(choix);
 			reservation.setGameMaster(gm);
 		} else {
 			reservation.setGameMaster(null);
 		}
-		daoReservation.save(reservation);
+		daoReservation.create(reservation);
 
 	}
 
-	public static void menuGameMaster() {
+	public  void menuGameMaster() {
 		System.out.println("\nMenu Game Master\n");
 		System.out.println("1 - Afficher mon planning");
 		System.out.println("2 - Se deconnecter");
@@ -459,9 +465,8 @@ public class App {
 
 	}
 
-	public static void afficherPlanning() {
-		List<Reservation> reservations = daoReservation
-				.findByGameMasterAndDateReservationGreaterThan((GameMaster) connected, LocalDate.now());
+	public  void afficherPlanning() {
+		List<Reservation> reservations = new ArrayList();//daoReservation.getByGameMasterAndDateReservationGreaterThan((GameMaster) connected, LocalDate.now());
 
 		System.out.println("Voici votre planning");
 		if (reservations.isEmpty()) {
@@ -474,7 +479,7 @@ public class App {
 		}
 	}
 
-	public static void menuClient() {
+	public  void menuClient() {
 		System.out.println("\nMenu Client\n");
 		System.out.println("1 - Faire une reservation");
 		System.out.println("2 - Afficher mes participants");
@@ -502,9 +507,9 @@ public class App {
 		menuClient();
 	}
 
-	public static void afficherMesParticipants() {
+	public  void afficherMesParticipants() {
 		Client client = (Client) connected;
-		List<Participant> participants = daoParticipant.findAllByClient(client);
+		List<Participant> participants = daoParticipant.getAllByClient(client);
 
 		if (participants.isEmpty()) {
 			System.out.println("Vous n'avez pas encore créé de participant");
@@ -516,21 +521,21 @@ public class App {
 
 	
 	
-	public static void supprimerMesParticipants() {
+	public  void supprimerMesParticipants() {
 		afficherMesParticipants();
 		int id = saisieInt("Saisir l'id du participant à supprimer");
-		daoParticipant.delete(null);
+		daoParticipant.delete(id);
 	}
 
 	
-	public static void reserverSalle() {
+	public  void reserverSalle() {
 		Client client = (Client) connected;
 		List<Participant> inscriptions = new ArrayList();
 		
 
 		afficherSalle();
 		int choix = saisieInt("Choisir une salle");
-		Salle salle = daoSalle.findById(choix);
+		Salle salle = daoSalle.getById(choix);
 		String equipe = saisieString("Saisir le nom de l'equipe");
 
 		afficherMesParticipants();
@@ -540,13 +545,13 @@ public class App {
 			boolean participantExistant = saisieBoolean("Utiliser un ancien participant ? true / false");
 			if (participantExistant) {
 				choix = saisieInt("Saisir l'id du participant");
-				Participant p = daoParticipant.findById(choix);
+				Participant p = daoParticipant.getById(choix);
 				inscriptions.add(p);
 			} else {
 				String nom = saisieString("Saisir le nom du participant");
 				String prenom = saisieString("Saisir le prenom du participant");
 				Participant p = new Participant(nom, prenom, client);
-				daoParticipant.save(p);
+				daoParticipant.create(p);
 				inscriptions.add(p);
 			}
 
@@ -556,11 +561,11 @@ public class App {
 		double prix = salle.getPrix() * inscriptions.size();
 		Reservation r = new Reservation(LocalDate.now(), LocalTime.now(), null, equipe, prix, client, salle, null);
 		r.setParticipants(inscriptions);
-		daoReservation.save(r);
+		daoReservation.create(r);
 	}
 
-	public static void main(String[] args) {
-
+	public void run(String ...args) {
+		System.out.println(daoR.findByGameMasterAndDateReservationGreaterThan((GameMaster) daoCompte.getById(2), LocalDate.now()));
 		menuPrincipal();
 	}
 

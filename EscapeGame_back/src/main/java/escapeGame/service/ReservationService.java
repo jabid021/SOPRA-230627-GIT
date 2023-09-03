@@ -1,20 +1,21 @@
 package escapeGame.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import escapeGame.context.Singleton;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import escapeGame.dao.IDAOReservation;
 import escapeGame.model.Participant;
 import escapeGame.model.Reservation;
-
+@Service
 public class ReservationService {
-
+	@Autowired
 	private IDAOReservation daoReservation;
 	
-	
-	public ReservationService(IDAOReservation daoReservation) {
-		this.daoReservation = daoReservation;
-	}
+	@Autowired
+	private ParticipantService participantSrv;
 
 	public void checkReservation(Reservation reservation) 
 	{
@@ -26,7 +27,7 @@ public class ReservationService {
 		for(Participant p  : reservation.getParticipants()) 
 		{
 			if (p.getId()==0) {p.setId(null);}
-			Singleton.getInstance().getParticipantService().create(p);
+			participantSrv.create(p);
 		}
 
 		return daoReservation.save(reservation);
@@ -42,12 +43,12 @@ public class ReservationService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		Reservation reservation = daoReservation.findById(id);
-		if(reservation==null) 
+		Optional<Reservation> opt = daoReservation.findById(id);
+		if(opt.isEmpty()) 
 		{
 			throw new RuntimeException("id inconnu");
 		}
-		return reservation;
+		return opt.get();
 	}
 
 

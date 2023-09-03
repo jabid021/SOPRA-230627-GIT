@@ -1,19 +1,17 @@
 package escapeGame.service;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import escapeGame.dao.IDAOMateriel;
 import escapeGame.model.Materiel;
-
+@Service
 public class MaterielService {
-
+	@Autowired
 	private IDAOMateriel daoMateriel;
-
-
-	
-	public MaterielService(IDAOMateriel daoMateriel) {
-		this.daoMateriel = daoMateriel;
-	}
 
 	public void checkMateriel(Materiel materiel) 
 	{
@@ -35,12 +33,12 @@ public class MaterielService {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		Materiel materiel = daoMateriel.findById(id);
-		if(materiel==null) 
+		Optional<Materiel> opt = daoMateriel.findById(id);
+		if(opt.isEmpty()) 
 		{
 			throw new RuntimeException("id inconnu");
 		}
-		return materiel;
+		return opt.get();
 	}
 
 

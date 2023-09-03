@@ -2,14 +2,16 @@ package escapeGame.controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import escapeGame.context.Singleton;
-import escapeGame.dao.IDAOCompte;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import escapeGame.model.Adresse;
 import escapeGame.model.Client;
 import escapeGame.model.Compte;
@@ -20,9 +22,13 @@ import escapeGame.service.CompteService;
 
 @WebServlet("/home")
 public class HomeController extends HttpServlet {
+	@Autowired
+	private CompteService compteService;
 	
-	private CompteService compteService = Singleton.getInstance().getCompteService();
-	
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		if(request.getParameter("disconnect")!=null) 

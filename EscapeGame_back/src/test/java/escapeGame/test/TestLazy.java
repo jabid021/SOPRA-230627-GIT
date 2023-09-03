@@ -1,14 +1,7 @@
 package escapeGame.test;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-
-import escapeGame.context.Singleton;
-import escapeGame.model.Client;
-
 public class TestLazy {
-
+/*
 
 	//Acces aux reservations APRES le em.close() ❌
 	//Impossibe de faire des filtres sur les reservation ❌
@@ -181,7 +174,7 @@ public class TestLazy {
 
 
 		Singleton.getInstance().getEmf().close();
-	}
+	}*/
 
 
 }

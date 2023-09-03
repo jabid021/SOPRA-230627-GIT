@@ -3,14 +3,16 @@ package escapeGame.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import escapeGame.context.Singleton;
-import escapeGame.dao.IDAOSalle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import escapeGame.model.Difficulte;
 import escapeGame.model.Salle;
 import escapeGame.service.SalleService;
@@ -19,9 +21,13 @@ import escapeGame.service.SalleService;
 
 @WebServlet("/salle")
 public class SalleController extends HttpServlet {
+	@Autowired
+	private SalleService salleService;
 	
-	private SalleService salleService = Singleton.getInstance().getSalleService();
-
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")==null) {
 			List<Salle> salles = salleService.getAll();

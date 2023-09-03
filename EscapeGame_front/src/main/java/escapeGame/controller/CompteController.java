@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import escapeGame.context.Singleton;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import escapeGame.model.Adresse;
 import escapeGame.model.Client;
 import escapeGame.model.Compte;
@@ -23,9 +26,13 @@ import escapeGame.service.CompteService;
 @WebServlet("/compte")
 public class CompteController extends HttpServlet {
 
-
-	private CompteService compteService = Singleton.getInstance().getCompteService();	
-
+	@Autowired
+	private CompteService compteService;	
+	
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")==null) 
 		{
