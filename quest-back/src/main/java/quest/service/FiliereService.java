@@ -15,8 +15,7 @@ public class FiliereService {
 	@Autowired
 	private IDAOFiliere daoFiliere;
 
-	public void checkFiliere(Filiere filiere) 
-	{
+	public void checkFiliere(Filiere filiere) {
 
 	}
 
@@ -30,40 +29,35 @@ public class FiliereService {
 		return daoFiliere.save(filiere);
 	}
 
-
 	public Filiere getById(Integer id) {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
 		Optional<Filiere> opt = daoFiliere.findById(id);
-		if(opt.isEmpty()) 
-		{
+		if (opt.isEmpty()) {
 			throw new RuntimeException("id inconnu");
 		}
 		return opt.get();
 	}
 
-
 	public List<Filiere> getAll() {
 		return daoFiliere.findAll();
 	}
-
 
 	public void delete(Integer id) {
 		if (id == null) {
 			throw new RuntimeException("id obligatoire");
 		}
-		Filiere filiere =getById(id);
+		Filiere filiere = getById(id);
 		delete(filiere);
-	}	
-	
+	}
+
 	public void delete(Filiere filiere) {
-		
+
 		if (filiere == null) {
 			throw new RuntimeException("filiere ne peut pas etre null");
 		}
 		daoFiliere.delete(filiere);
-	}	
-	
-	
+	}
+
 }

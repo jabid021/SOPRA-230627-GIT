@@ -2,8 +2,6 @@ package quest.config;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
-
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +16,8 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 @ComponentScan("quest.service")
@@ -46,7 +46,7 @@ public class AppConfig {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		emf.setDataSource(dataSource);
-		emf.setPackagesToScan(env.getProperty("package.model"));
+		emf.setPackagesToScan("quest.model");
 		emf.setJpaVendorAdapter(vendorAdapter);
 		emf.setJpaProperties(this.hibernateProperties());
 		return emf;
@@ -57,7 +57,7 @@ public class AppConfig {
 		properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.mode"));
 		properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.showsql"));
-		properties.setProperty("hibernate.format_sql", env.getProperty("hibernate.showsql"));
+		properties.setProperty("hibernate.format_sql", "false");
 		return properties;
 	}
 
