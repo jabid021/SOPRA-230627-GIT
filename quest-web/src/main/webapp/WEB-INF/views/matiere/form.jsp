@@ -16,7 +16,8 @@
 
 	<div class="container">
 		<div class="card mt-3">
-			<form action="" method="post">
+			<c:url value="/matiere/saveBis" var="saveUrl"/>
+			<form action="${saveUrl}" method="post">
 				<div class="card-header bg-primary text-white display-6">Edition
 					de la matière</div>
 				<div class="card-body">

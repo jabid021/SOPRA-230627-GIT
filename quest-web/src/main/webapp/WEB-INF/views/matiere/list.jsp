@@ -28,6 +28,7 @@
 					<c:url value="/matiere/edit" var="editUrl">
 						<c:param name="id" value="${mat.id}"/>
 					</c:url>
+					<c:url value="/matiere/delete/${mat.id}" var="deleteUrl"/>
 					<tr>
 						<td>${mat.id}</td>
 						<td>${mat.version}</td>
@@ -35,7 +36,7 @@
 						<td>${mat.quest}</td>
 						<td><div class="btn-group btn-group-sm">
 							<a href="${editUrl}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-							<a class="btn btn-danger"><i class="bi bi-trash"></i></a>
+							<a href="${deleteUrl}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
 						</div></td>
 					</tr>
 				</c:forEach>
