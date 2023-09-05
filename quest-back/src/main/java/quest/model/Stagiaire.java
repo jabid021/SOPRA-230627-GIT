@@ -104,7 +104,7 @@ public class Stagiaire {
 	@Override
 	public String toString() {
 		return "Stagiaire [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", filiere="
-				+ filiere + ", ordinateur=" + ordinateur + "]";
+				+ filiere + "]";
 	}
 
 	

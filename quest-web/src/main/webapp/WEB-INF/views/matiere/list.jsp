@@ -25,13 +25,16 @@
 					<th></th>
 				</tr>
 				<c:forEach items="${mesMatieres}" var="mat">
+					<c:url value="/matiere/edit" var="editUrl">
+						<c:param name="id" value="${mat.id}"/>
+					</c:url>
 					<tr>
 						<td>${mat.id}</td>
 						<td>${mat.version}</td>
 						<td>${mat.libelle}</td>
 						<td>${mat.quest}</td>
 						<td><div class="btn-group btn-group-sm">
-							<a class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+							<a href="${editUrl}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
 							<a class="btn btn-danger"><i class="bi bi-trash"></i></a>
 						</div></td>
 					</tr>
@@ -39,7 +42,8 @@
 			</table>
 		</div>
 		<div class="card-footer">
-			<a class="btn btn-success btn-lg"><i class="bi bi-plus-square"></i></a>
+			<c:url value="/matiere/add" var="addUrl"/>
+			<a href="${addUrl}" class="btn btn-success btn-lg"><i class="bi bi-plus-square"></i></a>
 		</div>
 	
 	</div>
