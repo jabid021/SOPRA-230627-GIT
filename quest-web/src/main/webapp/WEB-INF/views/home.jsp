@@ -8,5 +8,10 @@
 </head>
 <body>
 	<h1>Allô le monde !</h1>
+	<h2>Bonjour ${utilisateur}</h2>
+	
+	
+	<h3>Connecté ! ${auth}</h3>
+	
 </body>
 </html>
