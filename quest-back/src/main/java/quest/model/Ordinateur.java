@@ -22,7 +22,7 @@ public class Ordinateur {
 	
 	//Un Stagiaire n'a QU'UN SEUL ordinateur
 	@OneToOne
-	@JoinColumn(name="stagiaire",nullable = false)
+	@JoinColumn(name="stagiaire")
 	private Stagiaire stagiaire;
 	
 	public Ordinateur() {}

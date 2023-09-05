@@ -11,29 +11,29 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="stagiaire")
+@Table(name = "stagiaire")
 public class Stagiaire {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(length = 25,nullable=false)
+	@Column(length = 25, nullable = false)
 	private String nom;
-	@Column(length = 25,nullable=false)
+	@Column(length = 25, nullable = false)
 	private String prenom;
-	@Column(length = 25,nullable=false)
+	@Column(length = 25, nullable = false)
 	private String email;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "filiere", nullable = false)
+	@JoinColumn(name = "filiere")
 	private Filiere filiere;
-	
+
 	@OneToOne(mappedBy = "stagiaire")
 	private Ordinateur ordinateur;
-	
-	public Stagiaire() {}
-	
-	
+
+	public Stagiaire() {
+	}
+
 	public Stagiaire(Integer id, String nom, String prenom, String email, Filiere filiere) {
 		this.id = id;
 		this.nom = nom;
@@ -49,16 +49,13 @@ public class Stagiaire {
 		this.filiere = filiere;
 	}
 
-	
 	public Ordinateur getOrdinateur() {
 		return ordinateur;
 	}
 
-
 	public void setOrdinateur(Ordinateur ordinateur) {
 		this.ordinateur = ordinateur;
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -100,14 +97,10 @@ public class Stagiaire {
 		this.filiere = filiere;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Stagiaire [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", filiere="
 				+ filiere + "]";
 	}
 
-	
-	
-	
 }
