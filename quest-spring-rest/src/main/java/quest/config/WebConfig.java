@@ -13,8 +13,8 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("quest.controller")
-@Import({AppConfig.class, SecurityConfig.class})
+@ComponentScan("quest.api")
+@Import({AppConfig.class})
 public class WebConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry ) {
 		registry.addResourceHandler ("/assets/**").addResourceLocations("/WEB-INF/assets/");

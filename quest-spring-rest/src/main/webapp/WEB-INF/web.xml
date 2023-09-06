@@ -4,20 +4,7 @@
 	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
 	version="5.0">
-	<display-name>quest-web</display-name>
-
-<!-- 	<listener> -->
-<!-- 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
-<!-- 	</listener> -->
-
-<!-- 	<context-param> -->
-<!-- 		<param-name>contextClass</param-name> -->
-<!-- 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value> -->
-<!-- 	</context-param> -->
-<!-- 	<context-param> -->
-<!-- 		<param-name>contextConfigLocation</param-name> -->
-<!-- 		<param-value>quest.config.AppConfig</param-value> -->
-<!-- 	</context-param> -->
+	<display-name>quest-spring-rest</display-name>
 
 	<servlet>
 		<servlet-name>web</servlet-name>
@@ -40,14 +27,5 @@
 		<servlet-name>web</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 
 </web-app>
