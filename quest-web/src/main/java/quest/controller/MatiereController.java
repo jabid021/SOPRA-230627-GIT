@@ -2,16 +2,19 @@ package quest.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 
+import jakarta.validation.Valid;
 import quest.dao.IDAOFiliere;
 import quest.dao.IDAOMatiere;
 import quest.model.Filiere;
@@ -24,6 +27,7 @@ public class MatiereController {
 	private IDAOMatiere daoMatiere;
 
 	private IDAOFiliere daoFiliere;
+	
 	
 	public MatiereController(IDAOMatiere daoMatiere, IDAOFiliere daoFiliere) {
 		super();
@@ -53,6 +57,11 @@ public class MatiereController {
 
 	@GetMapping("/edit")
 	public String edit(@RequestParam Integer id, Model model) {
+		if(!daoMatiere.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID Matière non trouvé");
+//			throw new QuestWebException();
+		}
+		
 		Matiere matiere = daoMatiere.findById(id).get();
 
 		model.addAttribute("maMatiere", matiere);
@@ -88,7 +97,13 @@ public class MatiereController {
 	}
 
 	@PostMapping("/saveBis")
-	public String saveBis(@ModelAttribute("maMatiere") Matiere matiere, @RequestParam(required = false) Integer idFiliere) {
+	public String saveBis(@ModelAttribute("maMatiere") @Valid Matiere matiere, BindingResult result, @RequestParam(required = false) Integer idFiliere) {
+		new MatiereValidator().validate(matiere, result);
+		
+		if(result.hasErrors()) {
+			return "matiere/form";
+		}
+		
 		if(idFiliere != null) {
 			Filiere filiere = new Filiere();
 			filiere.setId(idFiliere);

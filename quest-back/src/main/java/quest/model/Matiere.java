@@ -9,6 +9,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "matiere")
@@ -19,9 +22,16 @@ public class Matiere {
 	private Integer id;
 	@Version
 	private int version;
+
 	@Column(length = 25, nullable = false)
+
+	@NotBlank(message = "Le libellé est obligatoire")
 	private String libelle;
+
 	@Column(columnDefinition = "INTEGER(4)")
+
+	@NotNull(message = "Code Quest manquant")
+	@Max(value = 9999, message = "Code Quest sur 4 chiffres max")
 	private int quest;
 
 	@ManyToOne

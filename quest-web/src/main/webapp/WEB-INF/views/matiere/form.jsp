@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%-- ETAPE 5 : Exécution de la View --%>
 <!DOCTYPE html>
 <html>
@@ -17,25 +18,29 @@
 	<div class="container">
 		<div class="card mt-3">
 			<c:url value="/matiere/saveBis" var="saveUrl"/>
-			<form action="${saveUrl}" method="post">
+			<form:form method = "POST" action = "${saveUrl}" commandName = "maMatiere" modelAttribute="maMatiere">
 				<div class="card-header bg-primary text-white display-6">Edition
 					de la matière</div>
 				<div class="card-body">
 					<div class="form-group">
-						<label for="id">Identifiant:</label> <input type="number"
-							class="form-control" id="id" name="id" readonly value="${maMatiere.id}"/>
+						<form:label path="id">Identifiant:</form:label> 
+						<form:input type="number" path="id"
+							class="form-control" id="id" name="id" readonly="true"/>
 					</div>
 					<div class="form-group">
-						<label for="version">Version:</label> <input type="number"
-							class="form-control" id="version" name="version" readonly value="${maMatiere.version}"/>
+						<form:label path="version">Version:</form:label> <form:input type="number" path="version"
+							class="form-control" id="version" name="version" readonly="true" />
+							
 					</div>
 					<div class="form-group">
-						<label for="libelle">Libellé:</label> <input type="text"
-							class="form-control" id="libelle" name="libelle" value="${maMatiere.libelle}"/>
+						<form:label path="libelle">Libellé:</form:label> <form:input type="text" path="libelle"
+							class="form-control" id="libelle" name="libelle"/>
+						<form:errors path="libelle" element="span" cssClass="text-danger"/>
 					</div>
 					<div class="form-group">
-						<label for="quest">Code Quest:</label> <input type="number"
-							class="form-control" id="quest" name="quest" value="${maMatiere.quest}"/>
+						<form:label path="quest">Code Quest:</form:label> <form:input type="number" path="quest"
+							class="form-control" id="quest" name="quest"/>
+						<form:errors path="quest" element="span" cssClass="text-danger"/>
 					</div>
 					<div class="form-group">
 						<label for="idFiliere">Filière:</label>
@@ -54,7 +59,7 @@
 						<a href="${cancelUrl}" class="btn btn-warning"><i class="bi bi-backspace-fill"></i></a>
 					</div>
 				</div>
-			</form>
+			</form:form>
 		</div>
 
 	</div>
