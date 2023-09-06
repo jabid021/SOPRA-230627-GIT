@@ -97,10 +97,11 @@ public class MatiereController {
 	}
 
 	@PostMapping("/saveBis")
-	public String saveBis(@ModelAttribute("maMatiere") @Valid Matiere matiere, BindingResult result, @RequestParam(required = false) Integer idFiliere) {
+	public String saveBis(@ModelAttribute("maMatiere") @Valid Matiere matiere, BindingResult result, @RequestParam(required = false) Integer idFiliere, Model model) {
 		new MatiereValidator().validate(matiere, result);
 		
 		if(result.hasErrors()) {
+			model.addAttribute("filieres", daoFiliere.findAll());
 			return "matiere/form";
 		}
 		
