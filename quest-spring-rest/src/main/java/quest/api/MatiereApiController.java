@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.validation.Valid;
 import quest.dao.IDAOMatiere;
 import quest.model.Matiere;
+import quest.model.Views;
 
 @RestController
 @RequestMapping("/matiere")
@@ -34,16 +37,19 @@ public class MatiereApiController {
 	}
 
 	@GetMapping("")
+	@JsonView(Views.Matiere.class)
 	public List<Matiere> findAll() {
 		return daoMatiere.findAll();
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Views.MatiereWithFiliere.class)
 	public Matiere findById(@PathVariable int id) {
 		return daoMatiere.findById(id).get();
 	}
 
 	@PostMapping("")
+	@JsonView(Views.Matiere.class)
 	public Matiere create(@Valid @RequestBody Matiere matiere, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Matière invalide");
@@ -55,6 +61,7 @@ public class MatiereApiController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.Matiere.class)
 	public Matiere update(@RequestBody Matiere matiere, @PathVariable int id) {
 		matiere = daoMatiere.save(matiere);
 
@@ -62,6 +69,7 @@ public class MatiereApiController {
 	}
 
 	@PatchMapping("/{id}")
+	@JsonView(Views.Matiere.class)
 	public Matiere partialEdit(@RequestBody Map<String, Object> fields, @PathVariable int id) {
 		Matiere matiere = this.daoMatiere.findById(id).get();
 		

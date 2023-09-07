@@ -1,10 +1,9 @@
 package quest.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,24 +21,28 @@ public class Matiere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	private Integer id;
 	@Version
+	@JsonView(Views.Common.class)
 	private int version;
 
 	@Column(length = 25, nullable = false)
 
 	@NotBlank(message = "Le libellé est obligatoire")
+	@JsonView(Views.Common.class)
 	private String libelle;
 
 	@Column(columnDefinition = "INTEGER(4)")
 
 	@NotNull(message = "Code Quest manquant")
 	@Max(value = 9999, message = "Code Quest sur 4 chiffres max")
+	@JsonView(Views.Common.class)
 	private int quest;
 
 	@ManyToOne
 	@JoinColumn(name = "filiere_id")
-	@JsonIgnore
+	@JsonView(Views.MatiereWithFiliere.class)
 	private Filiere filiere;
 
 	public Matiere() {

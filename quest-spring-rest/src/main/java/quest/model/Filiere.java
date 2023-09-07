@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +18,7 @@ import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "filiere")
+@JsonView(Views.Common.class)
 public class Filiere {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,14 +28,18 @@ public class Filiere {
 	@Column(length = 50, nullable = false)
 	private String libelle;
 	@Column(nullable = false)
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate debut;
 	@Column(nullable = false)
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate fin;
 
 	@OneToMany(mappedBy = "filiere")
+	@JsonView(Views.Filiere.class)
 	private List<Stagiaire> stagiaires = new ArrayList<>();
 
 	@OneToMany(mappedBy = "filiere")
+	@JsonView(Views.Filiere.class)
 	private List<Matiere> matieres = new ArrayList<>();
 
 	public Filiere() {
