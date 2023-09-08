@@ -3,9 +3,21 @@ package eshop.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue("client")
 public class Client extends Personne {
+	@Column(name = "CLI_PRENOM", length = 100)
 	private String prenom;
+
+	@OneToMany(mappedBy = "client")
 	private List<Commande> commandes = new ArrayList<>();
+
+	@OneToMany(mappedBy = "client")
 	private List<Adresse> adresses;
 
 	public String getPrenom() {

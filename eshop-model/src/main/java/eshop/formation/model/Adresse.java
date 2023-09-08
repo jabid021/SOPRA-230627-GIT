@@ -3,17 +3,44 @@ package eshop.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
+
+@Entity
+@Table(name = "adresse")
 public class Adresse {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ADR_ID")
 	private Long id;
 
+	@Version
+	private int version;
+
+	@Column(name = "ADR_RUE", length = 200)
 	private String rue;
 
+	@Column(name = "ADR_VILLE", length = 150)
 	private String ville;
 
+	@Column(name = "ADR_CP", length = 10)
 	private String codePostal;
 
+	@ManyToOne
+	@JoinColumn(name = "ADR_CLIENT_ID")
 	private Client client;
 
+	@ManyToMany
+	@JoinTable(name = "adresses_fournisseur", joinColumns = @JoinColumn(name = "ADRF_ADRESSE_ID"), inverseJoinColumns = @JoinColumn(name = "ADRF_FOURNISSEUR_ID"))
 	private List<Fournisseur> fournisseurs = new ArrayList<>();
 
 	public Long getId() {
@@ -22,6 +49,14 @@ public class Adresse {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getRue() {

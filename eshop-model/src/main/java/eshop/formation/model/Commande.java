@@ -1,15 +1,50 @@
 package eshop.formation.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
+
+@Entity
+@Table(name = "commande")
 public class Commande {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CMD_ID")
 	private Long id;
-	private Date date;
+
+	@Version
+	private int version;
+
+	@Column(name = "CMD_DATE")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
+
 	private Double prixTotal;
+
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "CMD_ETAT", nullable = false)
 	private EtatCommande etat;
+
+	@ManyToOne
+	@JoinColumn(name = "CMD_CLIENT_ID")
 	private Client client;
+
+	@OneToMany(mappedBy = "commande")
 	private List<CommandeDetail> details = new ArrayList<>();
 
 	public Long getId() {
@@ -20,11 +55,19 @@ public class Commande {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

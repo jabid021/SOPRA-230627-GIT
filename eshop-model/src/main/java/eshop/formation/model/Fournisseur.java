@@ -3,9 +3,26 @@ package eshop.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import eshop.formation.api.Views;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue("fournisseur")
 public class Fournisseur extends Personne {
+	@Column(name = "FOU_RESPONSABLE", length = 200, nullable = false)
+	@JsonView(Views.Common.class)
 	private String responsable;
+
+	@OneToMany(mappedBy = "fournisseur")
 	private List<Produit> produits = new ArrayList<>();
+
+	@ManyToMany(mappedBy = "fournisseurs")
 	private List<Adresse> adresses = new ArrayList<>();
 
 	public String getResponsable() {
