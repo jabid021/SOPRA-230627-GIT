@@ -1,5 +1,9 @@
 package eshop.formation.model;
 
 public enum Roles {
-	USER, ADMIN, SUPER_ADMIN;
+	GUEST, USER, ADMIN, SUPER_ADMIN;
+	
+	public String authority() {
+		return "ROLE_" + name();
+	}
 }

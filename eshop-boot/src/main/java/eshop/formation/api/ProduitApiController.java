@@ -3,6 +3,7 @@ package eshop.formation.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,6 +44,7 @@ public class ProduitApiController {
 
 	@PostMapping
 	@JsonView(Views.ProduitDetail.class)
+	@PreAuthorize("hasRole('ADMIN')")
 	public Produit add(@Valid @RequestBody Produit produit, BindingResult result) {
 		// On vérifie si on a des erreurs de validation
 		if (result.hasErrors()) {
