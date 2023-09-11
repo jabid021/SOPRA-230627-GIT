@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import eshop.formation.model.Roles;
 import eshop.formation.model.Utilisateur;
@@ -30,7 +31,7 @@ public class SecurityUser implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return utilisateur.getPassword();
+		return new BCryptPasswordEncoder().encode(utilisateur.getPassword());
 	}
 
 	@Override

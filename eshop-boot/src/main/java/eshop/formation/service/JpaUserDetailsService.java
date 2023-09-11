@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import eshop.formation.model.Roles;
@@ -19,6 +20,9 @@ public class JpaUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private IUtilisateurRepository utilisateurRepo;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -28,7 +32,7 @@ public class JpaUserDetailsService implements UserDetailsService {
 		// Si l'utilisateur n'a pas été trouvé, l'exception sera jetée, et on s'arrêtera
 		// là
 
-		UserBuilder userBuilder = User.withUsername(username).password(utilisateur.getPassword())
+		UserBuilder userBuilder = User.withUsername(username).password(passwordEncoder.encode(utilisateur.getPassword()))
 				.disabled(utilisateur.isDisabled());
 
 		List<String> roles = utilisateur.getRoles().stream().map(Roles::name).toList();

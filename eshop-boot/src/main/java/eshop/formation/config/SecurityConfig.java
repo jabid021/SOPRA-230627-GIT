@@ -10,7 +10,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -88,12 +88,12 @@ public class SecurityConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		// Pas d'encadage sur les mots de passe - PAS BIEN
-		return NoOpPasswordEncoder.getInstance();
+//		return NoOpPasswordEncoder.getInstance();
 
 //		System.out.println(new BCryptPasswordEncoder().encode("123456"));
 
 		// Encodage Blowfish
-//		return new BCryptPasswordEncoder();
+		return new BCryptPasswordEncoder();
 	}
 
 //	@Bean
