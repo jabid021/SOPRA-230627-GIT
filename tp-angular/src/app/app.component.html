@@ -1,0 +1,32 @@
+<p (mouseenter)="prenomUpper()" (mouseleave)="prenomOrigin()" [style.color]="couleur">{{prenom}}</p>
+
+<input type="text" [value]="prenom" (change)="synchro($event)" />
+
+<button (click)="resetPrenom()">CHANGER</button><br/>
+
+<input type="text" [ngModel]="prenom" (ngModelChange)="prenom = $event"/><br/>
+
+<select [(ngModel)]="couleur">
+    <option value="black">Noir</option>
+    <option value="green">Vert</option>
+    <option value="#FFFF00">Jaune</option>
+    <option value="#0000FF">Bleu</option>
+    <option value="#FF0000">Rouge</option>
+</select><br />
+<input type="color" [(ngModel)]="couleur">
+
+
+<hr/>
+
+<fieldset>
+    Identifiant : <input type="number" [(ngModel)]="monTodo.id"/>
+    Titre : <input type="text" [(ngModel)]="monTodo.title"/>
+    Complété ? : <input type="checkbox" [(ngModel)]="monTodo.completed"/>
+</fieldset>
+
+<p *ngIf="monTodo.title != '' && monTodo.id != 0" [ngClass]="{'monFondRouge': !monTodo.completed}" style="border: solid 2px;" >
+    {{monTodo.id}} - 
+    {{monTodo.title}} -
+    {{monTodo.completed}}
+
+</p>
