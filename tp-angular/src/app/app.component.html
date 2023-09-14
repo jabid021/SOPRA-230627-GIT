@@ -31,6 +31,8 @@
 
 </p>
 
+<h1>{{now | date:'dd MMMM yyyy' | uppercase}}</h1>
+
 <hr/>
 
 <table>
@@ -45,8 +47,9 @@
     </tr>
     <tr *ngFor="let todo of recherche()">
         <td>{{todo.id}}</td>
-        <td>{{todo.title}}</td>
-        <td><span *ngIf="todo.completed; else completedElse">Terminé</span></td>
+        <td>{{todo.title | uppercase}}</td>
+        <td [style.color]="todo.completed! | todoState">{{todo.completed! | todoState:'desc'}}</td>
+        <!-- <td><span *ngIf="todo.completed; else completedElse">Terminé</span></td> -->
         <td><button (click)="editerTodo(todo.id!)">Editer</button><button (click)="supprimerTodo(todo.id!)">Supprimer</button></td>
     </tr>
     <tr>
@@ -59,6 +62,6 @@
 
 </table>
 
-<ng-template #completedElse>
+<!-- <ng-template #completedElse>
     <span>Non terminé</span>
-</ng-template>
+</ng-template> -->

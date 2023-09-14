@@ -19,6 +19,8 @@ export class AppComponent {
 
   filtre: string = '';
 
+  now: Date = new Date();
+
   constructor() {
     this.todos.push(new Todo(1, 'Vérifier Mails', false));
     this.todos.push(new Todo(5, 'Finir spécifications techniques', true));
