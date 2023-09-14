@@ -13,8 +13,14 @@ export class AppComponent {
 
   monTodo: Todo = new Todo(0, '', false);  
 
-  constructor() {
+  todos: Array<Todo> = new Array<Todo>();
 
+  todoForm: Todo = new Todo(0, '', false);
+
+  constructor() {
+    this.todos.push(new Todo(1, 'Vérifier Mails', false));
+    this.todos.push(new Todo(5, 'Finir spécifications techniques', true));
+    this.todos.push(new Todo(7, 'Tests unitaires', false));
   }
 
   resetPrenom() {
@@ -33,6 +39,12 @@ export class AppComponent {
   synchro(event: any) {
     this.prenom = event.target.value;
 
+  }
+
+  ajouterTodo() {
+    
+    this.todos.push(this.todoForm);
+    this.todoForm = new Todo(0,'', false);
   }
 
 }
