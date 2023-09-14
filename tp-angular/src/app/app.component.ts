@@ -17,6 +17,8 @@ export class AppComponent {
 
   todoForm: Todo = new Todo(0, '', false);
 
+  filtre: string = '';
+
   constructor() {
     this.todos.push(new Todo(1, 'Vérifier Mails', false));
     this.todos.push(new Todo(5, 'Finir spécifications techniques', true));
@@ -41,10 +43,36 @@ export class AppComponent {
 
   }
 
-  ajouterTodo() {
-    
-    this.todos.push(this.todoForm);
+  saveTodo() {
+    let pos = this.todos.findIndex(t => t.id == this.todoForm.id);
+
+    if(pos != -1) {
+      this.todos[pos] = this.todoForm;
+    } else {
+      this.todos.push(this.todoForm);
+    }
+
     this.todoForm = new Todo(0,'', false);
   }
 
+  editerTodo(id?: number) {
+    let todo = this.todos.find(todo => todo.id == id);
+    if(todo) {
+     this.todoForm = {...todo};
+    }
+  }
+
+  supprimerTodo(id?: number) {
+    let pos = this.todos.findIndex(t => t.id == id);
+
+    if(pos != -1) {
+      this.todos.splice(pos, 1);
+    }
+  }
+
+  recherche(): Array<Todo> {
+    return this.todos.filter(todo => todo.title?.indexOf(this.filtre) != -1);
+  }
+
+ 
 }
