@@ -6,13 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { TodoStatePipe } from './todo-state.pipe';
 import { AscBoldComponent } from './asc-bold/asc-bold.component';
 import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component';
+import { AscTooltipComponent } from './asc-tooltip/asc-tooltip.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoStatePipe,
     AscBoldComponent,
-    AscTextFieldComponent
+    AscTextFieldComponent,
+    AscTooltipComponent
   ],
   imports: [
     BrowserModule,

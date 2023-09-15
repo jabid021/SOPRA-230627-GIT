@@ -1,1 +1,1 @@
-<label>{{libelle}}</label><input type="text" [value]="valeur"/>
+<label>{{libelle}}</label><input type="text" [ngModel]="valeur" (ngModelChange)="refresh($event)"/>

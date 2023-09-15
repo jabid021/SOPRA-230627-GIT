@@ -73,4 +73,6 @@
     <div contenuBis>Le 2ème texte</div>
 </asc-bold>
 
-<asc-text-field libelle="Identifiant" [valeur]="prenom"></asc-text-field>
+<asc-text-field libelle="Identifiant" [valeur]="prenom" (inputChange)="majPrenom($event)"></asc-text-field>
+
+<p asc-tooltip titre="Et voilà le tooltip">Voilà le message</p>

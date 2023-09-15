@@ -76,5 +76,9 @@ export class AppComponent {
     return this.todos.filter(todo => todo.title?.indexOf(this.filtre) != -1);
   }
 
+  majPrenom(value: string) {
+    this.prenom = value;
+  }
+
  
 }
