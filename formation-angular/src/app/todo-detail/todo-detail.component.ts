@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Todo } from '../todo';
 import { ActivatedRoute } from '@angular/router';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo-detail',
@@ -8,19 +9,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./todo-detail.component.css']
 })
 export class TodoDetailComponent {
-  todos: Array<Todo> = new Array<Todo>();
-
   currentTodo: Todo;
   
-  constructor(private route: ActivatedRoute) {
-    this.todos.push(new Todo(1, 'Vérifier Mails', false));
-    this.todos.push(new Todo(5, 'Finir spécifications techniques', true));
-    this.todos.push(new Todo(7, 'Tests unitaires', false));
-
+  constructor(private route: ActivatedRoute, private todoService: TodoService) {
     this.route.params.subscribe(parameters => {
       let id = parameters['id'];
 
-      this.currentTodo = this.todos.find(t => t.id == id);
+      this.currentTodo = this.todoService.findById(id);
     });
   }
 }
