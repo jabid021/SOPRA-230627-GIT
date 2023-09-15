@@ -1,3 +1,10 @@
 <!-- Barre navigation -->
+<ul>
+    <li><a [routerLink]="['/home']">Accueil</a></li>
+    <li><a [routerLink]="['/todo']">Todo</a></li>
+</ul>
 
 <!-- Le composant à intégrer par rapport à la route -->
+<fieldset>
+<router-outlet></router-outlet>
+</fieldset>

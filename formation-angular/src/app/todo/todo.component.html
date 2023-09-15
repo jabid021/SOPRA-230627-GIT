@@ -1,0 +1,25 @@
+<table>
+    <tr>
+        <td colspan="4"><input type="text" [(ngModel)]="filtre"/></td>
+    </tr>
+    <tr>
+        <th>Identifiant</th>
+        <th>Titre</th>
+        <th>Complet ?</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let todo of recherche()">
+        <td [routerLink]="['/todo', todo.id]" class="cliquable">{{todo.id}}</td>
+        <td>{{todo.title | uppercase}}</td>
+        <td [style.color]="todo.completed! | todoState">{{todo.completed! | todoState:'desc'}}</td>
+        <td><button (click)="editerTodo(todo.id!)">Editer</button><button (click)="supprimerTodo(todo.id!)">Supprimer</button><button (click)="detail(todo.id)">Détail</button></td>
+    </tr>
+    <tr>
+        <td><input type="number" [(ngModel)]="todoForm.id"/></td>
+        <td><input type="text" [(ngModel)]="todoForm.title"/></td>
+        <td><input type="checkbox" [(ngModel)]="todoForm.completed"/></td>
+        <td><button (click)="saveTodo()">Valider</button></td>
+
+    </tr>
+
+</table>
