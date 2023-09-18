@@ -2,20 +2,23 @@
     <li class="nav-item">
         <a class="nav-link" [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i class="bi bi-house"></i></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="authService.isAuthenticated()">
         <a class="nav-link" [routerLink]="['/fournisseur']" routerLinkActive="active">Fournisseur</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="authService.isAuthenticated()">
         <a class="nav-link" [routerLink]="['/produit']" routerLinkActive="active">Produit</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="authService.isAuthenticated() && authService.hasRole('ADMIN')">
         <a class="nav-link" [routerLink]="['/utilisateur']" routerLinkActive="active">Utilisateur</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!authService.isAuthenticated()">
         <a class="nav-link" [routerLink]="['/inscription']" routerLinkActive="active">Inscription</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!authService.isAuthenticated()">
         <a class="nav-link" [routerLink]="['/connexion']" routerLinkActive="active">Connexion</a>
+    </li>
+    <li class="nav-item" *ngIf="authService.isAuthenticated()">
+        <a class="nav-link" (click)="deconnexion()" routerLinkActive="active">Déconnexion</a>
     </li>
 </ul>
 

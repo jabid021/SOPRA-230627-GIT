@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { ProduitComponent } from './produit/produit.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { MatchPasswordDirective } from './match-password.directive';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MatchPasswordDirective } from './match-password.directive';
     FournisseurComponent,
     ProduitComponent,
     InscriptionComponent,
-    MatchPasswordDirective
+    MatchPasswordDirective,
+    UtilisateurComponent,
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,
