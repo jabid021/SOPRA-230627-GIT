@@ -1,0 +1,85 @@
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Liste des produits</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Libellé</th>
+                    <th>Prix d'achat</th>
+                    <th>Prix de vente</th>
+                    <th>Référence</th>
+                    <th>Modèle</th>
+                    <th>Stock</th>
+                    <th>Fournisseur</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let prod of list()">
+                    <td>{{prod.id}}</td>
+                    <td>{{prod.libelle}}</td>
+                    <td>{{prod.prixAchat}}</td>
+                    <td>{{prod.prixVente}}</td>
+                    <td>{{prod.reference}}</td>
+                    <td>{{prod.modele}}</td>
+                    <td>{{prod.stock}}</td>
+                    <td>{{prod.fournisseur?.id}} - {{prod.fournisseur?.nom}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-primary" (click)="edit(prod.id)"><i
+                                    class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-danger" (click)="remove(prod.id)"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-success btn-lg" (click)="add()"><i
+            class="bi bi-plus-square"></i></a>
+    </div>
+</div>
+
+<div class="card mt-3" *ngIf="produitForm">
+    <div class="card-header bg-primary text-white display-6">Edition d'un produit</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly [(ngModel)]="produitForm.id"/>
+        </div>
+        <div class="form-group">
+            <label for="libelle">Libellé:</label> <input type="text" class="form-control" id="libelle" name="libelle" [(ngModel)]="produitForm.libelle"/>
+        </div>
+        <div class="form-group">
+            <label for="prixAchat">Prix d'achat:</label> <input type="number" class="form-control" id="prixAchat" name="prixAchat" [(ngModel)]="produitForm.prixAchat" step=".01"/>
+        </div>
+        <div class="form-group">
+            <label for="prixVente">Prix de vente:</label> <input type="number" class="form-control" id="prixVente" name="prixVente" [(ngModel)]="produitForm.prixVente" step=".01"/>
+        </div>
+        <div class="form-group">
+            <label for="reference">Référence:</label> <input type="text" class="form-control" id="reference" name="reference" [(ngModel)]="produitForm.reference"/>
+        </div>
+        <div class="form-group">
+            <label for="modele">Modèle:</label> <input type="text" class="form-control" id="modele" name="modele" [(ngModel)]="produitForm.modele"/>
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock:</label> <input type="stock" class="form-control" id="stock" name="stock" [(ngModel)]="produitForm.stock"/>
+        </div>
+        <div class="form-group">
+            <label for="fournisseur">Fournisseur:</label> 
+            <select class="form-control" id="fournisseur" name="fournisseur" [(ngModel)]="produitForm.fournisseur.id">
+                <option *ngFor="let four of listFournisseur()" [value]="four.id">{{four.nom}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+        </div>
+    </div>
+</div>
+
