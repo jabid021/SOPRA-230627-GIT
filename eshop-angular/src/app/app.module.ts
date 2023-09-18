@@ -8,6 +8,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { FormsModule } from '@angular/forms';
 import { ProduitComponent } from './produit/produit.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { MatchPasswordDirective } from './match-password.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ProduitComponent } from './produit/produit.component';
     NavBarComponent,
     AccueilComponent,
     FournisseurComponent,
-    ProduitComponent
+    ProduitComponent,
+    InscriptionComponent,
+    MatchPasswordDirective
   ],
   imports: [
     BrowserModule,

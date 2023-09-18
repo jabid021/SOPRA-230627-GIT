@@ -45,4 +45,11 @@ export class UtilisateurService {
 
     this.utilisateurs.splice(pos, 1);
    }
+
+   inscription(username: string, password: string) {
+    let utilisateur: Utilisateur = new Utilisateur(null, username, password);
+    utilisateur.roles.push("USER");
+
+    this.save(utilisateur);
+   }
 }
