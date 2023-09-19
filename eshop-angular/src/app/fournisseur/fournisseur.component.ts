@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FournisseurService } from './fournisseur.service';
 import { Fournisseur } from '../model';
+import { FournisseurHttpService } from './fournisseur-http.service';
 
 @Component({
   selector: 'app-fournisseur',
@@ -11,12 +12,12 @@ export class FournisseurComponent {
 
   fournisseurForm: Fournisseur = null;
   
-  constructor(private fournisseurService: FournisseurService) {
+  constructor(private fournisseurHttpService: FournisseurHttpService) {
 
   }
 
   list(): Array<Fournisseur> {
-    return this.fournisseurService.findAll();
+    return this.fournisseurHttpService.findAll();
   }
 
   add() {
@@ -24,15 +25,17 @@ export class FournisseurComponent {
   }
 
   edit(id: number) {
-    this.fournisseurForm = {...this.fournisseurService.findById(id)};
+    this.fournisseurHttpService.findById(id).subscribe(response => {
+      this.fournisseurForm = response;
+    });
   }
 
   remove(id: number) {
-    this.fournisseurService.deleteById(id);
+    this.fournisseurHttpService.deleteById(id);
   }
 
   save() {
-    this.fournisseurService.save(this.fournisseurForm);
+    this.fournisseurHttpService.save(this.fournisseurForm);
   }
 
   cancel() {

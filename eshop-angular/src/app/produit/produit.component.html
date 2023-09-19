@@ -17,7 +17,7 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let prod of list()">
+                <tr *ngFor="let prod of produits$ | async">
                     <td>{{prod.id}}</td>
                     <td>{{prod.libelle}}</td>
                     <td>{{prod.prixAchat}}</td>
@@ -73,6 +73,10 @@
             <select class="form-control" id="fournisseur" name="fournisseur" [(ngModel)]="produitForm.fournisseur.id">
                 <option *ngFor="let four of listFournisseur()" [value]="four.id">{{four.nom}}</option>
             </select>
+
+            <!-- <select class="form-control" id="fournisseur" name="fournisseur" [ngModel]="produitForm.fournisseur?.id" (ngModelChange)="majFournisseur($event)">
+                <option *ngFor="let four of listFournisseur()" [value]="four.id">{{four.nom}}</option>
+            </select> -->
         </div>
     </div>
     <div class="card-footer">

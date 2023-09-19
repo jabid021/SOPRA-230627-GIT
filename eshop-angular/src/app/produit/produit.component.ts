@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Fournisseur, Produit } from '../model';
 import { ProduitService } from './produit.service';
 import { FournisseurService } from '../fournisseur/fournisseur.service';
+import { Observable } from 'rxjs';
+import { ProduitHttpService } from './produit-http.service';
 
 @Component({
   selector: 'app-produit',
@@ -10,10 +12,12 @@ import { FournisseurService } from '../fournisseur/fournisseur.service';
 })
 export class ProduitComponent {
 
+  produits$: Observable<Produit[]>;
+
   produitForm: Produit = null;
 
-  constructor(private produitService: ProduitService, private fournisseurService: FournisseurService) {
-
+  constructor(private produitService: ProduitService, private fournisseurService: FournisseurService, private produitHttpService: ProduitHttpService) {
+    this.produits$ = this.produitHttpService.findAll();
   }
 
   list(): Array<Produit> {
@@ -36,6 +40,12 @@ export class ProduitComponent {
       this.produitForm.fournisseur = new Fournisseur();
     }
   }
+
+  // majFournisseur(event: any) {
+  //   if(!this.produitForm.fournisseur) {
+  //     this.produitForm.fournisseur = new Fournisseur(event);
+  //   }
+  // }
 
   save() {  
     if(this.produitForm.fournisseur.id) {
