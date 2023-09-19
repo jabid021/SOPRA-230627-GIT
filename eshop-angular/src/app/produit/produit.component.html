@@ -66,12 +66,12 @@
             <label for="modele">Modèle:</label> <input type="text" class="form-control" id="modele" name="modele" [(ngModel)]="produitForm.modele"/>
         </div>
         <div class="form-group">
-            <label for="stock">Stock:</label> <input type="stock" class="form-control" id="stock" name="stock" [(ngModel)]="produitForm.stock"/>
+            <label for="stock">Stock:</label> <input type="number" class="form-control" id="stock" name="stock" [(ngModel)]="produitForm.stock"/>
         </div>
         <div class="form-group">
             <label for="fournisseur">Fournisseur:</label> 
             <select class="form-control" id="fournisseur" name="fournisseur" [(ngModel)]="produitForm.fournisseur.id">
-                <option *ngFor="let four of listFournisseur()" [value]="four.id">{{four.nom}}</option>
+                <option *ngFor="let four of fournisseurs$ | async" [value]="four.id">{{four.nom}}</option>
             </select>
 
             <!-- <select class="form-control" id="fournisseur" name="fournisseur" [ngModel]="produitForm.fournisseur?.id" (ngModelChange)="majFournisseur($event)">

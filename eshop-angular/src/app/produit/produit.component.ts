@@ -1,32 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Fournisseur, Produit } from '../model';
 import { ProduitService } from './produit.service';
 import { FournisseurService } from '../fournisseur/fournisseur.service';
 import { Observable } from 'rxjs';
 import { ProduitHttpService } from './produit-http.service';
+import { FournisseurHttpService } from '../fournisseur/fournisseur-http.service';
 
 @Component({
   selector: 'app-produit',
   templateUrl: './produit.component.html',
   styleUrls: ['./produit.component.scss']
 })
-export class ProduitComponent {
+export class ProduitComponent implements OnInit{
 
   produits$: Observable<Produit[]>;
 
+  fournisseurs$: Observable<Fournisseur[]>;
+
   produitForm: Produit = null;
 
-  constructor(private produitService: ProduitService, private fournisseurService: FournisseurService, private produitHttpService: ProduitHttpService) {
+  constructor(private produitHttpService: ProduitHttpService, private fournisseurHttpService: FournisseurHttpService) {
+  }
+  
+  ngOnInit(): void {
     this.produits$ = this.produitHttpService.findAll();
+    this.fournisseurs$ = this.fournisseurHttpService.findAllForAsync();
   }
 
-  list(): Array<Produit> {
-    return this.produitService.findAll();
-  }
+  // list(): Array<Produit> {
+  //   return this.produitService.findAll();
+  // }
 
-  listFournisseur(): Array<Fournisseur> {
-    return this.fournisseurService.findAll();
-  }
+  // listFournisseur(): Array<Fournisseur> {
+  //   return this.fournisseurService.findAll();
+  // }
 
   add() {
     this.produitForm = new Produit();
@@ -34,11 +41,13 @@ export class ProduitComponent {
   }
 
   edit(id: number) {
-    this.produitForm = {...this.produitService.findById(id)};
+    this.produitHttpService.findById(id).subscribe(resp => {
+      this.produitForm = resp;
 
-    if(!this.produitForm.fournisseur) {
-      this.produitForm.fournisseur = new Fournisseur();
-    }
+      if(!this.produitForm.fournisseur) {
+        this.produitForm.fournisseur = new Fournisseur();
+      }
+    });
   }
 
   // majFournisseur(event: any) {
@@ -48,11 +57,9 @@ export class ProduitComponent {
   // }
 
   save() {  
-    if(this.produitForm.fournisseur.id) {
-      this.produitForm.fournisseur = {...this.fournisseurService.findById(this.produitForm.fournisseur.id)};
-    }
-
-    this.produitService.save(this.produitForm);
+    this.produitHttpService.save(this.produitForm).subscribe(resp => {
+      this.produits$ = this.produitHttpService.findAll();
+    });
   }
 
   cancel() {
@@ -60,7 +67,9 @@ export class ProduitComponent {
   }
 
   remove(id: number) {
-    this.produitService.deleteById(id);
+    this.produitHttpService.deleteById(id).subscribe(resp => {
+      this.produits$ = this.produitHttpService.findAll();
+    });
   }
 
 }

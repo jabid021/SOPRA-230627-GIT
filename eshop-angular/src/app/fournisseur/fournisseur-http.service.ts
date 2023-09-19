@@ -26,6 +26,10 @@ export class FournisseurHttpService {
     return this.fournisseurs;
   }
 
+  findAllForAsync(): Observable<Fournisseur[]> {
+    return this.http.get<Fournisseur[]>("http://localhost:8080/api/fournisseur");
+  } 
+
   findById(id: number): Observable<Fournisseur> {
     let obs: Observable<Fournisseur> = this.http.get<Fournisseur>("http://localhost:8080/api/fournisseur/"+id);
 

@@ -16,4 +16,20 @@ export class ProduitHttpService {
   findAll(): Observable<Produit[]> {
     return this.http.get<Produit[]>("http://localhost:8080/api/produit");
   }
+
+  findById(id: number): Observable<Produit> {
+    return this.http.get<Produit>("http://localhost:8080/api/produit/"+id);
+  }
+
+  save(produit: Produit): Observable<Produit> {
+    if(produit.id) { // mise à jour
+      return this.http.put<Produit>("http://localhost:8080/api/produit/"+produit.id, produit);
+    } else { // création
+      return this.http.post<Produit>("http://localhost:8080/api/produit", produit);;
+    }
+   }
+
+   deleteById(id: number): Observable<void> {
+    return this.http.delete<void>("http://localhost:8080/api/produit/"+id);
+   }
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Utilisateur } from '../model';
 import { UtilisateurService } from '../utilisateur/utilisateur.service';
+import { UtilisateurHttpService } from '../utilisateur/utilisateur-http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inscription',
@@ -12,14 +14,13 @@ export class InscriptionComponent {
   password: string;
   passwordVerif: string;
 
-  constructor(private utilisateurService: UtilisateurService) {
-    console.log(this.utilisateurService.findAll());
+  constructor(private utilisateurHttpService: UtilisateurHttpService, private router: Router) {
   }
 
   valider() {
-    this.utilisateurService.inscription(this.username, this.password);
-
-    console.log(this.utilisateurService.findAll());
+    this.utilisateurHttpService.inscription(this.username, this.password, this.passwordVerif).subscribe(resp => {
+      this.router.navigate(["/connexion"]);
+    });
   }
 }
 

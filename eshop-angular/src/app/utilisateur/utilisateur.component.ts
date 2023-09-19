@@ -1,34 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from '../model';
 import { UtilisateurService } from './utilisateur.service';
+import { Observable } from 'rxjs';
+import { UtilisateurHttpService } from './utilisateur-http.service';
 
 @Component({
   selector: 'app-utilisateur',
   templateUrl: './utilisateur.component.html',
   styleUrls: ['./utilisateur.component.scss']
 })
-export class UtilisateurComponent {
+export class UtilisateurComponent implements OnInit {
+
+  utilisateurs$: Observable<Utilisateur[]>;
 
   utilisateurForm: Utilisateur = null;
 
-  constructor(private utilisateurService: UtilisateurService) {
+  constructor(private utilisateurHttpService: UtilisateurHttpService) {
 
   }
-
-  list(): Array<Utilisateur> {
-    return this.utilisateurService.findAll();
+  ngOnInit(): void {
+    this.utilisateurs$ = this.utilisateurHttpService.findAll();
   }
+
+  // list(): Array<Utilisateur> {
+  //   return this.utilisateurService.findAll();
+  // }
 
   add() {
     this.utilisateurForm = new Utilisateur();
   }
 
   edit(id: number) {
-    this.utilisateurForm = {...this.utilisateurService.findById(id)};
+    this.utilisateurHttpService.findById(id).subscribe(resp => {
+      this.utilisateurForm = resp;
+    });
   }
 
   save() {
-    this.utilisateurService.save(this.utilisateurForm);
+    this.utilisateurHttpService.save(this.utilisateurForm).subscribe(resp => {
+      this.utilisateurs$ = this.utilisateurHttpService.findAll();
+    });
   }
 
   cancel() {
@@ -36,6 +47,8 @@ export class UtilisateurComponent {
   }
 
   remove(id: number) {
-    this.utilisateurService.deleteById(id);
+    this.utilisateurHttpService.deleteById(id).subscribe(resp => {
+      this.utilisateurs$ = this.utilisateurHttpService.findAll();
+    });
   }
 }
