@@ -44,7 +44,7 @@ public class ProduitApiController {
 
 	@PostMapping
 	@JsonView(Views.ProduitDetail.class)
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
 	public Produit add(@Valid @RequestBody Produit produit, BindingResult result) {
 		// On vérifie si on a des erreurs de validation
 		if (result.hasErrors()) {
