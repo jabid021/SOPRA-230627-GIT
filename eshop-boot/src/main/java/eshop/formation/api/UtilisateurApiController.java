@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,9 +20,9 @@ import eshop.formation.api.request.ConnexionRequest;
 import eshop.formation.api.request.InscriptionRequest;
 import eshop.formation.api.response.ConnexionResponse;
 import eshop.formation.api.response.UtilisateurResponse;
-import eshop.formation.config.IsAdmin;
 import eshop.formation.config.jwt.JwtUtil;
 import eshop.formation.exception.InscriptionNotValidException;
+import eshop.formation.exception.UtilisateurNotFoundException;
 import eshop.formation.model.Roles;
 import eshop.formation.model.Utilisateur;
 import eshop.formation.repo.IUtilisateurRepository;
@@ -123,5 +122,10 @@ public class UtilisateurApiController {
 		response.setToken(token); // On donne le jeton en réponse
 		
 		return response;
+	}
+	
+	@PostMapping("/authentification")
+	public Utilisateur authentification(@RequestBody ConnexionRequest connexionRequest) {
+		return this.repoUtilisateur.findByUsernameAndPassword(connexionRequest.getUsername(), connexionRequest.getPassword()).orElseThrow(UtilisateurNotFoundException::new);
 	}
 }
