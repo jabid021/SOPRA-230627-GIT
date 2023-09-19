@@ -36,27 +36,29 @@
     </div>
 </div>
 
-<div class="card mt-3" *ngIf="fournisseurForm">
+<div class="card mt-3" *ngIf="showForm">
+    <form (ngSubmit)="save()" [formGroup]="fournisseurForm">
     <div class="card-header bg-primary text-white display-6">Edition d'un fournisseur</div>
     <div class="card-body">
         <div class="form-group">
-            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly [(ngModel)]="fournisseurForm.id"/>
+            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly formControlName="id"/>
         </div>
         <div class="form-group">
-            <label for="nom">Nom:</label> <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="fournisseurForm.nom"/>
+            <label for="nom">Nom:</label> <input type="text" class="form-control" id="nom" name="nom" formControlName="nom"/>
         </div>
         <div class="form-group">
-            <label for="adresse">Adresse Email:</label> <input type="email" class="form-control" id="adresse" name="adresse" [(ngModel)]="fournisseurForm.adresse"/>
+            <label for="adresse">Adresse Email:</label> <input type="email" class="form-control" id="adresse" name="adresse" formControlName="adresse"/>
         </div>
         <div class="form-group">
-            <label for="responsable">Responsable:</label> <input type="text" class="form-control" id="responsable" name="responsable" [(ngModel)]="fournisseurForm.responsable"/>
+            <label for="responsable">Responsable:</label> <input type="text" class="form-control" id="responsable" name="responsable" formControlName="responsable"/>
         </div>
     </div>
     <div class="card-footer">
         <div class="btn-group btn-group-lg float-right">
-            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-square-fill"></i></button>
             <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
         </div>
     </div>
+    </form>
 </div>
 

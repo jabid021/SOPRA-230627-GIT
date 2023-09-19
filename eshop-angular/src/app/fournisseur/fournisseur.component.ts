@@ -1,19 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FournisseurService } from './fournisseur.service';
 import { Fournisseur } from '../model';
 import { FournisseurHttpService } from './fournisseur-http.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-fournisseur',
   templateUrl: './fournisseur.component.html',
   styleUrls: ['./fournisseur.component.scss']
 })
-export class FournisseurComponent {
+export class FournisseurComponent implements OnInit {
 
-  fournisseurForm: Fournisseur = null;
+  fournisseurForm: FormGroup;
+  showForm: boolean = false;
   
-  constructor(private fournisseurHttpService: FournisseurHttpService) {
+  constructor(private fournisseurHttpService: FournisseurHttpService, private formBuilder: FormBuilder) {
 
+  }
+  ngOnInit(): void {
+    this.fournisseurForm = this.formBuilder.group({
+      id: this.formBuilder.control(0),
+      nom: this.formBuilder.control(''),
+      adresse: this.formBuilder.control(''),
+      responsable: this.formBuilder.control('')
+    });
   }
 
   list(): Array<Fournisseur> {
@@ -21,12 +31,14 @@ export class FournisseurComponent {
   }
 
   add() {
-    this.fournisseurForm = new Fournisseur();
+    this.fournisseurForm.reset();
+    this.showForm = true;
   }
 
   edit(id: number) {
     this.fournisseurHttpService.findById(id).subscribe(response => {
-      this.fournisseurForm = response;
+      this.fournisseurForm.patchValue(response);
+      this.showForm = true;
     });
   }
 
@@ -35,11 +47,12 @@ export class FournisseurComponent {
   }
 
   save() {
-    this.fournisseurHttpService.save(this.fournisseurForm);
+    this.fournisseurHttpService.save(this.fournisseurForm.value);
   }
 
   cancel() {
-    this.fournisseurForm = null;
+    this.showForm = false;
+    this.fournisseurForm.reset();
   }
 
 }

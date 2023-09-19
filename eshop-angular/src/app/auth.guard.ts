@@ -10,9 +10,9 @@ export const authGuard: CanActivateFn = (route, state) => {
     router.navigate([ '/connexion' ]);
   }
 
-  if(state.url == "/utilisateur" && !authService.hasRole("ADMIN")) {
-    return false;
-  }
+  // if(state.url == "/utilisateur" && !authService.hasRole("ADMIN")) {
+  //   return false;
+  // }
 
   return true;
 };
