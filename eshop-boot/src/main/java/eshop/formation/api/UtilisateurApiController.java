@@ -41,7 +41,7 @@ public class UtilisateurApiController {
 	private AuthenticationManager authenticationManager;
 	
 	@GetMapping
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
 	public List<UtilisateurResponse> findAll() {
 		return this.repoUtilisateur.findAll()
 			// Transforme la liste en Stream

@@ -3,6 +3,7 @@ package eshop.formation.api.response;
 public class FournisseurDetailResponse {
 	private long id;
 	private String nom;
+	private String adresse;
 	private String responsable;
 	private int nbProduits;
 
@@ -20,6 +21,14 @@ public class FournisseurDetailResponse {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 	public String getResponsable() {
