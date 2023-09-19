@@ -1,16 +1,16 @@
 package eshop.formation.api.response;
 
 public class FournisseurDetailResponse {
-	private int id;
+	private long id;
 	private String nom;
 	private String responsable;
 	private int nbProduits;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
