@@ -31,7 +31,7 @@ public class ProduitApiController {
 	private IProduitRepository repoProduit;
 
 	@GetMapping
-	@JsonView(Views.Produit.class)
+	@JsonView(Views.ProduitDetail.class)
 	public List<Produit> findAll() {
 		return this.repoProduit.findAll();
 	}

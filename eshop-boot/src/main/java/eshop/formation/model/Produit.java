@@ -3,7 +3,6 @@ package eshop.formation.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import eshop.formation.api.Views;
@@ -62,7 +61,7 @@ public class Produit {
 
 	@ManyToOne
 	@JoinColumn(name = "PRO_FOURNISSEUR_ID")
-	@JsonView(Views.Fournisseur.class)
+	@JsonView(Views.ProduitDetail.class)
 	private Fournisseur fournisseur;
 
 	@OneToMany(mappedBy = "produit")
