@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FournisseurService } from './fournisseur.service';
 import { Fournisseur } from '../model';
 import { FournisseurHttpService } from './fournisseur-http.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-fournisseur',
@@ -20,8 +20,8 @@ export class FournisseurComponent implements OnInit {
   ngOnInit(): void {
     this.fournisseurForm = this.formBuilder.group({
       id: this.formBuilder.control(0),
-      nom: this.formBuilder.control(''),
-      adresse: this.formBuilder.control(''),
+      nom: this.formBuilder.control('', Validators.required),
+      adresse: this.formBuilder.control('', [Validators.required, Validators.email]),
       responsable: this.formBuilder.control('')
     });
   }
@@ -48,6 +48,7 @@ export class FournisseurComponent implements OnInit {
 
   save() {
     this.fournisseurHttpService.save(this.fournisseurForm.value);
+    this.cancel();
   }
 
   cancel() {
